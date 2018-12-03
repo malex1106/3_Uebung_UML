@@ -6,6 +6,10 @@ import java.util.Date;
 
 public class SchuelerClass implements SchuelerInterface {
 
+    private int katalognummer;
+    private boolean eigenberechtigt;
+    private Date eintrittsdatum;
+
     @Override
     public int getKatalognummer() {
         return 0;

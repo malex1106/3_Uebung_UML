@@ -3,6 +3,10 @@ package com.uebung3.Classes;
 import com.uebung3.Interfaces.KlasseInterface;
 
 public class KlasseClass implements KlasseInterface {
+
+    private String bezeichnung;
+    private int schulstufe;
+
     @Override
     public String getBezeichnung() {
         return null;

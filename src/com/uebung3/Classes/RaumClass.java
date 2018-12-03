@@ -4,6 +4,11 @@ import com.uebung3.Enumerations.Raumtyp;
 import com.uebung3.Interfaces.RaumInterface;
 
 public class RaumClass implements RaumInterface {
+
+    private String raumNummer;
+    private int maxSitzolaetze;
+    private Raumtyp raumtyp;
+
     @Override
     public String getRaumNummer() {
         return null;

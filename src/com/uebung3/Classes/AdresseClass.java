@@ -3,6 +3,12 @@ package com.uebung3.Classes;
 import com.uebung3.Interfaces.AdresseInterface;
 
 public class AdresseClass implements AdresseInterface {
+
+    private String ort;
+    private String strasse;
+    private int hausnummer;
+    private int plz;
+
     @Override
     public String getOrt() {
         return null;

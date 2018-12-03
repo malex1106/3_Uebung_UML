@@ -4,7 +4,11 @@ import com.uebung3.Interfaces.SchuleInterface;
 
 import java.util.ArrayList;
 
-public class SchulClass implements SchuleInterface {
+public class SchuleClass implements SchuleInterface {
+
+    private String name;
+    private Long schulkennzahl;
+    private String schultyp;
 
     @Override
     public boolean addPersonal(NichtLehrpersonal personal) {

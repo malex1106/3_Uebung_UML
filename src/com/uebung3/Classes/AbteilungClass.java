@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 public class AbteilungClass implements AbteilungInterface {
 
+    private String kuerzel;
+    private String name;
+
     @Override
     public String getName() {
         return null;

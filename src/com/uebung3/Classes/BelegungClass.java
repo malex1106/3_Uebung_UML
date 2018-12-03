@@ -5,6 +5,8 @@ import com.uebung3.Interfaces.BelegungInterface;
 
 public class BelegungClass implements BelegungInterface {
 
+    private int unterrichtsEinheit;
+
     @Override
     public Unterrichtstag getWochentag() {
         return null;
