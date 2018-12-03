@@ -6,15 +6,23 @@ import java.util.Date;
 
 public abstract class PersonClass implements PersonInterface {
 
-    private Long svnr;
+    private long svnr;
     private String vorname;
     private String nachname;
     private Date geburtsdatum;
     private String email;
 
+    public PersonClass(long svnr, String vorname, String nachname, Date geburtsdatum, String email) {
+        this.svnr = svnr;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.geburtsdatum = geburtsdatum;
+        this.email = email;
+    }
+
     @Override
-    public Long getSvnr() {
-        return null;
+    public long getSvnr() {
+        return 0;
     }
 
     @Override
