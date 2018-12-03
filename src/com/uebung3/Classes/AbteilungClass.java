@@ -9,14 +9,19 @@ public class AbteilungClass implements AbteilungInterface {
     private String kuerzel;
     private String name;
 
+    AbteilungClass(String name, String kuerzel) {
+        this.name = name;
+        this.kuerzel = kuerzel;
+    }
+
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     @Override
     public String getKuerzel() {
-        return null;
+        return this.kuerzel;
     }
 
     @Override
