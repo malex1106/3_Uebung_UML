@@ -1,13 +1,20 @@
 package com.uebung3.Interfaces;
 
+import com.uebung3.Classes.AbteilungClass;
+import com.uebung3.Classes.LehrerClass;
+import com.uebung3.Classes.MitarbeiterClass;
+import com.uebung3.Classes.NichtLehrpersonal;
+
+import java.util.ArrayList;
+
 public interface SchuleInterface {
     public boolean addPersonal(NichtLehrpersonal persona);
-    public Abteilung addAbteilung(String name, String kuerzel);
-    public boolean setDirektor(Lehrer lehrer);
+    public AbteilungClass addAbteilung(String name, String kuerzel);
+    public boolean setDirektor(LehrerClass lehrer);
 
     public Long getSchulkennzahl();
     public String getName();
     public String getSchultyp();
-    public ArrayList<Mitarbeiter> getPersonal();
+    public ArrayList<MitarbeiterClass> getPersonal();
     public int getAnzahlSchueler();
 }

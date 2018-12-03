@@ -2,6 +2,8 @@ package com.uebung3.Classes;
 
 import com.uebung3.Interfaces.SchuleInterface;
 
+import java.util.ArrayList;
+
 public class SchulClass implements SchuleInterface {
 
     @Override
@@ -10,12 +12,12 @@ public class SchulClass implements SchuleInterface {
     }
 
     @Override
-    public Abteilung addAbteilung(String name, String kuerzel) {
+    public AbteilungClass addAbteilung(String name, String kuerzel) {
         return null;
     }
 
     @Override
-    public boolean setDirektor(Lehrer lehrer) {
+    public boolean setDirektor(LehrerClass lehrer) {
         return false;
     }
 
@@ -35,7 +37,7 @@ public class SchulClass implements SchuleInterface {
     }
 
     @Override
-    public ArrayList<Mitarbeiter> getPersonal() {
+    public ArrayList<MitarbeiterClass> getPersonal() {
         return null;
     }
 

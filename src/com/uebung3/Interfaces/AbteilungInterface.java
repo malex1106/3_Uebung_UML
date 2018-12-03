@@ -1,10 +1,15 @@
 package com.uebung3.Interfaces;
 
+import com.uebung3.Classes.LehrerClass;
+import com.uebung3.Classes.SchuelerClass;
+
+import java.util.ArrayList;
+
 public interface AbteilungInterface {
     public String getName();
     public String getKuerzel();
-    public ArrayList<Schueler> getSchueler();
+    public ArrayList<SchuelerClass> getSchueler();
 
-    public boolean addLehrer(Lehrer lehrer);
-    public boolean setAbteilungsvorstand(Lehrer lehrer);
+    public boolean addLehrer(LehrerClass lehrer);
+    public boolean setAbteilungsvorstand(LehrerClass lehrer);
 }

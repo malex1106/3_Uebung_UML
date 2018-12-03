@@ -2,6 +2,8 @@ package com.uebung3.Classes;
 
 import com.uebung3.Interfaces.AbteilungInterface;
 
+import java.util.ArrayList;
+
 public class AbteilungClass implements AbteilungInterface {
 
     @Override
@@ -15,17 +17,17 @@ public class AbteilungClass implements AbteilungInterface {
     }
 
     @Override
-    public ArrayList<Schueler> getSchueler() {
+    public ArrayList<SchuelerClass> getSchueler() {
         return null;
     }
 
     @Override
-    public boolean addLehrer(Lehrer lehrer) {
+    public boolean addLehrer(LehrerClass lehrer) {
         return false;
     }
 
     @Override
-    public boolean setAbteilungsvorstand(Lehrer lehrer) {
+    public boolean setAbteilungsvorstand(LehrerClass lehrer) {
         return false;
     }
 }
