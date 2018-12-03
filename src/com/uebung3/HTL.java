@@ -4,6 +4,6 @@ public class HTL {
 
     public static void main(String[] args) {
         System.out.println("HTL");
-        System.out.print(" - EL");
+        System.out.print("-EL");
     }
 }
