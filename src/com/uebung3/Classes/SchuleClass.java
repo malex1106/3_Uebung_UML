@@ -3,7 +3,6 @@ package com.uebung3.Classes;
 import com.uebung3.Interfaces.SchuleInterface;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class SchuleClass implements SchuleInterface {
 
@@ -12,7 +11,7 @@ public class SchuleClass implements SchuleInterface {
     private String schultyp;
 
     private ArrayList<AbteilungClass> abteilungen;
-    private AdresseClass ort;
+    private AdresseClass standort;
 
     public SchuleClass(String name, long schulkennzahl, String schultyp) {
         this.name = name;
@@ -28,7 +27,7 @@ public class SchuleClass implements SchuleInterface {
     }
 
     @Override
-    public AbteilungClass addAbteilung(String name, String kuerzel) {          //laut Angabe Rückgabewert AbteilungsClass?!
+    public AbteilungClass addAbteilung(String name, String kuerzel) {
         try {
             AbteilungClass abteilung = new AbteilungClass(name, kuerzel);
             this.abteilungen.add(abteilung);
@@ -42,6 +41,17 @@ public class SchuleClass implements SchuleInterface {
     @Override
     public boolean setDirektor(LehrerClass lehrer) {
         return false;
+    }
+
+    @Override
+    public boolean setStandort(AdresseClass adresse) {
+        try {
+            this.standort = adresse;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

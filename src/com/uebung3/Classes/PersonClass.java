@@ -4,7 +4,7 @@ import com.uebung3.Interfaces.PersonInterface;
 
 import java.util.Date;
 
-public class PersonClass implements PersonInterface {
+public abstract class PersonClass implements PersonInterface {
 
     private Long svnr;
     private String vorname;

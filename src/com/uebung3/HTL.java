@@ -1,6 +1,7 @@
 package com.uebung3;
 
 import com.uebung3.Classes.AbteilungClass;
+import com.uebung3.Classes.AdresseClass;
 import com.uebung3.Classes.SchuleClass;
 
 import javax.swing.*;
@@ -49,8 +50,14 @@ public class HTL extends JFrame implements ActionListener {
 
         System.out.println("HTL");
         SchuleClass schule = new SchuleClass("HTL", 12093, "Technische Schule");
+
+        AdresseClass HTLadresse = new AdresseClass("St. Poelten", "Waldstrasse", 1, 3100);
+        schule.setStandort(HTLadresse);
+
         AbteilungClass EL = schule.addAbteilung("Elektronik und Technische Informatik", "EL");
+
         System.out.println(EL.getName() + " | " + EL.getKuerzel());
+        HTLadresse.printAdresse();
     }
 
     @Override

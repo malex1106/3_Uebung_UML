@@ -9,7 +9,7 @@ public class AbteilungClass implements AbteilungInterface {
     private String kuerzel;
     private String name;
 
-    AbteilungClass(String name, String kuerzel) {
+    public AbteilungClass(String name, String kuerzel) {
         this.name = name;
         this.kuerzel = kuerzel;
     }

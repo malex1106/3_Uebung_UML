@@ -9,28 +9,35 @@ public class AdresseClass implements AdresseInterface {
     private int hausnummer;
     private int plz;
 
+    public AdresseClass(String ort, String strasse, int hausnummer, int plz) {
+        this.ort =  ort;
+        this.strasse = strasse;
+        this.hausnummer = hausnummer;
+        this.plz = plz;
+    }
+
     @Override
     public String getOrt() {
-        return null;
+        return this.ort;
     }
 
     @Override
     public String getStrasse() {
-        return null;
+        return this.strasse;
     }
 
     @Override
     public int getHausnummer() {
-        return 0;
+        return this.hausnummer;
     }
 
     @Override
     public int getPlz() {
-        return 0;
+        return this.plz;
     }
 
     @Override
     public void printAdresse() {
-
+        System.out.println("Ort: " + this.getOrt() + " | Strasse: " + this.getStrasse() + " | " + this.getHausnummer() + " | " + this.getPlz());
     }
 }
