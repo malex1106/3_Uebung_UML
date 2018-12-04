@@ -11,6 +11,7 @@ public class SchuleClass implements SchuleInterface {
     private String schultyp;
 
     private ArrayList<AbteilungClass> abteilungen;
+    private ArrayList<NichtLehrpersonal> personal;
     private AdresseClass standort;
     private LehrerClass direktor;
 
@@ -20,11 +21,18 @@ public class SchuleClass implements SchuleInterface {
         this.schultyp = schultyp;
 
         this.abteilungen = new ArrayList<AbteilungClass>();
+        this.personal = new ArrayList<NichtLehrpersonal>();
     }
 
     @Override
     public boolean addPersonal(NichtLehrpersonal personal) {
-        return false;
+        try {
+            this.personal.add(personal);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

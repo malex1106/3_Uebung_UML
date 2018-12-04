@@ -9,9 +9,14 @@ public class AbteilungClass implements AbteilungInterface {
     private String kuerzel;
     private String name;
 
+    private LehrerClass abteilungsvorstand;
+    private ArrayList<LehrerClass> unterrichtendeLehrer;
+
     public AbteilungClass(String name, String kuerzel) {
         this.name = name;
         this.kuerzel = kuerzel;
+
+        this.unterrichtendeLehrer = new ArrayList<LehrerClass>();
     }
 
     @Override
@@ -31,11 +36,23 @@ public class AbteilungClass implements AbteilungInterface {
 
     @Override
     public boolean addLehrer(LehrerClass lehrer) {
-        return false;
+        try {
+            this.unterrichtendeLehrer.add(lehrer);
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return true;
+        }
     }
 
     @Override
     public boolean setAbteilungsvorstand(LehrerClass lehrer) {
-        return false;
+        try {
+            this.abteilungsvorstand = lehrer;
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
