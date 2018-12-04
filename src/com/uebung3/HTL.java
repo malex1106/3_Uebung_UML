@@ -5,7 +5,6 @@ import com.uebung3.Classes.AdresseClass;
 import com.uebung3.Classes.SchuleClass;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

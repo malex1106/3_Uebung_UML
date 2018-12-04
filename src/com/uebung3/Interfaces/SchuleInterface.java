@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface SchuleInterface {
     public boolean addPersonal(NichtLehrpersonal persona);
     public AbteilungClass addAbteilung(String name, String kuerzel);
-    public boolean setDirektor(LehrerClass lehrer);
+    public boolean setDirektor(LehrerClass direktor);
     public boolean setStandort(AdresseClass adresse);
 
     public Long getSchulkennzahl();

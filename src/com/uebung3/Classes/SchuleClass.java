@@ -12,6 +12,7 @@ public class SchuleClass implements SchuleInterface {
 
     private ArrayList<AbteilungClass> abteilungen;
     private AdresseClass standort;
+    private LehrerClass direktor;
 
     public SchuleClass(String name, long schulkennzahl, String schultyp) {
         this.name = name;
@@ -39,8 +40,14 @@ public class SchuleClass implements SchuleInterface {
     }
 
     @Override
-    public boolean setDirektor(LehrerClass lehrer) {
-        return false;
+    public boolean setDirektor(LehrerClass direktor) {
+        try {
+            this.direktor = direktor;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
