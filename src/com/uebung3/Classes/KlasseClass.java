@@ -1,5 +1,6 @@
 package com.uebung3.Classes;
 
+import com.uebung3.Enumerations.Raumtyp;
 import com.uebung3.Interfaces.KlasseInterface;
 
 import java.util.ArrayList;
@@ -12,14 +13,18 @@ public class KlasseClass implements KlasseInterface {
     private LehrerClass klassenvorstand;
     private SchuelerClass klassensprecher;
     private ArrayList<SchuelerClass> schueler;
+    private RaumClass stammklasse;
+    private ArrayList<FachClass> faecher;           //Es kann ja nicht nur ein Fach unterrichtet werden, aber nur ein Fach einmal!
 
-    public KlasseClass(String bezeichnung, int schulstufe, LehrerClass klassenvorstand, SchuelerClass klassensprecher) {
+    public KlasseClass(String bezeichnung, int schulstufe, LehrerClass klassenvorstand, SchuelerClass klassensprecher, RaumClass stammklasse) {
         this.bezeichnung = bezeichnung;
         this.schulstufe = schulstufe;
         this.klassenvorstand = klassenvorstand;
         this.klassensprecher = klassensprecher;
+        this.stammklasse = stammklasse;
 
         this.schueler = new ArrayList<SchuelerClass>();
+        this.faecher = new ArrayList<FachClass>();
     }
 
     @Override
@@ -70,6 +75,34 @@ public class KlasseClass implements KlasseInterface {
         try {
             this.klassenvorstand = klassenvorstand;
             return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setStammklasse(RaumClass stammklasse) {
+        try {
+            this.stammklasse = stammklasse;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public RaumClass getStammklasse() { return this.stammklasse; }
+
+    @Override
+    public boolean addFach(FachClass fach) {
+        try {
+            if(!this.faecher.contains(fach)) {
+                this.faecher.add(fach);
+                return true;
+            } else
+                throw new Exception("Fach existiert bereits.");
         } catch (Exception e) {
             e.printStackTrace();
             return false;

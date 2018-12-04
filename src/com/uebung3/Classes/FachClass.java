@@ -12,6 +12,7 @@ public class FachClass implements FachInterface {
     private Raumtyp raumanforderung;
 
     private ArrayList<LehrerClass> lehrer;
+    private ArrayList<KlasseClass> klassen;
 
     public FachClass(String name, int wochenstunden, Raumtyp raumanforderung) {
         this.name = name;
@@ -42,11 +43,31 @@ public class FachClass implements FachInterface {
     @Override
     public boolean addLehrer(LehrerClass lehrer) {
         try {
-            this.lehrer.add(lehrer);
-            return true;
+            if(!this.lehrer.contains(lehrer)) {
+                this.lehrer.add(lehrer);
+                return true;
+            } else
+                throw new Exception("Lehrer existiert bereits!");
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
+    @Override
+    public boolean addKlasse(KlasseClass klasse) {
+        try {
+            if(!this.klassen.contains(klasse)) {
+                this.klassen.add(klasse);
+                return true;
+            } else
+                throw new Exception("Klasse existiert bereits!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public ArrayList<KlasseClass> getKlassen() { return this.klassen; }
 }
