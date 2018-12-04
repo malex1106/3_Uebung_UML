@@ -9,6 +9,7 @@ public interface SchuleInterface {
     public AbteilungClass addAbteilung(String name, String kuerzel);
     public boolean setDirektor(LehrerClass direktor);
     public boolean setStandort(AdresseClass adresse);
+    public boolean setSchulsprecher(SchuelerClass schueler);
 
     public Long getSchulkennzahl();
     public String getName();

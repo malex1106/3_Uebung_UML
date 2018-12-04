@@ -12,4 +12,5 @@ public interface AbteilungInterface {
 
     public boolean addLehrer(LehrerClass lehrer);
     public boolean setAbteilungsvorstand(LehrerClass lehrer);
+    public boolean setAbteilungssprecher(SchuelerClass schueler);
 }

@@ -14,6 +14,7 @@ public class SchuleClass implements SchuleInterface {
     private ArrayList<NichtLehrpersonal> personal;
     private AdresseClass standort;
     private LehrerClass direktor;
+    private SchuelerClass schulsprecher;
 
     public SchuleClass(String name, long schulkennzahl, String schultyp) {
         this.name = name;
@@ -68,6 +69,17 @@ public class SchuleClass implements SchuleInterface {
             return false;
         }
     }
+
+   @Override
+   public boolean setSchulsprecher(SchuelerClass schueler) {
+        try {
+            this.schulsprecher = schueler;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+   }
 
     @Override
     public Long getSchulkennzahl() {

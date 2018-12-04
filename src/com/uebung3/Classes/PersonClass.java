@@ -12,6 +12,8 @@ public abstract class PersonClass implements PersonInterface {
     private Date geburtsdatum;
     private String email;
 
+    private AdresseClass wohnort;
+
     public PersonClass(long svnr, String vorname, String nachname, Date geburtsdatum, String email) {
         this.svnr = svnr;
         this.vorname = vorname;
@@ -22,26 +24,42 @@ public abstract class PersonClass implements PersonInterface {
 
     @Override
     public long getSvnr() {
-        return 0;
+        return this.svnr;
     }
 
     @Override
     public String getVorname() {
-        return null;
+        return this.vorname;
     }
 
     @Override
     public String getNachname() {
-        return null;
+        return this.nachname;
     }
 
     @Override
     public Date getGeburtsdatum() {
-        return null;
+        return this.geburtsdatum;
     }
 
     @Override
     public String getEmail() {
-        return null;
+        return this.email;
+    }
+
+    @Override
+    public AdresseClass getWohnort() {
+        return this.wohnort;
+    }
+
+    @Override
+    public boolean setWohnort(AdresseClass wohnort) {
+        try {
+            this.wohnort = wohnort;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

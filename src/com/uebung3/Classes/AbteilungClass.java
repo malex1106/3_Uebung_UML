@@ -11,6 +11,7 @@ public class AbteilungClass implements AbteilungInterface {
 
     private LehrerClass abteilungsvorstand;
     private ArrayList<LehrerClass> unterrichtendeLehrer;
+    private SchuelerClass abteilungssprecher;
 
     public AbteilungClass(String name, String kuerzel) {
         this.name = name;
@@ -51,6 +52,17 @@ public class AbteilungClass implements AbteilungInterface {
             this.abteilungsvorstand = lehrer;
             return true;
         } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setAbteilungssprecher(SchuelerClass schueler) {
+        try {
+            this.abteilungssprecher = schueler;
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

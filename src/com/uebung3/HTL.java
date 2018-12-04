@@ -2,11 +2,13 @@ package com.uebung3;
 
 import com.uebung3.Classes.AbteilungClass;
 import com.uebung3.Classes.AdresseClass;
+import com.uebung3.Classes.SchuelerClass;
 import com.uebung3.Classes.SchuleClass;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class HTL extends JFrame implements ActionListener {
 
@@ -57,6 +59,9 @@ public class HTL extends JFrame implements ActionListener {
 
         System.out.println(EL.getName() + " | " + EL.getKuerzel());
         HTLadresse.printAdresse();
+
+        SchuelerClass schueler = new SchuelerClass(878123,"Alexander", "Fichtinger", new Date(), "malex1106@gmail.com");
+        System.out.println(schueler.getNachname());
     }
 
     @Override
