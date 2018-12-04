@@ -15,13 +15,15 @@ public class KlasseClass implements KlasseInterface {
     private ArrayList<SchuelerClass> schueler;
     private RaumClass stammklasse;
     private ArrayList<FachClass> faecher;           //Es kann ja nicht nur ein Fach unterrichtet werden, aber nur ein Fach einmal!
+    private AbteilungClass abteilung;
 
-    public KlasseClass(String bezeichnung, int schulstufe, LehrerClass klassenvorstand, SchuelerClass klassensprecher, RaumClass stammklasse) {
+    public KlasseClass(String bezeichnung, int schulstufe, LehrerClass klassenvorstand, SchuelerClass klassensprecher, RaumClass stammklasse, AbteilungClass abteilung) {
         this.bezeichnung = bezeichnung;
         this.schulstufe = schulstufe;
         this.klassenvorstand = klassenvorstand;
         this.klassensprecher = klassensprecher;
         this.stammklasse = stammklasse;
+        this.abteilung = abteilung;
 
         this.schueler = new ArrayList<SchuelerClass>();
         this.faecher = new ArrayList<FachClass>();
@@ -108,4 +110,18 @@ public class KlasseClass implements KlasseInterface {
             return false;
         }
     }
+
+    @Override
+    public boolean setAbteilung(AbteilungClass abteilung) {
+        try {
+            this.abteilung = abteilung;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public AbteilungClass getAbteilung() { return this.abteilung; }
 }
