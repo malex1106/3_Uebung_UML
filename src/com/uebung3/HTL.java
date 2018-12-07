@@ -265,6 +265,8 @@ public class HTL extends JFrame implements ActionListener {
             helpMenu.add(welcomeItem);
 
             setJMenuBar(menuBar);
+
+            //Test
     }
 
     public static void main(String[] args) {
