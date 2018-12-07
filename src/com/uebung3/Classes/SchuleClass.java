@@ -83,26 +83,31 @@ public class SchuleClass implements SchuleInterface {
 
     @Override
     public Long getSchulkennzahl() {
-        return null;
+
+        return this.schulkennzahl;
     }
 
     @Override
     public String getName() {
-        return null;
+
+        return this.name;
     }
 
     @Override
     public String getSchultyp() {
-        return null;
+
+        return this.schultyp;
     }
 
     @Override
-    public ArrayList<MitarbeiterClass> getPersonal() {
-        return null;
+    public ArrayList<NichtLehrpersonal> getPersonal() {    //Laut Schule.svg ArrayList<MitarbeiterClass>
+
+        return this.personal;
     }
 
     @Override
     public int getAnzahlSchueler() {
+
         return 0;
     }
 }
