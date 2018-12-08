@@ -111,3 +111,5 @@ public class SchuleClass implements SchuleInterface {
         return 0;
     }
 }
+
+//HOCHLADE VERSUCH!!!
