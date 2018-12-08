@@ -11,6 +11,8 @@ public interface AbteilungInterface {
     public String getKuerzel();
     public ArrayList<SchuelerClass> getSchueler();
     public ArrayList<KlasseClass> getKlassen();
+    public LehrerClass getAbteilungsvorstand();
+    public SchuelerClass getAbteilungssprecher();
 
     public boolean addLehrer(LehrerClass lehrer);
     public boolean setAbteilungsvorstand(LehrerClass lehrer);

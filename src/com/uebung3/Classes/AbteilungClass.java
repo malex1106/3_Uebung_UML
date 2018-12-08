@@ -33,9 +33,13 @@ public class AbteilungClass implements AbteilungInterface {
     }
 
     @Override
-    public ArrayList<SchuelerClass> getSchueler() {
-        return null;
-    }
+    public ArrayList<SchuelerClass> getSchueler() { return null; }  //gehört noch gemacht!!!
+
+    @Override
+    public LehrerClass getAbteilungsvorstand() { return this.abteilungsvorstand; }
+
+    @Override
+    public SchuelerClass getAbteilungssprecher() { return this.abteilungssprecher; }
 
     @Override
     public boolean addLehrer(LehrerClass lehrer) {
@@ -47,7 +51,7 @@ public class AbteilungClass implements AbteilungInterface {
                 throw new Exception("Lehrer existiert bereits!");
         } catch(Exception e) {
             e.printStackTrace();
-            return true;
+            return false;       //true -> false
         }
     }
 
