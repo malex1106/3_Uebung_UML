@@ -27,7 +27,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("Schulbank");
         primaryStage.setScene(mainScene);
-        primaryStage.setMinWidth(600);
+        primaryStage.setMinWidth(670);
         primaryStage.setMinHeight(600);
         primaryStage.setResizable(false);
         primaryStage.show();

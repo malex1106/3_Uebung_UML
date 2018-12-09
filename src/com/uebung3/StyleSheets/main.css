@@ -3,7 +3,11 @@
 }
 
 .background2 {
-    -fx-background-color: rgb(50, 50, 50);
+     -fx-background-color: rgb(50, 50, 50);
+ }
+
+.background3 {
+    -fx-background-color: rgb(66, 66, 66);
 }
 
 .text-field {
