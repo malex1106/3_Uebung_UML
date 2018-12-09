@@ -29,7 +29,7 @@ public class AbteilungController {
             this.abtKuerzel.setEditable(true);
             bearbeitenBool = true;
         } else {
-            this.abtBearbeitenButton.setText("Bearbeiten");
+            this.abtBearbeitenButton.setText("Mehr Infos");
             this.abtName.setEditable(false);
             this.abtKuerzel.setEditable(false);
             bearbeitenBool = false;

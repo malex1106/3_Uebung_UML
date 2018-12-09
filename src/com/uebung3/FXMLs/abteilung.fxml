@@ -21,16 +21,22 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="77.0" text="Kürzel" textFill="#979797">
+            <Label layoutX="25.0" layoutY="85.0" text="Kürzel" textFill="#979797">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="abtName" editable="false" layoutX="27.0" layoutY="36.0" prefHeight="27.0" prefWidth="300.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
-            <TextField fx:id="abtKuerzel" editable="false" layoutX="25.0" layoutY="101.0" prefHeight="27.0" prefWidth="300.0" />
+            <TextField fx:id="abtName" editable="false" layoutX="25.0" layoutY="42.0" prefHeight="27.0" prefWidth="300.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
+            <TextField fx:id="abtKuerzel" editable="false" layoutX="25.0" layoutY="109.0" prefHeight="27.0" prefWidth="300.0" />
             <Button id="redButton" fx:id="abtLöschenButton" layoutX="366.0" layoutY="167.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" stylesheets="@../StyleSheets/main.css" text="Löschen" />
-            <Button id="orangeButton" fx:id="abtBearbeitenButton" layoutX="449.0" layoutY="167.0" mnemonicParsing="false" onAction="#abtBearbeiten" prefHeight="27.0" prefWidth="90.0" stylesheets="@../StyleSheets/main.css" text="Bearbeiten" />
+            <Button id="orangeButton" fx:id="abtBearbeitenButton" layoutX="449.0" layoutY="167.0" mnemonicParsing="false" onAction="#abtBearbeiten" prefHeight="27.0" prefWidth="90.0" stylesheets="@../StyleSheets/main.css" text="Mehr Infos" />
             <Separator layoutX="22.0" layoutY="219.0" prefHeight="12.0" prefWidth="517.0" />
+            <Label layoutX="387.0" layoutY="19.0" text="Abt-ID" textFill="#979797">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="abtID" editable="false" layoutX="387.0" layoutY="42.0" prefHeight="27.0" prefWidth="75.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
          </children>
       </AnchorPane>
    </children>
