@@ -3,16 +3,22 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="background" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1038.0" stylesheets="@../StyleSheets/main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uebung3.Controller.MainController">
+<AnchorPane id="background" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="610.0" stylesheets="@../StyleSheets/main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uebung3.Controller.MainController">
    <effect>
       <Blend mode="MULTIPLY" opacity="0.0" />
    </effect>
    <children>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" />
-        </content>
-      </ScrollPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox />
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

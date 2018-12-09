@@ -1,6 +1,5 @@
 package com.uebung3;
 
-import com.uebung3.Classes.SchuleClass;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,9 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class Main extends Application {
+public class SchuleMain extends Application {
 
-    public static Stage primaryStage;
+    private static Stage primaryStage;
 
     private Parent root;
     private Scene mainScene;
@@ -20,15 +19,15 @@ public class Main extends Application {
 
         this.primaryStage = primaryStage;
 
-        root = FXMLLoader.load(getClass().getResource("FXMLs/main.fxml"));
+        root = FXMLLoader.load(getClass().getResource("FXMLs/schule.fxml"));
 
-        mainScene = new Scene(root, 600, 600);
+        mainScene = new Scene(root, 473, 319);
         mainScene.getStylesheets().add(this.getClass().getResource("StyleSheets/main.css").toExternalForm());
 
         primaryStage.setTitle("Schulbank");
         primaryStage.setScene(mainScene);
-        primaryStage.setMinWidth(600);
-        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(473);
+        primaryStage.setMinHeight(319);
         primaryStage.show();
     }
 
