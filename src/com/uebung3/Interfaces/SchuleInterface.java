@@ -16,4 +16,5 @@ public interface SchuleInterface {
     public String getSchultyp();
     public ArrayList<NichtLehrpersonal> getPersonal();
     public int getAnzahlSchueler();
+    public LehrerClass getDirektor();
 }

@@ -106,10 +106,15 @@ public class SchuleClass implements SchuleInterface {
     }
 
     @Override
+    public LehrerClass getDirektor() {   //Neu
+        return this.direktor;
+    }
+
+    @Override
     public int getAnzahlSchueler() {
 
         return 0;
     }
 }
 
-//HOCHLADE VERSUCH!!!
+

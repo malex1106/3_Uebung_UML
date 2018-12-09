@@ -66,6 +66,18 @@ public class AbteilungClass implements AbteilungInterface {
         }
     }
 
+    /*@Override
+    public boolean setAbteilungsvorstand(LehrerClass abteilungsvorstand) {
+        try {
+
+            if(!)
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }*/
+
     @Override
     public boolean setAbteilungssprecher(SchuelerClass schueler) {
         try {
