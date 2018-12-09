@@ -28,6 +28,7 @@ public class SchuleMain extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.setMinWidth(473);
         primaryStage.setMinHeight(319);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

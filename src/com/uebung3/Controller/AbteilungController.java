@@ -1,5 +1,6 @@
 package com.uebung3.Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,15 +11,29 @@ public class AbteilungController {
     private TextField abtName;
 
     @FXML
-    private TextField abtKuerzle;
+    private TextField abtKuerzel;
 
     @FXML
-    private Button abtAbteilungsvorstandwaehlen;
+    private Button abtLöschenButton;
 
     @FXML
-    private Button abtSchuelerAnzeigen;
+    private Button abtBearbeitenButton;
+
+    private boolean bearbeitenBool = false;
 
     @FXML
-    private Button abtLehrerhinzufügen;
+    void abtBearbeiten(ActionEvent event) {
+        if(!bearbeitenBool) {
+            this.abtBearbeitenButton.setText("Speichern");
+            this.abtName.setEditable(true);
+            this.abtKuerzel.setEditable(true);
+            bearbeitenBool = true;
+        } else {
+            this.abtBearbeitenButton.setText("Bearbeiten");
+            this.abtName.setEditable(false);
+            this.abtKuerzel.setEditable(false);
+            bearbeitenBool = false;
+        }
+    }
 
 }

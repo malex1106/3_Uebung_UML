@@ -2,6 +2,10 @@
     -fx-background-color: rgb(22, 22, 22);
 }
 
+.background2 {
+    -fx-background-color: rgb(50, 50, 50);
+}
+
 .text-field {
     -fx-background-color: -fx-text-box-border, rgb(22, 22, 22);
     -fx-background-insets: 0, 0 0 1 0 ;
@@ -20,10 +24,63 @@
     -fx-font-family: "Arial";
 }
 
+.titled-pane {
+    -fx-background: rgb(22, 22, 22);
+}
+
+.list-view {
+    -fx-background-color: rgb(22, 22, 22);
+    -fx-text-fill: rgb(22, 22, 22);
+    -fx-background: rgb(22, 22, 22);
+}
+
+.list-cell {
+    -fx-background-color: rgb(22, 22, 22);
+}
+
+.scroll-pane {
+    -fx-background: rgb(22, 22, 22);
+    -fx-background-color:transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane{
+    -fx-background-color:transparent;
+}
+
+.scroll-pane .thumb {
+    -fx-background-color: rgb(162, 162, 162);
+    -fx-background-insets: 5, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track-background {
+    visibility: hidden;
+}
+
+.scroll-bar:vertical .track {
+    visibility: hidden;
+}
+
+.separator {
+    -fx-background: rgb(60, 60, 60);
+}
+
 #greenButton {
     -fx-background-color: #02a400;
 }
 
 #redButton {
     -fx-background-color: #a41a00;
+}
+
+#orangeButton {
+    -fx-background-color: #a45700;
 }

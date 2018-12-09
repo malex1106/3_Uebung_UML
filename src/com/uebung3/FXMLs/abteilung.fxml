@@ -2,41 +2,36 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<TitledPane animated="false" prefHeight="388.0" prefWidth="600.0" text="Abteilung" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <ScrollPane prefHeight="175.0" prefWidth="598.0">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0">
-               <children>
-                  <Label layoutX="27.0" layoutY="19.0" text="Name:" />
-                  <Label layoutX="257.0" layoutY="19.0" text="Kürzel:" />
-                  <TextField fx:id="abtName" layoutX="86.0" layoutY="14.0" prefHeight="27.0" prefWidth="158.0" />
-                  <TextField fx:id="abtKuerzle" layoutX="315.0" layoutY="15.0" prefHeight="27.0" prefWidth="75.0" />
-                  <Separator layoutX="31.0" layoutY="49.0" prefHeight="17.0" prefWidth="543.0" />
-                  <Label layoutX="32.0" layoutY="71.0" text="Lehrer:" />
-                  <ListView fx:id="abtLehrerList" layoutX="33.0" layoutY="97.0" prefHeight="214.0" prefWidth="140.0" />
-                  <Label layoutX="236.0" layoutY="72.0" text="Schueler:" />
-                  <ListView fx:id="abtSchuelerList" layoutX="236.0" layoutY="99.0" prefHeight="214.0" prefWidth="141.0" />
-                  <Label layoutX="440.0" layoutY="71.0" text="Klassen:" />
-                  <ListView fx:id="abtKlassenList" layoutX="441.0" layoutY="98.0" prefHeight="214.0" prefWidth="138.0" />
-                  <Button fx:id="abtLehrerEdit" layoutX="111.0" layoutY="323.0" mnemonicParsing="false" text="Ändern" />
-                  <Button fx:id="abtSchuelerEdit" layoutX="317.0" layoutY="324.0" mnemonicParsing="false" text="Ändern" />
-                  <Button fx:id="abtKlassenEdit" layoutX="517.0" layoutY="324.0" mnemonicParsing="false" text="Ändern" />
-                  <Button fx:id="abtLehrerAdd" layoutX="79.0" layoutY="323.0" mnemonicParsing="false" text="+" />
-                  <Button fx:id="abtSchuelerAdd" layoutX="284.0" layoutY="324.0" mnemonicParsing="false" text="+" />
-                  <Button fx:id="abtKlassenAdd" layoutX="484.0" layoutY="324.0" mnemonicParsing="false" text="+" />
-                  <Button layoutX="478.0" layoutY="15.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="103.0" text="Übernehmen" />
-                  <Button layoutX="397.0" layoutY="15.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Löschen" />
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-   </content>
-</TitledPane>
+<AnchorPane prefHeight="306.0" prefWidth="552.0" styleClass="background" stylesheets="@../StyleSheets/main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uebung3.Controller.AbteilungController">
+   <children>
+      <Label layoutX="21.0" layoutY="21.0" text="Abteilung" textFill="#c6c6c6">
+         <font>
+            <Font name="Arial Bold" size="31.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="72.0" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="555.0" styleClass="background" stylesheets="@../StyleSheets/main.css">
+         <children>
+            <Label layoutX="27.0" layoutY="19.0" text="Name" textFill="#979797">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="77.0" text="Kürzel" textFill="#979797">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="abtName" editable="false" layoutX="27.0" layoutY="36.0" prefHeight="27.0" prefWidth="300.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
+            <TextField fx:id="abtKuerzel" editable="false" layoutX="25.0" layoutY="101.0" prefHeight="27.0" prefWidth="300.0" />
+            <Button id="redButton" fx:id="abtLöschenButton" layoutX="366.0" layoutY="167.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" stylesheets="@../StyleSheets/main.css" text="Löschen" />
+            <Button id="orangeButton" fx:id="abtBearbeitenButton" layoutX="449.0" layoutY="167.0" mnemonicParsing="false" onAction="#abtBearbeiten" prefHeight="27.0" prefWidth="90.0" stylesheets="@../StyleSheets/main.css" text="Bearbeiten" />
+            <Separator layoutX="22.0" layoutY="219.0" prefHeight="12.0" prefWidth="517.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

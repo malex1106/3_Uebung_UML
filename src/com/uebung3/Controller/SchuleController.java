@@ -45,4 +45,15 @@ public class SchuleController {
             }
         }
     }
+
+    @FXML
+    private void schulReset(ActionEvent event) {
+        this.schulSchulname.setText("");
+        this.schulSchulkennzahl.setText("");
+        this.schulSchultyp.setText("");
+    }
+
+    public static SchuleClass getSchule() {
+        return schule;
+    }
 }
