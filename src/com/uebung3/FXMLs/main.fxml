@@ -23,7 +23,7 @@
                      <top>
                         <AnchorPane prefHeight="90.0" prefWidth="610.0" styleClass="background2" BorderPane.alignment="CENTER">
                            <children>
-                              <Label layoutX="28.0" layoutY="24.0" text="Schule" textFill="#c6c6c6">
+                              <Label fx:id="schoolName" layoutX="31.0" layoutY="24.0" text="Schule" textFill="#c6c6c6">
                                  <font>
                                     <Font name="Arial Bold" size="36.0" />
                                  </font>
@@ -44,16 +44,16 @@
                         <AnchorPane prefHeight="562.0" prefWidth="502.0" BorderPane.alignment="CENTER">
                            <children>
                               <Separator layoutX="11.0" layoutY="19.0" orientation="VERTICAL" prefHeight="523.0" prefWidth="6.0" />
-                              <Label layoutX="39.0" layoutY="19.0" text="Info" textFill="#c6c6c6">
-                                 <font>
-                                    <Font name="Arial Bold" size="26.0" />
-                                 </font>
-                              </Label>
                               <ScrollPane layoutX="39.0" layoutY="65.0" prefHeight="490.0" prefWidth="454.0">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="449.0" />
                                 </content>
                               </ScrollPane>
+                              <Label layoutX="39.0" layoutY="19.0" text="Info" textFill="#c6c6c6">
+                                 <font>
+                                    <Font name="Arial Bold" size="26.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </right>
@@ -65,7 +65,7 @@
                                     <ListView fx:id="listViewAbteilungen" prefHeight="508.0" prefWidth="307.0" />
                                  </content>
                               </ScrollPane>
-                              <Label layoutX="27.0" layoutY="14.0" text="Abteilungen" textFill="#c6c6c6">
+                              <Label layoutX="28.0" layoutY="21.0" text="Abteilungen" textFill="#c6c6c6">
                                  <font>
                                     <Font name="Arial Bold" size="26.0" />
                                  </font>
