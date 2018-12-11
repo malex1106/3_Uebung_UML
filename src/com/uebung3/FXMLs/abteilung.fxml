@@ -7,36 +7,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="306.0" prefWidth="552.0" styleClass="background" stylesheets="@../StyleSheets/main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uebung3.Controller.AbteilungController">
+<AnchorPane prefHeight="278.0" prefWidth="573.0" styleClass="background" stylesheets="@../StyleSheets/main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uebung3.Controller.AbteilungController">
    <children>
       <Label layoutX="21.0" layoutY="21.0" text="Abteilung" textFill="#c6c6c6">
          <font>
             <Font name="Arial Bold" size="31.0" />
          </font>
       </Label>
-      <AnchorPane layoutY="72.0" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="555.0" styleClass="background" stylesheets="@../StyleSheets/main.css">
+      <AnchorPane layoutY="72.0" minHeight="0.0" minWidth="0.0" prefHeight="210.0" prefWidth="573.0" styleClass="background" stylesheets="@../StyleSheets/main.css">
          <children>
             <Label layoutX="27.0" layoutY="19.0" text="Name" textFill="#979797">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="85.0" text="Kürzel" textFill="#979797">
+            <Label layoutX="356.0" layoutY="19.0" text="Kürzel" textFill="#979797">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
             <TextField fx:id="abtName" editable="false" layoutX="25.0" layoutY="42.0" prefHeight="27.0" prefWidth="300.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
-            <TextField fx:id="abtKuerzel" editable="false" layoutX="25.0" layoutY="109.0" prefHeight="27.0" prefWidth="300.0" />
-            <Button id="redButton" fx:id="abtLöschenButton" layoutX="366.0" layoutY="167.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" stylesheets="@../StyleSheets/main.css" text="Löschen" />
-            <Button id="orangeButton" fx:id="abtBearbeitenButton" layoutX="449.0" layoutY="167.0" mnemonicParsing="false" onAction="#abtBearbeiten" prefHeight="27.0" prefWidth="90.0" stylesheets="@../StyleSheets/main.css" text="Mehr Infos" />
-            <Separator layoutX="22.0" layoutY="219.0" prefHeight="12.0" prefWidth="517.0" />
-            <Label layoutX="387.0" layoutY="19.0" text="Abt-ID" textFill="#979797">
+            <TextField fx:id="abtKuerzel" editable="false" layoutX="357.0" layoutY="42.0" prefHeight="27.0" prefWidth="143.0" />
+            <Button id="redButton" fx:id="abtLöschenButton" layoutX="370.0" layoutY="159.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" stylesheets="@../StyleSheets/main.css" text="Löschen" />
+            <Button id="greenButton" fx:id="abtBearbeitenButton" layoutX="457.0" layoutY="159.0" mnemonicParsing="false" onAction="#abtBearbeiten" prefHeight="27.0" prefWidth="97.0" stylesheets="@../StyleSheets/main.css" text="Übernehmen" />
+            <Separator layoutX="17.0" layoutY="192.0" prefHeight="11.0" prefWidth="539.0" />
+            <Label layoutX="25.0" layoutY="95.0" text="Abteilungsvorstand" textFill="#979797">
                <font>
-                  <Font name="Arial" size="16.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="abtID" editable="false" layoutX="387.0" layoutY="42.0" prefHeight="27.0" prefWidth="75.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
+            <TextField fx:id="abtName1" editable="false" layoutX="22.0" layoutY="115.0" prefHeight="27.0" prefWidth="300.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
          </children>
       </AnchorPane>
    </children>

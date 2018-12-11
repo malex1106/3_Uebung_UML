@@ -22,7 +22,7 @@ public class Main extends Application {
 
         root = FXMLLoader.load(getClass().getResource("FXMLs/main.fxml"));
 
-        mainScene = new Scene(root, 600, 600);
+        mainScene = new Scene(root, 830, 700);
         mainScene.getStylesheets().add(this.getClass().getResource("StyleSheets/main.css").toExternalForm());
 
         primaryStage.setTitle("Schulbank");
@@ -36,5 +36,4 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }

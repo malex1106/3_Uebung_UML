@@ -4,47 +4,78 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="617.0" styleClass="background2" stylesheets="@../StyleSheets/main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uebung3.Controller.MainController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="824.0" styleClass="background2" stylesheets="@../StyleSheets/main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uebung3.Controller.MainController">
    <effect>
       <Blend mode="MULTIPLY" opacity="0.0" />
    </effect>
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <BorderPane fx:id="schoolPanel" prefHeight="200.0" prefWidth="200.0" styleClass="background" stylesheets="@../StyleSheets/main.css" BorderPane.alignment="CENTER">
-               <center>
-                  <ScrollPane cacheShape="false" centerShape="false" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="562.0" prefWidth="511.0" scaleShape="false" stylesheets="@../StyleSheets/main.css" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
-                     <content>
-                        <ListView fx:id="listViewAbteilungen" prefHeight="536.0" prefWidth="599.0" />
-                     </content>
-                  </ScrollPane>
-               </center>
-               <top>
-                  <AnchorPane prefHeight="90.0" prefWidth="610.0" styleClass="background2" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label layoutX="28.0" layoutY="24.0" text="Schule" textFill="#c6c6c6">
-                           <font>
-                              <Font name="Arial Bold" size="36.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-               </top>
-               <bottom>
-                  <AnchorPane prefHeight="48.0" prefWidth="610.0" styleClass="background2" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button id="redButton" layoutX="196.0" layoutY="11.0" mnemonicParsing="false" text="Schule löschen" />
-                        <Button id="greenButton" layoutX="445.0" layoutY="11.0" mnemonicParsing="false" text="Abteilung hinzufügen" />
-                        <Button id="orangeButton" layoutX="313.0" layoutY="11.0" mnemonicParsing="false" text="Schule bearbeiten" />
-                     </children>
-                  </AnchorPane>
-               </bottom>
-            </BorderPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane fx:id="schoolPanel" prefHeight="700.0" prefWidth="617.0" styleClass="background" stylesheets="@../StyleSheets/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <top>
+                        <AnchorPane prefHeight="90.0" prefWidth="610.0" styleClass="background2" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="28.0" layoutY="24.0" text="Schule" textFill="#c6c6c6">
+                                 <font>
+                                    <Font name="Arial Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <bottom>
+                        <AnchorPane prefHeight="48.0" prefWidth="610.0" styleClass="background2" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button id="redButton" layoutX="412.0" layoutY="11.0" mnemonicParsing="false" text="Schule löschen" />
+                              <Button id="greenButton" layoutX="661.0" layoutY="11.0" mnemonicParsing="false" text="Abteilung hinzufügen" />
+                              <Button id="orangeButton" layoutX="529.0" layoutY="11.0" mnemonicParsing="false" text="Schule bearbeiten" />
+                           </children>
+                        </AnchorPane>
+                     </bottom>
+                     <right>
+                        <AnchorPane prefHeight="562.0" prefWidth="502.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Separator layoutX="11.0" layoutY="19.0" orientation="VERTICAL" prefHeight="523.0" prefWidth="6.0" />
+                              <Label layoutX="39.0" layoutY="19.0" text="Info" textFill="#c6c6c6">
+                                 <font>
+                                    <Font name="Arial Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane layoutX="39.0" layoutY="65.0" prefHeight="490.0" prefWidth="454.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="449.0" />
+                                </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </right>
+                     <left>
+                        <AnchorPane prefHeight="562.0" prefWidth="319.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ScrollPane cacheShape="false" centerShape="false" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" layoutX="17.0" layoutY="58.0" prefHeight="504.0" prefWidth="310.0" scaleShape="false" stylesheets="@../StyleSheets/main.css" vbarPolicy="NEVER">
+                                 <content>
+                                    <ListView fx:id="listViewAbteilungen" prefHeight="508.0" prefWidth="307.0" />
+                                 </content>
+                              </ScrollPane>
+                              <Label layoutX="27.0" layoutY="14.0" text="Abteilungen" textFill="#c6c6c6">
+                                 <font>
+                                    <Font name="Arial Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </left>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
          </center>
       </BorderPane>
    </children>
