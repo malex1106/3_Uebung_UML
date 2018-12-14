@@ -48,19 +48,10 @@ public class SchuleClass implements SchuleInterface {
     }
 
     @Override
-    /*public boolean setDirektor(LehrerClass direktor) {
-        try {
-            this.direktor = direktor;
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }*/
     public boolean setDirektor(LehrerClass direktor) {
         try {
             LehrerClass abteilungsvorstand;
-            boolean a;
+            boolean a=false;
             for (AbteilungClass abteilungen: abteilungen){
                 abteilungsvorstand=abteilungen.getAbteilungsvorstand();
                     if(direktor==abteilungsvorstand){
@@ -72,6 +63,7 @@ public class SchuleClass implements SchuleInterface {
             }
             else{
                 this.direktor=direktor;
+                return true;
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -131,10 +123,16 @@ public class SchuleClass implements SchuleInterface {
     }
 
     @Override
+    public ArrayList<AbteilungClass> getAbteilungen() {
+        return this.abteilungen;
+    }
+
+    @Override
     public int getAnzahlSchueler() {
 
         return 0;
     }
+
 }
 
 //test

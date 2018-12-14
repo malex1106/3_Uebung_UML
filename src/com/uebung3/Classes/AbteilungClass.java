@@ -66,6 +66,7 @@ public class AbteilungClass implements AbteilungInterface {
             }
             else{
                 this.abteilungsvorstand=abteilungsvorstand;
+                return true;
             }
         }catch(Exception e){
             e.printStackTrace();
