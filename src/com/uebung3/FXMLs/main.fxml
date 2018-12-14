@@ -76,8 +76,8 @@
                                           <ChoiceBox layoutX="172.0" layoutY="117.0" prefHeight="22.0" prefWidth="102.0" />
                                           <Button id="grayButton" layoutX="309.0" layoutY="82.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="Lehrer anzeigen" />
                                           <Button id="grayButton" layoutX="309.0" layoutY="120.0" mnemonicParsing="false" text="Schüler anzeigen" />
-                                          <Button id="greenButton" layoutX="368.0" layoutY="440.0" mnemonicParsing="false" text="Speichern" />
-                                          <Button id="redButton" layoutX="305.0" layoutY="440.0" mnemonicParsing="false" text="Reset" />
+                                          <Button id="greenButton" layoutX="368.0" layoutY="440.0" mnemonicParsing="false" onAction="#abtInfoSpeichern" text="Speichern" />
+                                          <Button id="redButton" layoutX="305.0" layoutY="440.0" mnemonicParsing="false" onAction="#abtInfoReset" text="Reset" />
                                        </children></AnchorPane>
                                 </content>
                               </ScrollPane>

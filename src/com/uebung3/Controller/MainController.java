@@ -1,5 +1,6 @@
 package com.uebung3.Controller;
 
+import com.uebung3.Classes.AbteilungClass;
 import com.uebung3.Classes.SchuleClass;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -52,6 +53,7 @@ public class MainController implements Initializable {
     private TextField abtAddKuerzelTextfield;
 
     private static SchuleClass schule;
+    private static AbteilungClass selectedAbteilung;
 
     private ObservableList<String> abteilungslist = FXCollections.observableArrayList();
 
@@ -68,15 +70,11 @@ public class MainController implements Initializable {
                         public void changed(
                                 ObservableValue<? extends String> observable, String oldValue, String newValue) {
                             System.out.println("New Selection: " + newValue + " | Old Selection: " + oldValue + " | Index: " + listViewAbteilungen.getSelectionModel().getSelectedIndex());
-                            abtInfoNameTextfield.setText("");
+                            selectedAbteilung = schule.getAbteilungen().get(listViewAbteilungen.getSelectionModel().getSelectedIndex());
+                            abtInfoNameTextfield.setText(selectedAbteilung.getName());
+                            abtInfoKuerzelTextfield.setText(selectedAbteilung.getKuerzel());
                         }
                     });
-
-            this.abteilungslist.add("Elektronik und Technische Informatik");
-            this.abteilungslist.add("Elektrotechnik");
-            this.abteilungslist.add("Informatik");
-            this.abteilungslist.add("Maschinenbau");
-            this.abteilungslist.add("Wirtschaftingeniere");
 
             this.listViewAbteilungen.setItems(this.abteilungslist);
         } catch (Exception e) {
@@ -92,6 +90,21 @@ public class MainController implements Initializable {
     void abtAddButtonClicked(ActionEvent event) {
         this.schoolPanel.setDisable(true);
         this.abtAddPanel.setVisible(true);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    // Info - Panel
+    ////////////////////////////////////////////////////////////////////////
+
+    @FXML
+    void abtInfoSpeichern(ActionEvent event) {
+
+    }
+
+    @FXML
+    void abtInfoReset(ActionEvent event) {
+        this.abtInfoNameTextfield.clear();
+        this.abtInfoKuerzelTextfield.clear();
     }
 
     //////////////////////////////////////////////////////////////////////////
