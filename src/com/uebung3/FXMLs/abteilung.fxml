@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="278.0" prefWidth="573.0" styleClass="background" stylesheets="@../StyleSheets/main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uebung3.Controller.AbteilungController">
+   <children>
+      <Label layoutX="21.0" layoutY="21.0" text="Abteilung" textFill="#c6c6c6">
+         <font>
+            <Font name="Arial Bold" size="31.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="72.0" minHeight="0.0" minWidth="0.0" prefHeight="210.0" prefWidth="573.0" styleClass="background" stylesheets="@../StyleSheets/main.css">
+         <children>
+            <Label layoutX="27.0" layoutY="19.0" text="Name" textFill="#979797">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="356.0" layoutY="19.0" text="Kürzel" textFill="#979797">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="abtName" editable="false" layoutX="25.0" layoutY="42.0" prefHeight="27.0" prefWidth="300.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
+            <TextField fx:id="abtKuerzel" editable="false" layoutX="357.0" layoutY="42.0" prefHeight="27.0" prefWidth="143.0" />
+            <Button id="redButton" fx:id="abtLöschenButton" layoutX="370.0" layoutY="159.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" stylesheets="@../StyleSheets/main.css" text="Löschen" />
+            <Button id="greenButton" fx:id="abtBearbeitenButton" layoutX="457.0" layoutY="159.0" mnemonicParsing="false" onAction="#abtBearbeiten" prefHeight="27.0" prefWidth="97.0" stylesheets="@../StyleSheets/main.css" text="Übernehmen" />
+            <Separator layoutX="17.0" layoutY="192.0" prefHeight="11.0" prefWidth="539.0" />
+            <Label layoutX="25.0" layoutY="95.0" text="Abteilungsvorstand" textFill="#979797">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="abtName1" editable="false" layoutX="22.0" layoutY="115.0" prefHeight="27.0" prefWidth="300.0" styleClass="text-field" stylesheets="@../StyleSheets/main.css" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

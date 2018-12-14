@@ -1,0 +1,119 @@
+.background {
+    -fx-background-color: rgb(22, 22, 22);
+}
+
+.background2 {
+     -fx-background-color: rgb(50, 50, 50);
+ }
+
+.background3 {
+    -fx-background-color: rgb(75, 75, 75);
+}
+
+.backgroundPopup {
+    -fx-background-color: rgb(22, 22, 22);
+    -fx-border-color: rgb(50, 50, 50);
+    -fx-border-width: 3px;
+}
+
+.text-field {
+    -fx-background-color: -fx-text-box-border, rgb(22, 22, 22);
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-text-fill: #979797;
+}
+.text-field:focused {
+    -fx-background-color: -fx-focus-color, rgb(22, 22, 22);
+}
+
+.button {
+    -fx-background-color: darkturquoise;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -transition-delay: 2s;
+    -fx-font-family: "Arial";
+}
+
+.titled-pane {
+    -fx-background: rgb(22, 22, 22);
+}
+
+.list-view {
+    -fx-background-color: rgb(22, 22, 22);
+    -fx-text-fill: rgb(22, 22, 22);
+    -fx-background: rgb(22, 22, 22);
+}
+
+.list-cell {
+    -fx-background-color: rgb(22, 22, 22);
+    -fx-text-fill: rgb(169, 169, 169);
+    -fx-font-size: 16px;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-text-fill: white;
+}
+
+.scroll-pane {
+    -fx-background: rgb(22, 22, 22);
+    -fx-background-color:transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane{
+    -fx-background-color:transparent;
+}
+
+.scroll-pane .thumb {
+    -fx-background-color: rgb(162, 162, 162);
+    -fx-background-insets: 5, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track-background {
+    visibility: hidden;
+}
+
+.scroll-bar:vertical .track {
+    visibility: hidden;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal .track-background {
+    visibility: hidden;
+}
+
+.scroll-bar:horizontal .track {
+    visibility: hidden;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}
+
+.separator {
+    -fx-background: rgb(60, 60, 60);
+}
+
+#greenButton {
+    -fx-background-color: #02a400;
+}
+
+#redButton {
+    -fx-background-color: #a41a00;
+}
+
+#orangeButton {
+    -fx-background-color: #a45700;
+}
