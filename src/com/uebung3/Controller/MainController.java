@@ -1,6 +1,8 @@
 package com.uebung3.Controller;
 
 import com.uebung3.Classes.SchuleClass;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,13 +26,30 @@ public class MainController implements Initializable {
     private AnchorPane abtAddPanel;
 
     @FXML
-    private TextField abtAddTextfield;
-
-    @FXML
-    private ListView<String> listViewAbteilungen;
+    public ListView<String> listViewAbteilungen;
 
     @FXML
     private Label schoolName;
+
+    ////////////////////////////////////////////
+    // Info - Panel - Attribute
+    ////////////////////////////////////////////
+
+    @FXML
+    private TextField abtInfoNameTextfield;
+
+    @FXML
+    private TextField abtInfoKuerzelTextfield;
+
+    ////////////////////////////////////////////
+    // Abteilung Hinzufügen - Panel - Attribute
+    ////////////////////////////////////////////
+
+    @FXML
+    private TextField abtAddTextfield;
+
+    @FXML
+    private TextField abtAddKuerzelTextfield;
 
     private static SchuleClass schule;
 
@@ -42,6 +61,16 @@ public class MainController implements Initializable {
             schule = SchuleController.getSchule();
 
             schoolName.setText("Schule - " + schule.getName());
+
+            this.listViewAbteilungen.getSelectionModel().selectedItemProperty()
+                    .addListener(new ChangeListener<String>() {
+
+                        public void changed(
+                                ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                            System.out.println("New Selection: " + newValue + " | Old Selection: " + oldValue + " | Index: " + listViewAbteilungen.getSelectionModel().getSelectedIndex());
+                            abtInfoNameTextfield.setText("");
+                        }
+                    });
 
             this.abteilungslist.add("Elektronik und Technische Informatik");
             this.abteilungslist.add("Elektrotechnik");
@@ -55,6 +84,10 @@ public class MainController implements Initializable {
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////
+    // Home - Panel
+    ////////////////////////////////////////////////////////////////////////
+
     @FXML
     void abtAddButtonClicked(ActionEvent event) {
         this.schoolPanel.setDisable(true);
@@ -67,7 +100,8 @@ public class MainController implements Initializable {
 
     @FXML
     void abtAddAddButton(ActionEvent event) {
-        this.abteilungslist.add(abtAddTextfield.getText());
+        schule.addAbteilung(this.abtAddTextfield.getText(), this.abtAddKuerzelTextfield.getText());
+        this.abteilungslist.add(this.abtAddTextfield.getText());
 
         this.abtAddPanel.setVisible(false);
         this.schoolPanel.setDisable(false);
