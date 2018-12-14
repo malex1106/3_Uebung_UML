@@ -1,7 +1,6 @@
 package com.uebung3.Classes;
 
 import com.uebung3.Interfaces.SchuleInterface;
-
 import java.util.ArrayList;
 
 public class SchuleClass implements SchuleInterface {
@@ -49,11 +48,32 @@ public class SchuleClass implements SchuleInterface {
     }
 
     @Override
-    public boolean setDirektor(LehrerClass direktor) {
+    /*public boolean setDirektor(LehrerClass direktor) {
         try {
             this.direktor = direktor;
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }*/
+    public boolean setDirektor(LehrerClass direktor) {
+        try {
+            LehrerClass abteilungsvorstand;
+            boolean a;
+            for (AbteilungClass abteilungen: abteilungen){
+                abteilungsvorstand=abteilungen.getAbteilungsvorstand();
+                    if(direktor==abteilungsvorstand){
+                        a=true;
+                    }
+            }
+            if(a==true){
+                throw new Exception("Dieser Lehrer ist schon Abteilungsvorstand");
+            }
+            else{
+                this.direktor=direktor;
+            }
+        }catch(Exception e){
             e.printStackTrace();
             return false;
         }

@@ -1,13 +1,14 @@
 package com.uebung3.Classes;
 
 import com.uebung3.Interfaces.AbteilungInterface;
-
 import java.util.ArrayList;
 
 public class AbteilungClass implements AbteilungInterface {
 
     private String kuerzel;
     private String name;
+
+    private SchuleClass schule;
 
     private LehrerClass abteilungsvorstand;
     private ArrayList<LehrerClass> unterrichtendeLehrer;
@@ -51,32 +52,26 @@ public class AbteilungClass implements AbteilungInterface {
                 throw new Exception("Lehrer existiert bereits!");
         } catch(Exception e) {
             e.printStackTrace();
-            return false;       //true -> false
+            return false;
         }
     }
 
     @Override
-    public boolean setAbteilungsvorstand(LehrerClass lehrer) {
-        try {
-            this.abteilungsvorstand = lehrer;
-            return true;
-        } catch(Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    /*@Override
     public boolean setAbteilungsvorstand(LehrerClass abteilungsvorstand) {
         try {
+            LehrerClass lehrer=schule.getDirektor();
 
-            if(!)
-
+            if(lehrer==abteilungsvorstand) {
+                throw new Exception("Dieser Lehrer ist schon Direktor!");
+            }
+            else{
+                this.abteilungsvorstand=abteilungsvorstand;
+            }
         }catch(Exception e){
             e.printStackTrace();
             return false;
         }
-    }*/
+    }
 
     @Override
     public boolean setAbteilungssprecher(SchuelerClass schueler) {
