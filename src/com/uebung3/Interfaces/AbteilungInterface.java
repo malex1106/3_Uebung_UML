@@ -12,6 +12,7 @@ public interface AbteilungInterface {
     public String getKuerzel();
     public ArrayList<SchuelerClass> getSchueler();
     public ArrayList<KlasseClass> getKlassen();
+    public ArrayList<LehrerClass> getLehrer();
     public LehrerClass getAbteilungsvorstand();
     public SchuelerClass getAbteilungssprecher();
 

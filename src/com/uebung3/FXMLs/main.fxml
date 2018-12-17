@@ -102,8 +102,7 @@
                                        </children></AnchorPane>
                                 </content>
                               </ScrollPane>
-                              <Button id="greenButton" layoutX="403.0" layoutY="22.0" mnemonicParsing="false" onAction="#abtInfoSpeichern" text="Speichern" />
-                              <Button id="redButton" layoutX="335.0" layoutY="22.0" mnemonicParsing="false" onAction="#abtInfoReset" text="Reset" />
+                              <Button id="redButton" layoutX="430.0" layoutY="22.0" mnemonicParsing="false" onAction="#abtInfoReset" text="Reset" />
                               <Label layoutX="39.0" layoutY="19.0" text="Info" textFill="#c6c6c6">
                                  <font>
                                     <Font name="Arial Bold" size="26.0" />

@@ -112,4 +112,7 @@ public class AbteilungClass implements AbteilungInterface {
 
     @Override
     public ArrayList<KlasseClass> getKlassen() { return this.klassen; }
+
+    @Override
+    public ArrayList<LehrerClass> getLehrer() { return this.unterrichtendeLehrer; }
 }

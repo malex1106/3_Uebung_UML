@@ -1,9 +1,6 @@
 package com.uebung3.Controller;
 
-import com.uebung3.Classes.AbteilungClass;
-import com.uebung3.Classes.KlasseClass;
-import com.uebung3.Classes.LehrerClass;
-import com.uebung3.Classes.SchuleClass;
+import com.uebung3.Classes.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -31,6 +29,8 @@ public class MainController implements Initializable {
 
     @FXML
     private Label schoolName;
+
+    private ArrayList<AdresseClass> adressarraylist;
 
     ////////////////////////////////////////////
     // Info - Panel - Attribute
@@ -139,6 +139,13 @@ public class MainController implements Initializable {
                             selectedAbteilung = schule.getAbteilungen().get(listViewAbteilungen.getSelectionModel().getSelectedIndex());
                             abtInfoNameTextfield.setText(selectedAbteilung.getName());
                             abtInfoKuerzelTextfield.setText(selectedAbteilung.getKuerzel());
+                            klassenlist.clear();
+                            lehrerlist.clear();
+                            for (KlasseClass klasse : selectedAbteilung.getKlassen())
+                                klassenlist.add(klasse.getBezeichnung());
+                            for (LehrerClass lehrer: selectedAbteilung.getLehrer())
+                                lehrerlist.add(lehrer.getNachname() + " " + lehrer.getVorname());
+
                         }
                     });
 
@@ -163,11 +170,6 @@ public class MainController implements Initializable {
     //////////////////////////////////////////////////////////////////////////
     // Info - Panel
     ////////////////////////////////////////////////////////////////////////
-
-    @FXML
-    void abtInfoSpeichern(ActionEvent event) {
-
-    }
 
     @FXML
     void abtInfoReset(ActionEvent event) {
@@ -260,6 +262,10 @@ public class MainController implements Initializable {
             this.schoolPanel.setDisable(false);
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    // Schule
+    /////////////////////////////////////////////////////////////////////////
 
     public static SchuleClass getSchule() { return schule; }
 }
