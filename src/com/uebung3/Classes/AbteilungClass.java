@@ -86,6 +86,17 @@ public class AbteilungClass implements AbteilungInterface {
     }
 
     @Override
+    public boolean setSchule(SchuleClass schule) {
+        try {
+            this.schule = schule;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public boolean addKlasse(KlasseClass klasse) {
         try {
             if(!this.klassen.contains(klasse)) {

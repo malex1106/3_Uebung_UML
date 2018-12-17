@@ -17,7 +17,7 @@ public class KlasseClass implements KlasseInterface {
     private ArrayList<FachClass> faecher;           //Es kann ja nicht nur ein Fach unterrichtet werden, aber nur ein Fach einmal!
     private AbteilungClass abteilung;
 
-    public KlasseClass(String bezeichnung, int schulstufe, LehrerClass klassenvorstand, SchuelerClass klassensprecher, RaumClass stammklasse, AbteilungClass abteilung) {
+    public KlasseClass(String bezeichnung, int schulstufe, AbteilungClass abteilung) {
         this.bezeichnung = bezeichnung;
         this.schulstufe = schulstufe;
         this.klassenvorstand = klassenvorstand;

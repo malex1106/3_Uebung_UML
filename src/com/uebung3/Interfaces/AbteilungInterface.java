@@ -3,6 +3,7 @@ package com.uebung3.Interfaces;
 import com.uebung3.Classes.KlasseClass;
 import com.uebung3.Classes.LehrerClass;
 import com.uebung3.Classes.SchuelerClass;
+import com.uebung3.Classes.SchuleClass;
 
 import java.util.ArrayList;
 
@@ -18,4 +19,6 @@ public interface AbteilungInterface {
     public boolean setAbteilungsvorstand(LehrerClass lehrer);
     public boolean setAbteilungssprecher(SchuelerClass schueler);
     public boolean addKlasse(KlasseClass klasse);
+    public boolean setSchule(SchuleClass schule);
+
 }

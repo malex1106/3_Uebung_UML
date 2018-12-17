@@ -11,12 +11,10 @@ public class LehrerClass extends MitarbeiterClass implements LehrerInterface {
 
     private ArrayList<FachClass> faecher;
 
-    public LehrerClass(long svnr, String vorname, String nachname, Date geburtsdatum, String email, String kuerzel, FachClass fach) {       //Muss mindestens ein Fach abhalten!
+    public LehrerClass(long svnr, String vorname, String nachname, Date geburtsdatum, String email, String kuerzel) {
         super(svnr, vorname, nachname, geburtsdatum, email);
         this.kuerzel = kuerzel;
         this.faecher = new ArrayList<FachClass>();
-
-        this.faecher.add(fach);
     }
 
     @Override
