@@ -76,7 +76,6 @@
                                              </font>
                                           </Label>
                                           <ChoiceBox layoutX="172.0" layoutY="117.0" prefHeight="22.0" prefWidth="102.0" />
-                                          <Separator layoutX="18.0" layoutY="417.0" prefHeight="19.0" prefWidth="428.0" />
                                           <ScrollPane layoutX="6.0" layoutY="412.0" prefHeight="199.0" prefWidth="440.0">
                                              <content>
                                                 <ListView fx:id="abtInfoKlassenListView" prefHeight="196.0" prefWidth="403.0" />
@@ -87,8 +86,8 @@
                                                 <ListView fx:id="abtInfoLehrerListView" prefHeight="160.0" prefWidth="403.0" />
                                              </content>
                                           </ScrollPane>
-                                          <Button id="greenButton" layoutX="365.0" layoutY="367.0" mnemonicParsing="false" onAction="#abtInfoLehrerHinzufuegen" prefHeight="26.0" prefWidth="84.0" text="Hinzufügen" />
-                                          <Button id="greenButton" layoutX="365.0" layoutY="627.0" mnemonicParsing="false" onAction="#abtInfoKlasseHinzuefuegen" prefHeight="26.0" prefWidth="84.0" text="Hinzufügen" />
+                                          <Button id="greenButton" layoutX="322.0" layoutY="367.0" mnemonicParsing="false" onAction="#abtInfoLehrerHinzufuegen" prefHeight="26.0" prefWidth="127.0" text="Lehrer Hinzufügen" />
+                                          <Button id="greenButton" layoutX="314.0" layoutY="627.0" mnemonicParsing="false" onAction="#abtInfoKlasseHinzuefuegen" prefHeight="26.0" prefWidth="135.0" text="Klasse Hinzufügen" />
                                           <Label layoutX="17.0" layoutY="155.0" text="Lehrer" textFill="#c6c6c6">
                                              <font>
                                                 <Font name="Arial Bold" size="20.0" />
@@ -246,6 +245,41 @@
                         <TextField fx:id="abtAddKlasseSchulstufeTextfield" layoutX="28.0" layoutY="174.0" prefHeight="27.0" prefWidth="83.0" />
                         <Button id="greenButton" layoutX="465.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddKlasseAddButton" text="Hinzufügen" />
                         <Button id="redButton" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddKlasseExit" text="Abbrechen" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="ortPanel" layoutX="143.0" layoutY="207.0" prefHeight="294.0" prefWidth="571.0" styleClass="backgroundPopup" visible="false">
+                     <children>
+                        <Label layoutX="28.0" layoutY="23.0" text="Ort hinzufügen" textFill="#c6c6c6">
+                           <font>
+                              <Font name="Arial Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="77.0" text="Ort" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="ortOrtTextfield" layoutX="28.0" layoutY="103.0" prefHeight="27.0" prefWidth="291.0" />
+                        <Label layoutX="28.0" layoutY="148.0" text="Strasse" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="ortStrasseTextfield" layoutX="28.0" layoutY="174.0" prefHeight="27.0" prefWidth="293.0" />
+                        <Button id="greenButton" layoutX="465.0" layoutY="237.0" mnemonicParsing="false" onAction="#ortHinzufuegen" text="Hinzufügen" />
+                        <Button id="redButton" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" onAction="#ortExit" text="Abbrechen" />
+                        <Label layoutX="352.0" layoutY="77.0" text="Hausnummer" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="ortHausnummerTextfield" layoutX="354.0" layoutY="103.0" prefHeight="27.0" prefWidth="100.0" />
+                        <Label layoutX="353.0" layoutY="148.0" text="PLZ" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="ortPLZTextfield" layoutX="355.0" layoutY="174.0" prefHeight="27.0" prefWidth="100.0" />
                      </children>
                   </AnchorPane>
                </children>

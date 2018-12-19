@@ -107,6 +107,24 @@ public class MainController implements Initializable {
     @FXML
     private TextField abtAddKlasseSchulstufeTextfield;
 
+    ////////////////////////////////////////////
+    // Ort Hinzufügen - Panel - Attribute
+    ////////////////////////////////////////////
+
+    @FXML
+    private AnchorPane ortPanel;
+
+    @FXML
+    private TextField ortOrtTextfield;
+
+    @FXML
+    private TextField ortStrasseTextfield;
+
+    @FXML
+    private TextField ortHausnummerTextfield;
+
+    @FXML
+    private TextField ortPLZTextfield;
 
     ////////////////////////////////////////////
     // Abteilung Hinzufügen - Panel - Attribute
@@ -220,15 +238,20 @@ public class MainController implements Initializable {
 
     @FXML
     void abtAddKlasseAddButton(ActionEvent event) {
-        if (selectedAbteilung.addKlasse(new KlasseClass(this.abtAddKlasseBezeichnungTextfield.getText(), Integer.parseInt(this.abtAddKlasseSchulstufeTextfield.getText()), selectedAbteilung)))
+        try {
+            selectedAbteilung.addKlasse(new KlasseClass(this.abtAddKlasseBezeichnungTextfield.getText(), Integer.parseInt(this.abtAddKlasseSchulstufeTextfield.getText()),
+                    selectedAbteilung));
+
+            this.klassenlist.add(this.abtAddKlasseBezeichnungTextfield.getText());
+
+            this.abtAddKlassePanel.setVisible(false);
+            this.schoolPanel.setDisable(false);
+
             System.out.println("Klasse hinzugefügt!");
-        else
+        } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Es ist ein Fehler aufgetreten!");
-
-        this.klassenlist.add(this.abtAddKlasseBezeichnungTextfield.getText());
-
-        this.abtAddKlassePanel.setVisible(false);
-        this.schoolPanel.setDisable(false);
+        }
     }
 
     @FXML
@@ -250,16 +273,46 @@ public class MainController implements Initializable {
     @FXML
     void perHinzufuegen(ActionEvent event) {
         if(this.schuelerLehrer) {
-            if (selectedAbteilung.addLehrer(new LehrerClass(Long.parseLong(this.perSVNRTextfield.getText()), this.perVornameTextfield.getText(), this.perNachnameTextfield.getText(),
-                    null, this.perEmailTextfield.getText(), this.perKuerzelTextfield.getText())))
+            try {
+                selectedAbteilung.addLehrer(new LehrerClass(Long.parseLong(this.perSVNRTextfield.getText()), this.perVornameTextfield.getText(), this.perNachnameTextfield.getText(),
+                        null, this.perEmailTextfield.getText(), this.perKuerzelTextfield.getText()));
+
+                this.lehrerlist.add(this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
+
+                this.personenPanel.setVisible(false);
+                this.schoolPanel.setDisable(false);
+
                 System.out.println("Lehrer hinzugefügt!");
-            else
+
+            }
+            catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("Es ist ein Fehler aufgetreten!");
+            }
+        }
+    }
 
-            this.lehrerlist.add(this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
+    //////////////////////////////////////////////////////////////////////////
+    // Ort Hinzufügen - Panel
+    /////////////////////////////////////////////////////////////////////////
 
-            this.personenPanel.setVisible(false);
-            this.schoolPanel.setDisable(false);
+    @FXML
+    void ortExit(ActionEvent event) {
+        this.ortPanel.setVisible(false);
+    }
+
+    @FXML
+    void ortHinzufuegen(ActionEvent event) {
+        try {
+            this.adressarraylist.add(new AdresseClass(this.ortOrtTextfield.getText(), this.ortStrasseTextfield.getAccessibleHelp(),
+                    Integer.parseInt(this.ortHausnummerTextfield.getText()), Integer.parseInt(this.ortPLZTextfield.getText())));
+
+            this.ortPanel.setVisible(false);
+
+            System.out.println("Ort hinzugefügt!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Es ist ein Fehler aufgetreten!");
         }
     }
 
