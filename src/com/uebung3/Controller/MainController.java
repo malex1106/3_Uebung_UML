@@ -30,7 +30,7 @@ public class MainController implements Initializable {
     @FXML
     private Label schoolName;
 
-    private ArrayList<AdresseClass> adressarraylist;
+    private ArrayList<AdresseClass> adressarraylist;        //Eventuell direkt eine ObservableListe schreiben!
 
     ////////////////////////////////////////////
     // Info - Panel - Attribute
@@ -283,7 +283,6 @@ public class MainController implements Initializable {
                 this.schoolPanel.setDisable(false);
 
                 System.out.println("Lehrer hinzugefügt!");
-
             }
             catch (Exception e) {
                 e.printStackTrace();

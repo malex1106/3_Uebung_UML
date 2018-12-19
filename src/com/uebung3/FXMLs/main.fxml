@@ -98,6 +98,8 @@
                                                 <Font name="Arial Bold" size="20.0" />
                                              </font>
                                           </Label>
+                                          <Button id="orangeButton" layoutX="233.0" layoutY="367.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
+                                          <Button id="orangeButton" layoutX="225.0" layoutY="627.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
                                        </children></AnchorPane>
                                 </content>
                               </ScrollPane>
@@ -113,7 +115,7 @@
                      <left>
                         <AnchorPane prefHeight="562.0" prefWidth="319.0" BorderPane.alignment="CENTER">
                            <children>
-                              <ScrollPane cacheShape="false" centerShape="false" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" layoutX="17.0" layoutY="58.0" prefHeight="504.0" prefWidth="310.0" scaleShape="false" stylesheets="@../StyleSheets/main.css" vbarPolicy="NEVER">
+                              <ScrollPane cacheShape="false" centerShape="false" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" layoutX="17.0" layoutY="58.0" prefHeight="504.0" prefWidth="308.0" scaleShape="false" stylesheets="@../StyleSheets/main.css" vbarPolicy="NEVER">
                                  <content>
                                     <ListView fx:id="listViewAbteilungen" prefHeight="508.0" prefWidth="307.0" />
                                  </content>

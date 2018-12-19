@@ -2,6 +2,7 @@ package com.uebung3.Classes;
 
 import com.uebung3.Interfaces.PersonInterface;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public abstract class PersonClass implements PersonInterface {
@@ -9,12 +10,12 @@ public abstract class PersonClass implements PersonInterface {
     private long svnr;
     private String vorname;
     private String nachname;
-    private Date geburtsdatum;
+    private LocalDate geburtsdatum;
     private String email;
 
     private AdresseClass wohnort;
 
-    public PersonClass(long svnr, String vorname, String nachname, Date geburtsdatum, String email) {
+    public PersonClass(long svnr, String vorname, String nachname, LocalDate geburtsdatum, String email) {
         this.svnr = svnr;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -38,7 +39,7 @@ public abstract class PersonClass implements PersonInterface {
     }
 
     @Override
-    public Date getGeburtsdatum() {
+    public LocalDate getGeburtsdatum() {
         return this.geburtsdatum;
     }
 
