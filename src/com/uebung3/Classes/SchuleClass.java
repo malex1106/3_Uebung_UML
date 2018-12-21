@@ -52,8 +52,8 @@ public class SchuleClass implements SchuleInterface {
         try {
             LehrerClass abteilungsvorstand;
             boolean a=false;
-            for (AbteilungClass abteilungen: abteilungen){
-                abteilungsvorstand=abteilungen.getAbteilungsvorstand();
+            for (AbteilungClass abteilungen1: abteilungen){
+                abteilungsvorstand=abteilungen1.getAbteilungsvorstand();
                     if(direktor==abteilungsvorstand){
                         a=true;
                     }
@@ -128,12 +128,13 @@ public class SchuleClass implements SchuleInterface {
     }
 
     @Override
-    public int getAnzahlSchueler() {
+    public int getSchuelerAnzahl() {
+        int ergebnis=0;
 
-        return 0;
+        for (AbteilungClass abteilungen1: abteilungen){
+            ergebnis += abteilungen1.getSchuelerAnzahl();
+        }
+        return ergebnis;
     }
 
 }
-
-//test
-//test

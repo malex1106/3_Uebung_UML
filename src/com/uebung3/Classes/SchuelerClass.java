@@ -9,7 +9,7 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
 
     private int katalognummer;
     private boolean eigenberechtigt;
-    private Date eintrittsdatum;
+    private LocalDate eintrittsdatum;
 
     private KlasseClass klasse;
 
@@ -27,7 +27,7 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
     }
 
     @Override
-    public Date getEintrittsdatum() {
+    public LocalDate getEintrittsdatum() {
         return this.eintrittsdatum;
     }
 

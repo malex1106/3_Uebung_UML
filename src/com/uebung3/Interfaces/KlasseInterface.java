@@ -8,6 +8,7 @@ public interface KlasseInterface {
     public float getDurchschnittsalter();
     public RaumClass getStammklasse();
     public AbteilungClass getAbteilung();
+    public int getSchuelerAnzahl();
 
     public boolean setKlassensprecher(SchuelerClass schueler);
     public boolean addSchueler(SchuelerClass schueler);

@@ -1,6 +1,5 @@
 package com.uebung3.Classes;
 
-import com.uebung3.Enumerations.Raumtyp;
 import com.uebung3.Interfaces.KlasseInterface;
 
 import java.util.ArrayList;
@@ -40,6 +39,11 @@ public class KlasseClass implements KlasseInterface {
     @Override
     public float getDurchschnittsalter() {
         return 0;
+    }
+
+    @Override
+    public int getSchuelerAnzahl() {
+        return this.schueler.size();
     }
 
     @Override

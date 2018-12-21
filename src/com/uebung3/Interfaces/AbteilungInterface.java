@@ -15,6 +15,7 @@ public interface AbteilungInterface {
     public ArrayList<LehrerClass> getLehrer();
     public LehrerClass getAbteilungsvorstand();
     public SchuelerClass getAbteilungssprecher();
+    public int getSchuelerAnzahl();
 
     public boolean addLehrer(LehrerClass lehrer);
     public boolean setAbteilungsvorstand(LehrerClass lehrer);

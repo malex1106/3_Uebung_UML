@@ -43,6 +43,16 @@ public class AbteilungClass implements AbteilungInterface {
     public SchuelerClass getAbteilungssprecher() { return this.abteilungssprecher; }
 
     @Override
+    public int getSchuelerAnzahl() {
+        int ergebnis=0;
+
+        for (KlasseClass klassen1: klassen){
+            ergebnis += klassen1.getSchuelerAnzahl();
+        }
+        return ergebnis;
+    }
+
+    @Override
     public boolean addLehrer(LehrerClass lehrer) {
         try {
             if(!this.unterrichtendeLehrer.contains(lehrer)) {
