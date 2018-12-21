@@ -2,6 +2,7 @@ package com.uebung3.Classes;
 
 import com.uebung3.Interfaces.SchuelerInterface;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class SchuelerClass extends PersonClass implements SchuelerInterface {
@@ -12,7 +13,7 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
 
     private KlasseClass klasse;
 
-    public SchuelerClass(long svnr, String vorname, String nachname, Date geburtsdatum, String email, KlasseClass klasse) {
+    public SchuelerClass(long svnr, String vorname, String nachname, LocalDate geburtsdatum, String email, KlasseClass klasse) {
         super(svnr, vorname, nachname, geburtsdatum, email);
         this.klasse = klasse;
     }

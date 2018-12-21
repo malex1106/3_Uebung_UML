@@ -30,6 +30,9 @@ public class MainController implements Initializable {
     @FXML
     private Label schoolName;
 
+    @FXML
+    private Label schoolMitarbeiterAnzahl;
+
     private ArrayList<AdresseClass> adressarraylist;        //Eventuell direkt eine ObservableListe schreiben!
 
     ////////////////////////////////////////////
@@ -274,13 +277,16 @@ public class MainController implements Initializable {
     void perHinzufuegen(ActionEvent event) {
         if(this.schuelerLehrer) {
             try {
-                selectedAbteilung.addLehrer(new LehrerClass(Long.parseLong(this.perSVNRTextfield.getText()), this.perVornameTextfield.getText(), this.perNachnameTextfield.getText(),
-                        null, this.perEmailTextfield.getText(), this.perKuerzelTextfield.getText()));
+                LehrerClass lehrer = new LehrerClass(Long.parseLong(this.perSVNRTextfield.getText()), this.perVornameTextfield.getText(), this.perNachnameTextfield.getText(),
+                        this.perGeburtsdatumDatePicker.getValue(), this.perEmailTextfield.getText(), this.perKuerzelTextfield.getText());
+                selectedAbteilung.addLehrer(lehrer);
 
                 this.lehrerlist.add(this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
 
                 this.personenPanel.setVisible(false);
                 this.schoolPanel.setDisable(false);
+
+                this.schoolMitarbeiterAnzahl.setText("Mitarbeiter: " + lehrer.getAnzahl());
 
                 System.out.println("Lehrer hinzugefügt!");
             }

@@ -32,6 +32,11 @@
                                     <Font name="Arial Bold" size="36.0" />
                                  </font>
                               </Label>
+                              <Label fx:id="schoolMitarbeiterAnzahl" layoutX="640.0" layoutY="33.0" prefHeight="25.0" prefWidth="173.0" textFill="#c6c6c6">
+                                 <font>
+                                    <Font name="Arial Bold" size="21.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </top>
