@@ -97,6 +97,17 @@ public class MainController implements Initializable {
 
     private boolean schuelerLehrer = false;
 
+    private boolean speichernHinzufuegen = false;
+
+    @FXML
+    private AnchorPane perAdresse;
+
+    @FXML
+    private ChoiceBox<String> perAdresseChoiceBox;
+
+    @FXML
+    private Button perHinzuefuegenButton;
+
     ////////////////////////////////////////////
     // Klasse Hinzufügen - Panel - Attribute
     ////////////////////////////////////////////
@@ -148,6 +159,9 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             schule = SchuleController.getSchule();
+            //System.out.println(schule.getSchuelerAnzahl());
+
+            this.adressarraylist = new ArrayList<AdresseClass>();
 
             schoolName.setText("Schule - " + schule.getName());
 
@@ -210,8 +224,47 @@ public class MainController implements Initializable {
         this.personenPanel.setVisible(true);
         this.perLehrerPanel.setVisible(true);
         this.perSchuelerPanel.setVisible(false);
+        this.perHinzuefuegenButton.setText("Hinzufügen");
 
         this.schuelerLehrer = true;             //Lehrer
+        this.speichernHinzufuegen = true;       //neuen Lehrer hinzufügen
+    }
+
+    @FXML
+    void abtInfoLehrerInfo(ActionEvent event) {
+        try {
+            LehrerClass lehrer = selectedAbteilung.getLehrer().get(this.abtInfoLehrerListView.getSelectionModel().getSelectedIndex());
+
+            this.perSVNRTextfield.setText(Long.toString(lehrer.getSvnr()));
+            this.perVornameTextfield.setText(lehrer.getVorname());
+            this.perNachnameTextfield.setText(lehrer.getNachname());
+            //this.perGeburtsdatumDatePicker
+            this.perEmailTextfield.setText(lehrer.getEmail());
+            this.perKuerzelTextfield.setText(lehrer.getKuerzel());
+            this.perHinzuefuegenButton.setText("Speichern");
+
+            this.perLehrerPanel.setVisible(true);
+            this.perSchuelerPanel.setVisible(false);
+
+            this.speichernHinzufuegen = false;
+            this.schuelerLehrer = true;
+
+            this.schoolPanel.setDisable(true);
+            this.personenPanel.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Es ist ein Fehler aufgetreten!");
+        }
+    }
+
+    @FXML
+    void abtInfoKlassenInfo(ActionEvent event) {
+        try {
+
+        } catch (Exception e) {
+
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -264,7 +317,7 @@ public class MainController implements Initializable {
     }
 
     //////////////////////////////////////////////////////////////////////////
-    // Lehrer Hinzufügen - Panel
+    // Personen Hinzufügen - Panel
     /////////////////////////////////////////////////////////////////////////
 
     @FXML
@@ -275,11 +328,13 @@ public class MainController implements Initializable {
 
     @FXML
     void perHinzufuegen(ActionEvent event) {
-        if(this.schuelerLehrer) {
+        if(this.schuelerLehrer && this.speichernHinzufuegen) {
             try {
                 LehrerClass lehrer = new LehrerClass(Long.parseLong(this.perSVNRTextfield.getText()), this.perVornameTextfield.getText(), this.perNachnameTextfield.getText(),
                         this.perGeburtsdatumDatePicker.getValue(), this.perEmailTextfield.getText(), this.perKuerzelTextfield.getText());
-                selectedAbteilung.addLehrer(lehrer);
+                lehrer.setWohnort(this.adressarraylist.get(this.perAdresseChoiceBox.getSelectionModel().getSelectedIndex()));
+
+                this.selectedAbteilung.addLehrer(lehrer);
 
                 this.lehrerlist.add(this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
 
@@ -297,6 +352,12 @@ public class MainController implements Initializable {
         }
     }
 
+    @FXML
+    void perAdresseNeu(ActionEvent event) {
+        this.personenPanel.setDisable(true);
+        this.ortPanel.setVisible(true);
+    }
+
     //////////////////////////////////////////////////////////////////////////
     // Ort Hinzufügen - Panel
     /////////////////////////////////////////////////////////////////////////
@@ -304,15 +365,20 @@ public class MainController implements Initializable {
     @FXML
     void ortExit(ActionEvent event) {
         this.ortPanel.setVisible(false);
+        this.personenPanel.setDisable(false);
     }
 
     @FXML
     void ortHinzufuegen(ActionEvent event) {
         try {
-            this.adressarraylist.add(new AdresseClass(this.ortOrtTextfield.getText(), this.ortStrasseTextfield.getAccessibleHelp(),
+            this.adressarraylist.add(new AdresseClass(this.ortOrtTextfield.getText(), this.ortStrasseTextfield.getText(),
                     Integer.parseInt(this.ortHausnummerTextfield.getText()), Integer.parseInt(this.ortPLZTextfield.getText())));
 
+            this.perAdresseChoiceBox.getItems().add(this.ortStrasseTextfield.getText() + " " + this.ortHausnummerTextfield.getText() +  ", "
+                    + this.ortPLZTextfield.getText() + " " + this.ortOrtTextfield.getText());
+
             this.ortPanel.setVisible(false);
+            this.personenPanel.setDisable(false);
 
             System.out.println("Ort hinzugefügt!");
         } catch (Exception e) {

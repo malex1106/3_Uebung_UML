@@ -103,8 +103,8 @@
                                                 <Font name="Arial Bold" size="20.0" />
                                              </font>
                                           </Label>
-                                          <Button id="orangeButton" layoutX="233.0" layoutY="367.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
-                                          <Button id="orangeButton" layoutX="225.0" layoutY="627.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
+                                          <Button id="orangeButton" layoutX="233.0" layoutY="367.0" mnemonicParsing="false" onAction="#abtInfoLehrerInfo" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
+                                          <Button id="orangeButton" layoutX="225.0" layoutY="627.0" mnemonicParsing="false" onAction="#abtInfoKlassenInfo" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
                                        </children></AnchorPane>
                                 </content>
                               </ScrollPane>
@@ -157,15 +157,15 @@
                         <Button id="redButton" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddExitButtonClicked" text="Abbrechen" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="personenPanel" layoutX="94.0" layoutY="99.0" prefHeight="434.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
+                  <AnchorPane fx:id="personenPanel" layoutX="94.0" layoutY="99.0" prefHeight="504.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
                      <children>
                         <Label layoutX="28.0" layoutY="23.0" text="Personeninformationen" textFill="#c6c6c6">
                            <font>
                               <Font name="Arial Bold" size="26.0" />
                            </font>
                         </Label>
-                        <Button id="greenButton" layoutX="573.0" layoutY="392.0" mnemonicParsing="false" onAction="#perHinzufuegen" text="Hinzufügen" />
-                        <Button id="redButton" layoutX="481.0" layoutY="392.0" mnemonicParsing="false" onAction="#perExit" text="Abbrechen" />
+                        <Button id="greenButton" fx:id="perHinzuefuegenButton" layoutX="575.0" layoutY="458.0" mnemonicParsing="false" onAction="#perHinzufuegen" text="Hinzufügen" />
+                        <Button id="redButton" layoutX="483.0" layoutY="458.0" mnemonicParsing="false" onAction="#perExit" text="Abbrechen" />
                         <Label layoutX="28.0" layoutY="78.0" text="SVNR" textFill="#727272">
                            <font>
                               <Font name="Arial" size="17.0" />
@@ -229,6 +229,18 @@
                               <CheckBox fx:id="perEigenberechtigtCheckBox" layoutX="557.0" layoutY="27.0" mnemonicParsing="false" />
                            </children>
                         </AnchorPane>
+                        <AnchorPane fx:id="perAdresse" layoutX="27.0" layoutY="390.0" prefHeight="53.0" prefWidth="414.0">
+                           <children>
+                              <Label layoutY="19.0" text="Adresse" textFill="#727272">
+                                 <font>
+                                    <Font name="Arial" size="17.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="perAdresseChoiceBox" layoutX="89.0" layoutY="14.0" prefHeight="31.0" prefWidth="233.0" />
+                              <Button id="grayButton" layoutX="347.0" layoutY="16.0" mnemonicParsing="false" onAction="#perAdresseNeu" text="Neu" />
+                           </children>
+                        </AnchorPane>
+                        <Separator layoutX="28.0" layoutY="369.0" prefHeight="12.0" prefWidth="617.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="abtAddKlassePanel" layoutX="139.0" layoutY="203.0" prefHeight="292.0" prefWidth="575.0" styleClass="backgroundPopup" visible="false">
