@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -222,14 +223,15 @@ public class MainController implements Initializable {
                             for (KlasseClass klasse : selectedAbteilung.getKlassen())
                                 klassenlist.add(klasse.getBezeichnung());
                             for (LehrerClass lehrer: selectedAbteilung.getLehrer()) {
-                                if (lehrer != schule.getDirektor())
-                                    abteilungsvorstandslist.add(lehrer.getNachname() + " " + lehrer.getVorname());
                                 lehrerlist.add(lehrer.getNachname() + " " + lehrer.getVorname());
-                                if (lehrer == selectedAbteilung.getAbteilungsvorstand()) {
-                                    abteilungsvorstandIndex = i;
-                                    getAbteilungsvorstand = true;
+                                if (lehrer != schule.getDirektor()) {
+                                    abteilungsvorstandslist.add(lehrer.getNachname() + " " + lehrer.getVorname());
+                                    if (lehrer == selectedAbteilung.getAbteilungsvorstand()) {
+                                        abteilungsvorstandIndex = i;
+                                        getAbteilungsvorstand = true;
+                                    }
+                                    i++;
                                 }
-                                i++;
                             }
 
                             if (getAbteilungsvorstand)
@@ -327,6 +329,7 @@ public class MainController implements Initializable {
         schule.setDirektor(direktorkandidaten.get(this.schDirektorChoiceBox.getSelectionModel().getSelectedIndex()));
 
         this.abteilungsvorstandslist.clear();
+        this.lehrerlist.clear();
 
         int i = 0;
         int abteilungsvorstandIndex = 0;
@@ -343,6 +346,7 @@ public class MainController implements Initializable {
                 }
                 i++;
             }
+            lehrerlist.add(lehrer2.getNachname() + " " + lehrer2.getVorname());
         }
 
         if (getAbteilungsvorstand)
@@ -363,7 +367,10 @@ public class MainController implements Initializable {
         this.selectedAbteilung.setName(this.abtInfoNameTextfield.getText());
         this.selectedAbteilung.setKuerzel(this.abtInfoKuerzelTextfield.getText());
 
-        ArrayList<LehrerClass> lehrer = selectedAbteilung.getLehrer();
+        ArrayList<LehrerClass> lehrer = new ArrayList<LehrerClass>();
+
+        for (LehrerClass lehrer1: this.selectedAbteilung.getLehrer())
+            lehrer.add(lehrer1);
 
         try {
             lehrer.remove(schule.getDirektor());
@@ -379,7 +386,7 @@ public class MainController implements Initializable {
 
         this.abteilungslist.set(this.listViewAbteilungen.getSelectionModel().getSelectedIndex(), this.selectedAbteilung.getName());
 
-        System.out.println("Gespeichert!");
+        System.out.println("Abteilung gespeichert!");
     }
 
     @FXML
@@ -414,7 +421,7 @@ public class MainController implements Initializable {
             this.perSVNRTextfield.setText(Long.toString(lehrer.getSvnr()));
             this.perVornameTextfield.setText(lehrer.getVorname());
             this.perNachnameTextfield.setText(lehrer.getNachname());
-            //this.perGeburtsdatumDatePicker
+            this.perGeburtsdatumDatePicker.setValue(lehrer.getGeburtsdatum());
             this.perEmailTextfield.setText(lehrer.getEmail());
             this.perKuerzelTextfield.setText(lehrer.getKuerzel());
             this.perAdresseChoiceBox.getSelectionModel().select(this.adressarraylist.indexOf(lehrer.getWohnort()));
@@ -531,6 +538,10 @@ public class MainController implements Initializable {
         } else if(this.schuelerLehrer && !this.speichernHinzufuegen){
             try {
                 LehrerClass lehrer = this.selectedAbteilung.getLehrer().get(this.abtInfoLehrerListView.getSelectionModel().getSelectedIndex());
+
+                int abteilungsindex = this.abteilungsvorstandslist.indexOf((lehrer.getNachname() + " " + lehrer.getVorname()));
+                this.abteilungsvorstandslist.set(abteilungsindex, this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
+                this.abtInfoAbteilungsvorstandChoiceBox.getSelectionModel().select(abteilungsindex);
 
                 lehrer.setSvnr(Long.parseLong(this.perSVNRTextfield.getText()));
                 lehrer.setVorname(this.perVornameTextfield.getText());
