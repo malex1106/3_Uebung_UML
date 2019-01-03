@@ -96,6 +96,28 @@ public class AbteilungClass implements AbteilungInterface {
     }
 
     @Override
+    public boolean setName(String name) {
+        try {
+            this.name = name;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setKuerzel(String kuerzel) {
+        try {
+            this.kuerzel = kuerzel;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public boolean setSchule(SchuleClass schule) {
         try {
             this.schule = schule;

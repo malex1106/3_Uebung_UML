@@ -113,7 +113,6 @@ public class SchuleClass implements SchuleInterface {
 
     @Override
     public ArrayList<NichtLehrpersonal> getPersonal() {    //Laut Schule.svg ArrayList<MitarbeiterClass>
-
         return this.personal;
     }
 
@@ -125,6 +124,18 @@ public class SchuleClass implements SchuleInterface {
     @Override
     public ArrayList<AbteilungClass> getAbteilungen() {
         return this.abteilungen;
+    }
+
+    @Override
+    public ArrayList<LehrerClass> getLehrer() {
+        ArrayList<LehrerClass> lehrer = new ArrayList<LehrerClass>();
+        for (AbteilungClass abteilung: abteilungen){
+            for (LehrerClass lehr: abteilung.getLehrer()) {
+                lehrer.add(lehr);
+            }
+        }
+
+        return lehrer;
     }
 
     @Override

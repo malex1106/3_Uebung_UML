@@ -22,5 +22,7 @@ public interface AbteilungInterface {
     public boolean setAbteilungssprecher(SchuelerClass schueler);
     public boolean addKlasse(KlasseClass klasse);
     public boolean setSchule(SchuleClass schule);
+    public boolean setName(String name);
+    public boolean setKuerzel(String kuerzel);
 
 }

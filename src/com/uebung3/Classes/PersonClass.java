@@ -54,6 +54,61 @@ public abstract class PersonClass implements PersonInterface {
     }
 
     @Override
+    public boolean setSvnr(long svnr) {
+        try {
+            this.svnr = svnr;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setVorname(String vorname) {
+        try {
+            this.vorname = vorname;
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setNachname(String nachname) {
+        try {
+            this.nachname = nachname;
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setGeburtsdatum(LocalDate geburtsdatum) {
+        try {
+            this.geburtsdatum = geburtsdatum;
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setEmail(String email) {
+        try {
+            this.email = email;
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public boolean setWohnort(AdresseClass wohnort) {
         try {
             this.wohnort = wohnort;
