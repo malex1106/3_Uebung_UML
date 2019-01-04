@@ -147,4 +147,7 @@ public class KlasseClass implements KlasseInterface {
 
     @Override
     public AbteilungClass getAbteilung() { return this.abteilung; }
+
+    @Override
+    public ArrayList<SchuelerClass> getSchueler() { return this.schueler; }
 }

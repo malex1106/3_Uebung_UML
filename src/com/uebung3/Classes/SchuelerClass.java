@@ -3,6 +3,8 @@ package com.uebung3.Classes;
 import com.uebung3.Interfaces.SchuelerInterface;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class SchuelerClass extends PersonClass implements SchuelerInterface {
@@ -15,6 +17,12 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
 
     public SchuelerClass(long svnr, String vorname, String nachname, LocalDate geburtsdatum, String email) {
         super(svnr, vorname, nachname, geburtsdatum, email);
+
+        Period p = Period.between(geburtsdatum, LocalDate.now());
+        if (p.getYears() >= 18)
+            eigenberechtigt = true;
+        else
+            eigenberechtigt = false;
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.uebung3.Interfaces;
 
 import com.uebung3.Classes.*;
 
+import java.util.ArrayList;
+
 public interface KlasseInterface {
     public String getBezeichnung();
     public int getSchulstufe();
@@ -9,6 +11,7 @@ public interface KlasseInterface {
     public RaumClass getStammklasse();
     public AbteilungClass getAbteilung();
     public int getSchuelerAnzahl();
+    public ArrayList<SchuelerClass> getSchueler();
 
     public boolean setKlassensprecher(SchuelerClass schueler);
     public boolean addSchueler(SchuelerClass schueler);
