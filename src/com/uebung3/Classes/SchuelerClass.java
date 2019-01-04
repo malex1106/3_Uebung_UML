@@ -13,9 +13,8 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
 
     private KlasseClass klasse;
 
-    public SchuelerClass(long svnr, String vorname, String nachname, LocalDate geburtsdatum, String email, KlasseClass klasse) {
+    public SchuelerClass(long svnr, String vorname, String nachname, LocalDate geburtsdatum, String email) {
         super(svnr, vorname, nachname, geburtsdatum, email);
-        this.klasse = klasse;
     }
 
     @Override
@@ -44,4 +43,27 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
             return false;
         }
     }
+
+    @Override
+    public boolean setEintrittsdatum(LocalDate eintrittsdatum) {
+        try {
+            this.eintrittsdatum = eintrittsdatum;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setKatalognummer(int katalognummer) {
+        try {
+            this.katalognummer = katalognummer;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
+

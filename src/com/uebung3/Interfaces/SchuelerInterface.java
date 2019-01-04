@@ -12,4 +12,6 @@ public interface SchuelerInterface {
     public KlasseClass getKlasse();
 
     public boolean setKlasse(KlasseClass klasse);
+    public boolean setEintrittsdatum(LocalDate eintrittsdatum);
+    public boolean setKatalognummer(int katalognummer);
 }

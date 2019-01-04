@@ -102,18 +102,20 @@
                                                 <Font name="Arial Bold" size="20.0" />
                                              </font>
                                           </Label>
-                                          <Button id="orangeButton" layoutX="233.0" layoutY="367.0" mnemonicParsing="false" onAction="#abtInfoLehrerInfo" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
-                                          <Button id="orangeButton" layoutX="225.0" layoutY="627.0" mnemonicParsing="false" onAction="#abtInfoKlassenInfo" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
+                                          <Button id="orangeButton" layoutX="140.0" layoutY="367.0" mnemonicParsing="false" onAction="#abtInfoLehrerInfo" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
+                                          <Button id="orangeButton" layoutX="131.0" layoutY="627.0" mnemonicParsing="false" onAction="#abtInfoKlassenInfo" prefHeight="26.0" prefWidth="87.0" text="Mehr Infos" />
+                                          <Button id="redButton" layoutX="232.0" layoutY="367.0" mnemonicParsing="false" onAction="#abtInfoLehrerLoeschen" prefHeight="26.0" prefWidth="82.0" text="Löschen" />
+                                          <Button id="redButton" layoutX="225.0" layoutY="627.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Löschen" />
                                        </children></AnchorPane>
                                 </content>
                               </ScrollPane>
-                              <Button id="redButton" layoutX="430.0" layoutY="22.0" mnemonicParsing="false" onAction="#abtInfoReset" text="Reset" />
+                              <Button id="redButton" layoutX="420.0" layoutY="22.0" mnemonicParsing="false" onAction="#abtInfoLoeschen" text="Löschen" />
                               <Label layoutX="39.0" layoutY="19.0" text="Info" textFill="#c6c6c6">
                                  <font>
                                     <Font name="Arial Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Button id="greenButton" layoutX="339.0" layoutY="22.0" mnemonicParsing="false" onAction="#abtInfoSpeichern" prefHeight="26.0" prefWidth="81.0" text="Speichern" />
+                              <Button id="greenButton" layoutX="329.0" layoutY="22.0" mnemonicParsing="false" onAction="#abtInfoSpeichern" prefHeight="26.0" prefWidth="81.0" text="Speichern" />
                            </children>
                         </AnchorPane>
                      </right>
@@ -155,6 +157,150 @@
                         <TextField fx:id="abtAddKuerzelTextfield" layoutX="28.0" layoutY="174.0" prefHeight="27.0" prefWidth="291.0" />
                         <Button id="greenButton" layoutX="465.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddAddButton" text="Hinzufügen" />
                         <Button id="redButton" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddExitButtonClicked" text="Abbrechen" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="klassePanel" layoutX="193.0" layoutY="40.0" prefHeight="633.0" prefWidth="514.0" styleClass="backgroundPopup" visible="false">
+                     <children>
+                        <Label layoutX="28.0" layoutY="23.0" text="Klasseninformationen" textFill="#c6c6c6">
+                           <font>
+                              <Font name="Arial Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="77.0" text="Bezeichnung" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="klaBezeichnungTextfield" layoutX="28.0" layoutY="103.0" prefHeight="27.0" prefWidth="291.0" />
+                        <Label layoutX="347.0" layoutY="77.0" text="Schulstufe" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="klaSchulstufeTextfield" layoutX="347.0" layoutY="103.0" prefHeight="27.0" prefWidth="109.0" />
+                        <AnchorPane fx:id="klaPanel1" layoutX="282.0" layoutY="150.0" prefHeight="36.0" prefWidth="234.0" visible="false">
+                           <children>
+                              <Button id="greenButton" layoutX="97.0" layoutY="8.0" mnemonicParsing="false" onAction="#klaHinzufuegen" text="Hinzufügen" />
+                              <Button id="redButton" layoutX="6.0" layoutY="8.0" mnemonicParsing="false" onAction="#klaExit" text="Abbrechen" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="klaPanel2" layoutX="15.0" layoutY="138.0" prefHeight="486.0" prefWidth="499.0">
+                           <children>
+                              <Button id="greenButton" layoutX="408.0" layoutY="446.0" mnemonicParsing="false" onAction="#klaSpeichern" text="Speichern" />
+                              <Button id="redButton" layoutX="315.0" layoutY="446.0" mnemonicParsing="false" onAction="#klaExit" text="Abbrechen" />
+                              <Label layoutX="15.0" layoutY="39.0" text="Stammklasse" textFill="#9a9a9a">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="klaStammklasseChoiceBox" layoutX="163.0" layoutY="35.0" prefHeight="31.0" prefWidth="177.0" />
+                              <Label layoutX="15.0" layoutY="85.0" text="Klassenvorstand" textFill="#9a9a9a">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="klaKlassenvorstandChoiceBox" layoutX="163.0" layoutY="81.0" prefHeight="31.0" prefWidth="177.0" />
+                              <Separator layoutX="13.0" layoutY="10.0" prefHeight="12.0" prefWidth="433.0" />
+                              <Label layoutX="15.0" layoutY="130.0" text="Klassensprecher" textFill="#9a9a9a">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="klaKlassensprecherChoiceBox" layoutX="163.0" layoutY="126.0" prefHeight="31.0" prefWidth="177.0" />
+                              <ScrollPane layoutX="5.0" layoutY="216.0" prefHeight="221.0" prefWidth="482.0">
+                                 <content>
+                                    <ListView fx:id="klaSchuelerListView" prefHeight="215.0" prefWidth="452.0" />
+                                 </content>
+                              </ScrollPane>
+                              <Label layoutX="13.0" layoutY="184.0" text="Schüler" textFill="#c6c6c6">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Button id="orangeButton" layoutX="136.0" layoutY="182.0" mnemonicParsing="false" onAction="#klaSchuelerMehrInfos" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
+                              <Button id="greenButton" layoutX="355.0" layoutY="182.0" mnemonicParsing="false" onAction="#klaSchuelerHinzufuegen" prefHeight="26.0" prefWidth="132.0" text="Schüler Hinzufügen" />
+                              <Button id="redButton" layoutX="230.0" layoutY="183.0" mnemonicParsing="false" onAction="#klaSchuelerLoeschen" prefHeight="26.0" prefWidth="116.0" text="Schüler Löschen" />
+                              <Button id="grayButton" layoutX="366.0" layoutY="36.0" mnemonicParsing="false" onAction="#klaStammklasseNeu" text="Neu" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="schulPanel" layoutX="104.0" layoutY="109.0" prefHeight="378.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
+                     <children>
+                        <Label layoutX="28.0" layoutY="23.0" text="Schulinformationen" textFill="#c6c6c6">
+                           <font>
+                              <Font name="Arial Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Button id="greenButton" layoutX="569.0" layoutY="332.0" mnemonicParsing="false" onAction="#schSpeichern" text="Speichern" />
+                        <Button id="redButton" layoutX="477.0" layoutY="332.0" mnemonicParsing="false" onAction="#schExit" text="Abbrechen" />
+                        <Label layoutX="28.0" layoutY="78.0" text="Name" textFill="#727272">
+                           <font>
+                              <Font name="Arial" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="schNameTextfield" layoutX="28.0" layoutY="98.0" />
+                        <Separator layoutX="29.0" layoutY="148.0" prefHeight="2.0" prefWidth="617.0" />
+                        <Separator layoutX="28.0" layoutY="233.0" prefHeight="12.0" prefWidth="617.0" />
+                        <Label layoutX="253.0" layoutY="78.0" text="Schulkennzahl" textFill="#727272">
+                           <font>
+                              <Font name="Arial" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="schSchulkennzahlTextfield" layoutX="253.0" layoutY="98.0" />
+                        <Label layoutX="481.0" layoutY="78.0" text="Schultyp" textFill="#727272">
+                           <font>
+                              <Font name="Arial" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="schSchultypTextfield" layoutX="481.0" layoutY="98.0" />
+                        <Label layoutX="26.0" layoutY="166.0" text="Schüleranzahl" textFill="#727272">
+                           <font>
+                              <Font name="Arial" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="schSchueleranzahlTextfield" layoutX="28.0" layoutY="186.0" />
+                        <Label layoutX="235.0" layoutY="166.0" text="Mitarbeiteranzahl" textFill="#727272">
+                           <font>
+                              <Font name="Arial" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="schMitarbeiteranzahlTextfield" layoutX="237.0" layoutY="186.0" />
+                        <ChoiceBox fx:id="schDirektorChoiceBox" layoutX="134.0" layoutY="260.0" prefHeight="31.0" prefWidth="233.0" />
+                        <Label layoutX="27.0" layoutY="265.0" text="Direktor" textFill="#727272">
+                           <font>
+                              <Font name="Arial" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="raumPanel" layoutX="153.0" layoutY="217.0" prefHeight="269.0" prefWidth="571.0" styleClass="backgroundPopup" visible="false">
+                     <children>
+                        <Label fx:id="rauTitelLabel" layoutX="28.0" layoutY="23.0" text="Raum hinzufügen" textFill="#c6c6c6">
+                           <font>
+                              <Font name="Arial Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="77.0" text="Raumnummer" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="rauRaumnummerTextfield" layoutX="28.0" layoutY="103.0" prefHeight="27.0" prefWidth="291.0" />
+                        <Label layoutX="28.0" layoutY="162.0" text="Raumtyp" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button id="greenButton" fx:id="rauHinzufuegenButton" layoutX="459.0" layoutY="223.0" mnemonicParsing="false" onAction="#rauHinzufuegen" text="Hinzufügen" />
+                        <Button id="redButton" layoutX="365.0" layoutY="223.0" mnemonicParsing="false" onAction="#rauExit" text="Abbrechen" />
+                        <Label layoutX="352.0" layoutY="77.0" text="maximale Sitzplätze" textFill="#9a9a9a">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="rauSitzplaetzeTextfield" layoutX="354.0" layoutY="103.0" prefHeight="27.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="rauRaumtypChoiceBox" layoutX="119.0" layoutY="159.0" prefHeight="31.0" prefWidth="196.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="personenPanel" layoutX="94.0" layoutY="99.0" prefHeight="504.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
@@ -243,29 +389,6 @@
                         <Separator layoutX="28.0" layoutY="369.0" prefHeight="12.0" prefWidth="617.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="abtAddKlassePanel" layoutX="139.0" layoutY="203.0" prefHeight="292.0" prefWidth="575.0" styleClass="backgroundPopup" visible="false">
-                     <children>
-                        <Label layoutX="28.0" layoutY="23.0" text="Klasse hinzufügen" textFill="#c6c6c6">
-                           <font>
-                              <Font name="Arial Bold" size="26.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="28.0" layoutY="77.0" text="Bezeichnung" textFill="#9a9a9a">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="abtAddKlasseBezeichnungTextfield" layoutX="28.0" layoutY="103.0" prefHeight="27.0" prefWidth="291.0" />
-                        <Label layoutX="28.0" layoutY="148.0" text="Schulstufe" textFill="#9a9a9a">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="abtAddKlasseSchulstufeTextfield" layoutX="28.0" layoutY="174.0" prefHeight="27.0" prefWidth="83.0" />
-                        <Button id="greenButton" layoutX="465.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddKlasseAddButton" text="Hinzufügen" />
-                        <Button id="redButton" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddKlasseExit" text="Abbrechen" />
-                     </children>
-                  </AnchorPane>
                   <AnchorPane fx:id="ortPanel" layoutX="143.0" layoutY="207.0" prefHeight="294.0" prefWidth="571.0" styleClass="backgroundPopup" visible="false">
                      <children>
                         <Label layoutX="28.0" layoutY="23.0" text="Ort hinzufügen" textFill="#c6c6c6">
@@ -299,55 +422,6 @@
                            </font>
                         </Label>
                         <TextField fx:id="ortPLZTextfield" layoutX="355.0" layoutY="174.0" prefHeight="27.0" prefWidth="100.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="schulPanel" layoutX="104.0" layoutY="109.0" prefHeight="378.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
-                     <children>
-                        <Label layoutX="28.0" layoutY="23.0" text="Schulinformationen" textFill="#c6c6c6">
-                           <font>
-                              <Font name="Arial Bold" size="26.0" />
-                           </font>
-                        </Label>
-                        <Button id="greenButton" layoutX="569.0" layoutY="332.0" mnemonicParsing="false" onAction="#schSpeichern" text="Speichern" />
-                        <Button id="redButton" layoutX="477.0" layoutY="332.0" mnemonicParsing="false" onAction="#schExit" text="Abbrechen" />
-                        <Label layoutX="28.0" layoutY="78.0" text="Name" textFill="#727272">
-                           <font>
-                              <Font name="Arial" size="17.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="schNameTextfield" layoutX="28.0" layoutY="98.0" />
-                        <Separator layoutX="29.0" layoutY="148.0" prefHeight="2.0" prefWidth="617.0" />
-                        <Separator layoutX="28.0" layoutY="233.0" prefHeight="12.0" prefWidth="617.0" />
-                        <Label layoutX="253.0" layoutY="78.0" text="Schulkennzahl" textFill="#727272">
-                           <font>
-                              <Font name="Arial" size="17.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="schSchulkennzahlTextfield" layoutX="253.0" layoutY="98.0" />
-                        <Label layoutX="481.0" layoutY="78.0" text="Schultyp" textFill="#727272">
-                           <font>
-                              <Font name="Arial" size="17.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="schSchultypTextfield" layoutX="481.0" layoutY="98.0" />
-                        <Label layoutX="26.0" layoutY="166.0" text="Schüleranzahl" textFill="#727272">
-                           <font>
-                              <Font name="Arial" size="17.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="schSchueleranzahlTextfield" layoutX="28.0" layoutY="186.0" />
-                        <Label layoutX="235.0" layoutY="166.0" text="Mitarbeiteranzahl" textFill="#727272">
-                           <font>
-                              <Font name="Arial" size="17.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="schMitarbeiteranzahlTextfield" layoutX="237.0" layoutY="186.0" />
-                        <ChoiceBox fx:id="schDirektorChoiceBox" layoutX="134.0" layoutY="260.0" prefHeight="31.0" prefWidth="233.0" />
-                        <Label layoutX="27.0" layoutY="265.0" text="Direktor" textFill="#727272">
-                           <font>
-                              <Font name="Arial" size="17.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                </children>

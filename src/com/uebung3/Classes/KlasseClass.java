@@ -19,9 +19,6 @@ public class KlasseClass implements KlasseInterface {
     public KlasseClass(String bezeichnung, int schulstufe, AbteilungClass abteilung) {
         this.bezeichnung = bezeichnung;
         this.schulstufe = schulstufe;
-        this.klassenvorstand = klassenvorstand;
-        this.klassensprecher = klassensprecher;
-        this.stammklasse = stammklasse;
         this.abteilung = abteilung;
 
         this.schueler = new ArrayList<SchuelerClass>();
@@ -119,6 +116,28 @@ public class KlasseClass implements KlasseInterface {
     public boolean setAbteilung(AbteilungClass abteilung) {
         try {
             this.abteilung = abteilung;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setBezeichnung(String bezeichnung) {
+        try {
+            this.bezeichnung = bezeichnung;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean setSchulstufe(int schulstufe) {
+        try {
+            this.schulstufe = schulstufe;
             return true;
         } catch (Exception e) {
             e.printStackTrace();

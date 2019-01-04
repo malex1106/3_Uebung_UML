@@ -17,4 +17,6 @@ public interface KlasseInterface {
     public boolean setStammklasse(RaumClass stammklasse);
     public boolean addFach(FachClass fach);
     public boolean setAbteilung(AbteilungClass abteilung);
+    public boolean setBezeichnung(String bezeichnung);
+    public boolean setSchulstufe(int schulstufe);
 }
