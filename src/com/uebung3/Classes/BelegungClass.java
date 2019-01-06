@@ -18,14 +18,10 @@ public class BelegungClass implements BelegungInterface {
 
     private static int belegungNr = 0;
 
-    BelegungClass () {
+    public BelegungClass(KlasseClass klasse, FachClass fach, LehrerClass lehrer, Unterrichtstag unterrichtstag, int stunde, RaumClass raum) {
 
         unterrichtsEinheit = belegungNr;
         belegungNr++;
-
-    }
-
-    public BelegungClass(KlasseClass klasse, FachClass fach, LehrerClass lehrer, Unterrichtstag unterrichtstag, int stunde, RaumClass raum) {
 
         ArrayList<LehrerClass> unterrichtende_lehrer = fach.getLehrer();
         try {
