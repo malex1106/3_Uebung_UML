@@ -105,7 +105,7 @@
                                           <Button id="orangeButton" layoutX="140.0" layoutY="367.0" mnemonicParsing="false" onAction="#abtInfoLehrerInfo" prefHeight="26.0" prefWidth="82.0" text="Mehr Infos" />
                                           <Button id="orangeButton" layoutX="131.0" layoutY="627.0" mnemonicParsing="false" onAction="#abtInfoKlassenInfo" prefHeight="26.0" prefWidth="87.0" text="Mehr Infos" />
                                           <Button id="redButton" layoutX="232.0" layoutY="367.0" mnemonicParsing="false" onAction="#abtInfoLehrerLoeschen" prefHeight="26.0" prefWidth="82.0" text="Löschen" />
-                                          <Button id="redButton" layoutX="225.0" layoutY="627.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Löschen" />
+                                          <Button id="redButton" layoutX="225.0" layoutY="627.0" mnemonicParsing="false" onAction="#abtInfoKlassenLoeschen" prefHeight="26.0" prefWidth="82.0" text="Löschen" />
                                        </children></AnchorPane>
                                 </content>
                               </ScrollPane>
@@ -135,7 +135,7 @@
                         </AnchorPane>
                      </left>
                   </BorderPane>
-                  <AnchorPane fx:id="abtAddPanel" layoutX="129.0" layoutY="193.0" prefHeight="292.0" prefWidth="575.0" styleClass="backgroundPopup" visible="false">
+                  <AnchorPane fx:id="abtAddPanel" layoutX="129.0" layoutY="193.0" prefHeight="254.0" prefWidth="575.0" styleClass="backgroundPopup" visible="false">
                      <children>
                         <Label layoutX="28.0" layoutY="23.0" text="Abteilung hinzufügen" textFill="#c6c6c6">
                            <font>
@@ -154,8 +154,8 @@
                            </font>
                         </Label>
                         <TextField fx:id="abtAddKuerzelTextfield" layoutX="28.0" layoutY="174.0" prefHeight="27.0" prefWidth="291.0" />
-                        <Button id="greenButton" layoutX="465.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddAddButton" text="Hinzufügen" />
-                        <Button id="redButton" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" onAction="#abtAddExitButtonClicked" text="Abbrechen" />
+                        <Button id="greenButton" layoutX="466.0" layoutY="26.0" mnemonicParsing="false" onAction="#abtAddAddButton" text="Hinzufügen" />
+                        <Button id="redButton" layoutX="372.0" layoutY="26.0" mnemonicParsing="false" onAction="#abtAddExitButtonClicked" text="Abbrechen" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="klassePanel" layoutX="193.0" layoutY="40.0" prefHeight="633.0" prefWidth="514.0" styleClass="backgroundPopup" visible="false">
@@ -228,15 +228,15 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="schulPanel" layoutX="104.0" layoutY="109.0" prefHeight="378.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
+                  <AnchorPane fx:id="schulPanel" layoutX="104.0" layoutY="109.0" prefHeight="387.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
                      <children>
                         <Label layoutX="28.0" layoutY="23.0" text="Schulinformationen" textFill="#c6c6c6">
                            <font>
                               <Font name="Arial Bold" size="26.0" />
                            </font>
                         </Label>
-                        <Button id="greenButton" layoutX="569.0" layoutY="332.0" mnemonicParsing="false" onAction="#schSpeichern" text="Speichern" />
-                        <Button id="redButton" layoutX="477.0" layoutY="332.0" mnemonicParsing="false" onAction="#schExit" text="Abbrechen" />
+                        <Button id="greenButton" layoutX="572.0" layoutY="26.0" mnemonicParsing="false" onAction="#schSpeichern" text="Speichern" />
+                        <Button id="redButton" layoutX="480.0" layoutY="26.0" mnemonicParsing="false" onAction="#schExit" text="Abbrechen" />
                         <Label layoutX="28.0" layoutY="78.0" text="Name" textFill="#727272">
                            <font>
                               <Font name="Arial" size="17.0" />
@@ -269,15 +269,21 @@
                            </font>
                         </Label>
                         <TextField fx:id="schMitarbeiteranzahlTextfield" editable="false" layoutX="237.0" layoutY="186.0" />
-                        <ChoiceBox fx:id="schDirektorChoiceBox" layoutX="134.0" layoutY="260.0" prefHeight="31.0" prefWidth="233.0" />
+                        <ChoiceBox fx:id="schDirektorChoiceBox" layoutX="150.0" layoutY="260.0" prefHeight="31.0" prefWidth="233.0" />
                         <Label layoutX="27.0" layoutY="265.0" text="Direktor" textFill="#727272">
                            <font>
                               <Font name="Arial" size="17.0" />
                            </font>
                         </Label>
+                        <Label layoutX="27.0" layoutY="312.0" text="Schulsprecher" textFill="#727272">
+                           <font>
+                              <Font name="Arial" size="17.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="schSchulsprecherChoiceBox" layoutX="150.0" layoutY="307.0" prefHeight="31.0" prefWidth="233.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="raumPanel" layoutX="153.0" layoutY="217.0" prefHeight="269.0" prefWidth="571.0" styleClass="backgroundPopup" visible="false">
+                  <AnchorPane fx:id="raumPanel" layoutX="153.0" layoutY="217.0" prefHeight="235.0" prefWidth="571.0" styleClass="backgroundPopup" visible="false">
                      <children>
                         <Label fx:id="rauTitelLabel" layoutX="28.0" layoutY="23.0" text="Raum hinzufügen" textFill="#c6c6c6">
                            <font>
@@ -295,26 +301,26 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Button id="greenButton" fx:id="rauHinzufuegenButton" layoutX="459.0" layoutY="223.0" mnemonicParsing="false" onAction="#rauHinzufuegen" text="Hinzufügen" />
-                        <Button id="redButton" layoutX="365.0" layoutY="223.0" mnemonicParsing="false" onAction="#rauExit" text="Abbrechen" />
+                        <Button id="greenButton" fx:id="rauHinzufuegenButton" layoutX="464.0" layoutY="26.0" mnemonicParsing="false" onAction="#rauHinzufuegen" text="Hinzufügen" />
+                        <Button id="redButton" layoutX="370.0" layoutY="26.0" mnemonicParsing="false" onAction="#rauExit" text="Abbrechen" />
                         <Label layoutX="352.0" layoutY="77.0" text="maximale Sitzplätze" textFill="#9a9a9a">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="rauSitzplaetzeTextfield" layoutX="354.0" layoutY="103.0" prefHeight="27.0" prefWidth="150.0" />
+                        <TextField fx:id="rauSitzplaetzeTextfield" layoutX="354.0" layoutY="103.0" prefHeight="27.0" prefWidth="92.0" />
                         <ChoiceBox fx:id="rauRaumtypChoiceBox" layoutX="119.0" layoutY="159.0" prefHeight="31.0" prefWidth="196.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="personenPanel" layoutX="94.0" layoutY="99.0" prefHeight="504.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
+                  <AnchorPane fx:id="personenPanel" layoutX="94.0" layoutY="99.0" prefHeight="476.0" prefWidth="679.0" styleClass="backgroundPopup" visible="false">
                      <children>
                         <Label layoutX="28.0" layoutY="23.0" text="Personeninformationen" textFill="#c6c6c6">
                            <font>
                               <Font name="Arial Bold" size="26.0" />
                            </font>
                         </Label>
-                        <Button id="greenButton" fx:id="perHinzuefuegenButton" layoutX="575.0" layoutY="458.0" mnemonicParsing="false" onAction="#perHinzufuegen" text="Hinzufügen" />
-                        <Button id="redButton" layoutX="483.0" layoutY="458.0" mnemonicParsing="false" onAction="#perExit" text="Abbrechen" />
+                        <Button id="greenButton" fx:id="perHinzuefuegenButton" layoutX="575.0" layoutY="26.0" mnemonicParsing="false" onAction="#perHinzufuegen" text="Hinzufügen" />
+                        <Button id="redButton" layoutX="483.0" layoutY="26.0" mnemonicParsing="false" onAction="#perExit" text="Abbrechen" />
                         <Label layoutX="28.0" layoutY="78.0" text="SVNR" textFill="#727272">
                            <font>
                               <Font name="Arial" size="17.0" />
@@ -392,7 +398,7 @@
                         <Separator layoutX="28.0" layoutY="369.0" prefHeight="12.0" prefWidth="617.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="ortPanel" layoutX="143.0" layoutY="207.0" prefHeight="294.0" prefWidth="571.0" styleClass="backgroundPopup" visible="false">
+                  <AnchorPane fx:id="ortPanel" layoutX="143.0" layoutY="207.0" prefHeight="247.0" prefWidth="571.0" styleClass="backgroundPopup" visible="false">
                      <children>
                         <Label layoutX="28.0" layoutY="23.0" text="Ort hinzufügen" textFill="#c6c6c6">
                            <font>
@@ -411,8 +417,8 @@
                            </font>
                         </Label>
                         <TextField fx:id="ortStrasseTextfield" layoutX="28.0" layoutY="174.0" prefHeight="27.0" prefWidth="293.0" />
-                        <Button id="greenButton" layoutX="465.0" layoutY="237.0" mnemonicParsing="false" onAction="#ortHinzufuegen" text="Hinzufügen" />
-                        <Button id="redButton" layoutX="371.0" layoutY="237.0" mnemonicParsing="false" onAction="#ortExit" text="Abbrechen" />
+                        <Button id="greenButton" layoutX="462.0" layoutY="26.0" mnemonicParsing="false" onAction="#ortHinzufuegen" text="Hinzufügen" />
+                        <Button id="redButton" layoutX="368.0" layoutY="26.0" mnemonicParsing="false" onAction="#ortExit" text="Abbrechen" />
                         <Label layoutX="352.0" layoutY="77.0" text="Hausnummer" textFill="#9a9a9a">
                            <font>
                               <Font size="16.0" />

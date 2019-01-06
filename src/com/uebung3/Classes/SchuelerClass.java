@@ -17,12 +17,6 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
 
     public SchuelerClass(long svnr, String vorname, String nachname, LocalDate geburtsdatum, String email) {
         super(svnr, vorname, nachname, geburtsdatum, email);
-
-        Period p = Period.between(geburtsdatum, LocalDate.now());
-        if (p.getYears() >= 18)
-            eigenberechtigt = true;
-        else
-            eigenberechtigt = false;
     }
 
     @Override
@@ -30,6 +24,11 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
 
     @Override
     public boolean isEigenberechtigt() {
+        Period p = Period.between(this.getGeburtsdatum(), LocalDate.now());
+        if (p.getYears() >= 18)
+            eigenberechtigt = true;
+        else
+            eigenberechtigt = false;
         return this.eigenberechtigt;
     }
 

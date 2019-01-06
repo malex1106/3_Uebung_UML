@@ -56,13 +56,13 @@ public class MainController implements Initializable {
     private ObservableList<String> klassenlist;
     private ObservableList<String> lehrerlist;
     private ObservableList<String> abteilungsvorstandslist;
+    private ObservableList<String> abteilungssprecherlist;
 
     @FXML
     private ChoiceBox<String> abtInfoAbteilungsvorstandChoiceBox;
 
     @FXML
     private ChoiceBox<String> abtInfoAbteilungssprecherChoiceBox;
-
 
     ////////////////////////////////////////////
     // Person - Panel - Attribute
@@ -239,7 +239,12 @@ public class MainController implements Initializable {
     @FXML
     private ChoiceBox<String> schDirektorChoiceBox;
 
+    @FXML
+    private ChoiceBox<String> schSchulsprecherChoiceBox;
+
     private ObservableList<String> direktorlist;
+
+    private ObservableList<String> schulsprecherlist;
 
     ////////////////////////////////////////////////////////////////////////////////////
 
@@ -251,15 +256,15 @@ public class MainController implements Initializable {
             klassenlist = FXCollections.observableArrayList();
             lehrerlist = FXCollections.observableArrayList();
             abteilungsvorstandslist = FXCollections.observableArrayList();
+            abteilungssprecherlist = FXCollections.observableArrayList();
             schuelerlist = FXCollections.observableArrayList();
             raumlist = FXCollections.observableArrayList();
             abteilungslist = FXCollections.observableArrayList();
             direktorlist = FXCollections.observableArrayList();
+            schulsprecherlist = FXCollections.observableArrayList();
 
             this.adressarraylist = new ArrayList<AdresseClass>();
             this.raumarraylist = new ArrayList<RaumClass>();
-
-            this.rauRaumtypChoiceBox.setItems(FXCollections.observableArrayList(Raumtyp.values()));
 
             schoolName.setText("Schule - " + schule.getName());
 
@@ -273,6 +278,7 @@ public class MainController implements Initializable {
 
                                 selectedAbteilung = schule.getAbteilungen().get(listViewAbteilungen.getSelectionModel().getSelectedIndex());
                                 LehrerClass abteilungsvorstand = selectedAbteilung.getAbteilungsvorstand();
+                                SchuelerClass abteilungssprecher = selectedAbteilung.getAbteilungssprecher();
 
                                 abtInfoNameTextfield.setText(selectedAbteilung.getName());
                                 abtInfoKuerzelTextfield.setText(selectedAbteilung.getKuerzel());
@@ -280,6 +286,7 @@ public class MainController implements Initializable {
                                 klassenlist.clear();
                                 lehrerlist.clear();
                                 abteilungsvorstandslist.clear();
+                                abteilungssprecherlist.clear();
 
                                 for (KlasseClass klasse : selectedAbteilung.getKlassen())
                                     klassenlist.add(klasse.getBezeichnung());
@@ -290,10 +297,19 @@ public class MainController implements Initializable {
                                         abteilungsvorstandslist.add(lehrer.getNachname() + " " + lehrer.getVorname());
                                 }
 
+                                for (SchuelerClass schueler1: selectedAbteilung.getSchueler())
+                                    abteilungssprecherlist.add(schueler1.getNachname() + " " + schueler1.getVorname());
+
                                 try {
                                     abtInfoAbteilungsvorstandChoiceBox.getSelectionModel().select(abteilungsvorstandslist.indexOf(abteilungsvorstand.getNachname() + " " + abteilungsvorstand.getVorname()));
                                 } catch (Exception e) {
                                     System.out.println("Kein Abteilungsvorstand gefunden: " + e.getMessage());
+                                }
+
+                                try {
+                                    abtInfoAbteilungssprecherChoiceBox.getSelectionModel().select(abteilungssprecherlist.indexOf(abteilungssprecher.getNachname() + " " + abteilungssprecher.getVorname()));
+                                } catch (Exception e) {
+                                    System.out.println("Kein Abteilungssprecher gefunden: " + e.getMessage());
                                 }
                             } catch (Exception e) {
                                 //e.printStackTrace();
@@ -307,9 +323,13 @@ public class MainController implements Initializable {
             this.abtInfoKlassenListView.setItems(this.klassenlist);
             this.abtInfoLehrerListView.setItems(this.lehrerlist);
             this.abtInfoAbteilungsvorstandChoiceBox.setItems(this.abteilungsvorstandslist);
+            this.abtInfoAbteilungssprecherChoiceBox.setItems(this.abteilungssprecherlist);
+            this.schSchulsprecherChoiceBox.setItems(this.schulsprecherlist);
             this.schDirektorChoiceBox.setItems(this.direktorlist);
+            this.klaKlassensprecherChoiceBox.setItems(this.schuelerlist);
             this.klaStammklasseChoiceBox.setItems(this.raumlist);
             this.klaSchuelerListView.setItems(this.schuelerlist);
+            this.rauRaumtypChoiceBox.setItems(FXCollections.observableArrayList(Raumtyp.values()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -317,7 +337,7 @@ public class MainController implements Initializable {
 
     //////////////////////////////////////////////////////////////////////////
     // Home/Schule - Panel
-    ////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
 
     @FXML
     void abtAddButtonClicked(ActionEvent event) {
@@ -376,48 +396,52 @@ public class MainController implements Initializable {
 
     @FXML
     void schSpeichern(ActionEvent event) {
-        ArrayList<LehrerClass> direktorkandidaten = new ArrayList<LehrerClass>();
-        ArrayList<LehrerClass> lehrer = schule.getLehrer();
-        ArrayList<LehrerClass> abteilungsvorstaende = new ArrayList<LehrerClass>();
-
-        direktorkandidaten.clear();
-        abteilungsvorstaende.clear();
-
-        for(AbteilungClass abteilung: schule.getAbteilungen())
-            abteilungsvorstaende.add(abteilung.getAbteilungsvorstand());
-
-        for(LehrerClass abteilungsvorstand: abteilungsvorstaende) {
-            for (LehrerClass lehrer1 : lehrer) {
-                if (lehrer1 != abteilungsvorstand)
-                    direktorkandidaten.add(lehrer1);
-            }
-        }
-
-        schule.setDirektor(direktorkandidaten.get(this.schDirektorChoiceBox.getSelectionModel().getSelectedIndex()));
-
-        LehrerClass abteilungsvorstand = selectedAbteilung.getAbteilungsvorstand();
-
-        this.abteilungsvorstandslist.clear();
-        this.lehrerlist.clear();
-        this.klassenlist.clear();
-
-        for (KlasseClass klasse : selectedAbteilung.getKlassen())
-            klassenlist.add(klasse.getBezeichnung());
-        for (LehrerClass lehrer2: selectedAbteilung.getLehrer()) {
-            if (lehrer2 != schule.getDirektor())
-                abteilungsvorstandslist.add(lehrer2.getNachname() + " " + lehrer2.getVorname());
-            lehrerlist.add(lehrer2.getNachname() + " " + lehrer2.getVorname());
-        }
-
         try {
-            abtInfoAbteilungsvorstandChoiceBox.getSelectionModel().select(abteilungsvorstandslist.indexOf(abteilungsvorstand.getNachname() + " " + abteilungsvorstand.getVorname()));
-        } catch (Exception e) {
-            System.out.println("Kein Abteilungsvorstand gefunden: " + e.getMessage());
-        }
-        System.out.println("Schule gespeichert!");
+            ArrayList<LehrerClass> direktorkandidaten = new ArrayList<LehrerClass>();
+            ArrayList<LehrerClass> lehrer = schule.getLehrer();
+            ArrayList<LehrerClass> abteilungsvorstaende = new ArrayList<LehrerClass>();
 
-        this.schulPanel.setVisible(false);
-        this.schoolPanel.setDisable(false);
+            direktorkandidaten.clear();
+            abteilungsvorstaende.clear();
+
+            for (AbteilungClass abteilung : schule.getAbteilungen())
+                abteilungsvorstaende.add(abteilung.getAbteilungsvorstand());
+
+            for (LehrerClass abteilungsvorstand : abteilungsvorstaende) {
+                for (LehrerClass lehrer1 : lehrer) {
+                    if (lehrer1 != abteilungsvorstand)
+                        direktorkandidaten.add(lehrer1);
+                }
+            }
+
+            schule.setDirektor(direktorkandidaten.get(this.schDirektorChoiceBox.getSelectionModel().getSelectedIndex()));
+
+            LehrerClass abteilungsvorstand = selectedAbteilung.getAbteilungsvorstand();
+
+            this.abteilungsvorstandslist.clear();
+            this.lehrerlist.clear();
+            this.klassenlist.clear();
+
+            for (KlasseClass klasse : selectedAbteilung.getKlassen())
+                klassenlist.add(klasse.getBezeichnung());
+            for (LehrerClass lehrer2 : selectedAbteilung.getLehrer()) {
+                if (lehrer2 != schule.getDirektor())
+                    abteilungsvorstandslist.add(lehrer2.getNachname() + " " + lehrer2.getVorname());
+                lehrerlist.add(lehrer2.getNachname() + " " + lehrer2.getVorname());
+            }
+
+            try {
+                abtInfoAbteilungsvorstandChoiceBox.getSelectionModel().select(abteilungsvorstandslist.indexOf(abteilungsvorstand.getNachname() + " " + abteilungsvorstand.getVorname()));
+            } catch (Exception e) {
+                System.out.println("Kein Abteilungsvorstand gefunden: " + e.getMessage());
+            }
+            System.out.println("Schule gespeichert!");
+
+            this.schulPanel.setVisible(false);
+            this.schoolPanel.setDisable(false);
+        } catch (Exception e) {
+            System.out.println("Es ist ein Fehler aufgetreten: " + e.getMessage());
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -426,38 +450,48 @@ public class MainController implements Initializable {
 
     @FXML
     void abtInfoSpeichern(ActionEvent event) {
-        this.selectedAbteilung.setName(this.abtInfoNameTextfield.getText());
-        this.selectedAbteilung.setKuerzel(this.abtInfoKuerzelTextfield.getText());
-
-        int abteilungsindex = schule.getAbteilungen().indexOf(this.selectedAbteilung);
-
-        ArrayList<LehrerClass> lehrer = new ArrayList<LehrerClass>();
-
-        for (LehrerClass lehrer1: this.selectedAbteilung.getLehrer())
-            lehrer.add(lehrer1);
-
         try {
-            lehrer.remove(schule.getDirektor());
-        } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println("Der Direktor befindet sich nicht in dieser Abteilung: " + e.getMessage());
-        }
+            this.selectedAbteilung.setName(this.abtInfoNameTextfield.getText());
+            this.selectedAbteilung.setKuerzel(this.abtInfoKuerzelTextfield.getText());
 
-        try {
-            this.selectedAbteilung.setAbteilungsvorstand(lehrer.get(abtInfoAbteilungsvorstandChoiceBox.getSelectionModel().getSelectedIndex()));
-        } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println("Kein Abteilungsvorstand ausgewählt: " + e.getMessage());
-        }
+            int abteilungsindex = schule.getAbteilungen().indexOf(this.selectedAbteilung);
 
-        try {
-            this.abteilungslist.set(this.listViewAbteilungen.getSelectionModel().getSelectedIndex(), this.selectedAbteilung.getName());
+            ArrayList<LehrerClass> lehrer = new ArrayList<LehrerClass>();
+
+            for (LehrerClass lehrer1: this.selectedAbteilung.getLehrer())
+                lehrer.add(lehrer1);
+
+            try {
+                lehrer.remove(schule.getDirektor());
+            } catch (Exception e) {
+                //e.printStackTrace();
+                System.out.println("Der Direktor befindet sich nicht in dieser Abteilung: " + e.getMessage());
+            }
+
+            try {
+                this.selectedAbteilung.setAbteilungsvorstand(lehrer.get(abtInfoAbteilungsvorstandChoiceBox.getSelectionModel().getSelectedIndex()));
+            } catch (Exception e) {
+                //e.printStackTrace();
+                System.out.println("Kein Abteilungsvorstand ausgewählt: " + e.getMessage());
+            }
+
+            try {
+                this.selectedAbteilung.setAbteilungssprecher(this.selectedAbteilung.getSchueler().get(this.abtInfoAbteilungssprecherChoiceBox.getSelectionModel().getSelectedIndex()));
+            } catch (Exception e) {
+                System.out.println("Kein Abteilungssprecher ausgewählt: " + e.getMessage());
+            }
+
+            try {
+                this.abteilungslist.set(this.listViewAbteilungen.getSelectionModel().getSelectedIndex(), this.selectedAbteilung.getName());
+            } catch (Exception e) {
+                //e.printStackTrace();
+                System.out.println("Keine Abteilung ausgewählt: " + e.getMessage());
+            }
+            this.listViewAbteilungen.getSelectionModel().select(abteilungsindex);
+            System.out.println("Abteilung gespeichert!");
         } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println("Keine Abteilung ausgewählt: " + e.getMessage());
+            System.out.println("Es ist ein Fehler aufgetreten: " + e.getMessage());
         }
-        this.listViewAbteilungen.getSelectionModel().select(abteilungsindex);
-        System.out.println("Abteilung gespeichert!");
     }
 
     @FXML
@@ -536,38 +570,43 @@ public class MainController implements Initializable {
 
     @FXML
     void abtInfoKlassenInfo(ActionEvent event) {
-        this.klassePanel.setMinHeight(633);
-        this.klassePanel.setMaxHeight(633);
-        this.klassePanel.setLayoutY(40);
+        try {
+            this.klassePanel.setMinHeight(633);
+            this.klassePanel.setMaxHeight(633);
+            this.klassePanel.setLayoutY(40);
 
-        this.klaStammklasseChoiceBox.getSelectionModel().clearSelection();
+            this.klaStammklasseChoiceBox.getSelectionModel().clearSelection();
+            this.schuelerlist.clear();
 
-        KlasseClass klasse = this.selectedAbteilung.getKlassen().get(this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex());
+            KlasseClass klasse = this.selectedAbteilung.getKlassen().get(this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex());
 
-        this.klaPanel1.setVisible(false);
-        this.klaPanel2.setVisible(true);
-        this.klaPanel3.setVisible(true);
+            for (SchuelerClass schueler : klasse.getSchueler())
+                this.schuelerlist.add(schueler.getNachname() + " " + schueler.getVorname());
 
-        this.klaBezeichnungTextfield.setText(klasse.getBezeichnung());
-        this.klaSchulstufeTextfield.setText(Integer.toString(klasse.getSchulstufe()));
+            this.klaPanel1.setVisible(false);
+            this.klaPanel2.setVisible(true);
+            this.klaPanel3.setVisible(true);
 
-        int i = 0;
-        int stammklassenindex = 0;
-        boolean getStammklasse = false;
+            this.klaBezeichnungTextfield.setText(klasse.getBezeichnung());
+            this.klaSchulstufeTextfield.setText(Integer.toString(klasse.getSchulstufe()));
 
-        for(RaumClass raum: this.raumarraylist) {
-            if(raum == klasse.getStammklasse()) {
-                stammklassenindex = i;
-                getStammklasse = true;
-            }
-            i++;
+            this.klaStammklasseChoiceBox.getSelectionModel().select(this.raumarraylist.indexOf(klasse.getStammklasse()));
+
+            this.klassePanel.setVisible(true);
+            this.schoolPanel.setDisable(true);
+        } catch (Exception e) {
+            System.out.println("Es ist ein Fehler aufgetreten: " + e.getMessage());
         }
+    }
 
-        if (getStammklasse)
-            this.klaStammklasseChoiceBox.getSelectionModel().select(stammklassenindex);
-
-        this.klassePanel.setVisible(true);
-        this.schoolPanel.setDisable(true);
+    @FXML
+    void abtInfoKlassenLoeschen(ActionEvent event) {
+        int klassenindex = this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex();
+        this.klassenlist.remove(klassenindex);
+        KlasseClass klasse = this.selectedAbteilung.getKlassen().get(klassenindex);
+        for(SchuelerClass schueler: klasse.getSchueler())
+            this.abteilungssprecherlist.remove(schueler.getNachname() + " " + schueler.getVorname());
+        this.selectedAbteilung.getKlassen().remove(klassenindex);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -621,6 +660,11 @@ public class MainController implements Initializable {
             klasse.setBezeichnung(this.klaBezeichnungTextfield.getText());
             klasse.setSchulstufe(Integer.parseInt(this.klaSchulstufeTextfield.getText()));
 
+            int klassenindex = this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex();
+
+            this.klassenlist.set(klassenindex, this.klaBezeichnungTextfield.getText());
+            this.abtInfoKlassenListView.getSelectionModel().select(klassenindex);
+
             try {
                 klasse.setStammklasse(this.raumarraylist.get(this.klaStammklasseChoiceBox.getSelectionModel().getSelectedIndex()));
             } catch (Exception e) {
@@ -652,36 +696,59 @@ public class MainController implements Initializable {
         this.perSchuelerPanel.setVisible(true);
         this.perLehrerPanel.setVisible(false);
 
+        this.perHinzuefuegenButton.setText("Hinzufügen");
+
         this.klassePanel.setDisable(true);
         this.personenPanel.setVisible(true);
     }
 
     @FXML
     void klaSchuelerLoeschen(ActionEvent event) {
+        try {
+            int schuelerindex = this.klaSchuelerListView.getSelectionModel().getSelectedIndex();
+            this.schuelerlist.remove(schuelerindex);
+            KlasseClass klasse = selectedAbteilung.getKlassen().get(this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex());
+            klasse.getSchueler().remove(schuelerindex);
 
+            this.abteilungssprecherlist.clear();
+            for (SchuelerClass schueler1: this.selectedAbteilung.getSchueler())
+                this.abteilungssprecherlist.add(schueler1.getNachname() + " " + schueler1.getVorname());
+
+            System.out.println("Schüler gelöscht!");
+        } catch (Exception e) {
+            System.out.println("Es ist ein Fehler aufgetreten: " + e.getMessage());
+        }
     }
 
     @FXML
     void klaSchuelerMehrInfos(ActionEvent event) {
-        ArrayList<SchuelerClass> schuelerlist = selectedAbteilung.getKlassen().get(this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex()).getSchueler();
-        SchuelerClass schueler = schuelerlist.get(this.klaSchuelerListView.getSelectionModel().getSelectedIndex());
+        try {
+            ArrayList<SchuelerClass> schuelerlist = selectedAbteilung.getKlassen().get(this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex()).getSchueler();
+            SchuelerClass schueler = schuelerlist.get(this.klaSchuelerListView.getSelectionModel().getSelectedIndex());
 
-        this.schuelerLehrer = false;
-        this.speichernHinzufuegen = false;
+            this.schuelerLehrer = false;
+            this.speichernHinzufuegen = false;
 
-        this.perSchuelerPanel.setVisible(true);
-        this.perLehrerPanel.setVisible(false);
+            this.perSchuelerPanel.setVisible(true);
+            this.perLehrerPanel.setVisible(false);
 
-        this.perSVNRTextfield.setText(Long.toString(schueler.getSvnr()));
-        this.perVornameTextfield.setText(schueler.getVorname());
-        this.perNachnameTextfield.setText(schueler.getNachname());
-        this.perGeburtsdatumDatePicker.setValue(schueler.getGeburtsdatum());
-        this.perEmailTextfield.setText(schueler.getEmail());
-        this.perEintrittsdatumTextfield.setValue(schueler.getEintrittsdatum());
-        this.perKatalognummerTextfield.setText(Integer.toString(schueler.getKatalognummer()));
-        this.perEigenberechtigtTextfield.setText(Boolean.toString(schueler.isEigenberechtigt()));
-        this.perAdresseChoiceBox.getSelectionModel().select(this.adressarraylist.indexOf(schueler.getWohnort()));
+            this.perSVNRTextfield.setText(Long.toString(schueler.getSvnr()));
+            this.perVornameTextfield.setText(schueler.getVorname());
+            this.perNachnameTextfield.setText(schueler.getNachname());
+            this.perGeburtsdatumDatePicker.setValue(schueler.getGeburtsdatum());
+            this.perEmailTextfield.setText(schueler.getEmail());
+            this.perEintrittsdatumTextfield.setValue(schueler.getEintrittsdatum());
+            this.perKatalognummerTextfield.setText(Integer.toString(schueler.getKatalognummer()));
+            this.perEigenberechtigtTextfield.setText(Boolean.toString(schueler.isEigenberechtigt()));
+            this.perAdresseChoiceBox.getSelectionModel().select(this.adressarraylist.indexOf(schueler.getWohnort()));
 
+            this.perHinzuefuegenButton.setText("Speichern");
+
+            this.klassePanel.setDisable(true);
+            this.personenPanel.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("Es ist ein Fehler aufgetreten: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -772,6 +839,10 @@ public class MainController implements Initializable {
 
                 this.schuelerlist.add(this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
 
+                this.abteilungssprecherlist.clear();
+                for (SchuelerClass schueler1: this.selectedAbteilung.getSchueler())
+                    this.abteilungssprecherlist.add(schueler1.getNachname() + " " + schueler1.getVorname());
+
                 this.personenPanel.setVisible(false);
                 this.klassePanel.setDisable(false);
 
@@ -782,7 +853,31 @@ public class MainController implements Initializable {
             }
         } else if (!this.schuelerLehrer && !this.speichernHinzufuegen) {
             try {
+                ArrayList<SchuelerClass> schuelerlist = this.selectedAbteilung.getKlassen().get(this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex()).getSchueler();
+                int schuelerindex = this.klaSchuelerListView.getSelectionModel().getSelectedIndex();
 
+                SchuelerClass schueler = schuelerlist.get(schuelerindex);
+                int abteilungssprecherindex = abteilungssprecherlist.indexOf(schueler.getNachname() + " " + schueler.getVorname());
+
+                schueler.setSvnr(Long.parseLong(this.perSVNRTextfield.getText()));
+                schueler.setVorname(this.perVornameTextfield.getText());
+                schueler.setNachname(this.perNachnameTextfield.getText());
+                schueler.setGeburtsdatum(this.perGeburtsdatumDatePicker.getValue());
+                schueler.setEmail(this.perEmailTextfield.getText());
+                schueler.setWohnort(this.adressarraylist.get(this.perAdresseChoiceBox.getSelectionModel().getSelectedIndex()));
+                schueler.setEintrittsdatum(this.perEintrittsdatumTextfield.getValue());
+                schueler.setKatalognummer(Integer.parseInt(this.perKatalognummerTextfield.getText()));
+
+                this.schuelerlist.set(schuelerindex, this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
+                this.abteilungssprecherlist.set(abteilungssprecherindex, this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
+
+                if (schueler == this.selectedAbteilung.getAbteilungssprecher())
+                    this.abtInfoAbteilungssprecherChoiceBox.getSelectionModel().select(abteilungssprecherindex);
+
+                this.personenPanel.setVisible(false);
+                this.klassePanel.setDisable(false);
+
+                System.out.println("Schüler gespeichert!");
             } catch (Exception e) {
                 System.out.println("Es ist ein Fehler aufgetreten: " + e.getMessage());
             }

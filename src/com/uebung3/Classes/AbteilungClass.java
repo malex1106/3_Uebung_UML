@@ -34,7 +34,13 @@ public class AbteilungClass implements AbteilungInterface {
     }
 
     @Override
-    public ArrayList<SchuelerClass> getSchueler() { return null; }  //gehört noch gemacht!!!
+    public ArrayList<SchuelerClass> getSchueler() {
+        ArrayList<SchuelerClass> schueler = new ArrayList<SchuelerClass>();
+        for (KlasseClass klassen1: klassen)
+            for (SchuelerClass schueler1: klassen1.getSchueler())
+                schueler.add(schueler1);
+        return schueler;
+    }
 
     @Override
     public LehrerClass getAbteilungsvorstand() { return this.abteilungsvorstand; }
