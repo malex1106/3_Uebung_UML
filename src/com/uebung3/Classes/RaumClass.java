@@ -28,11 +28,6 @@ public class RaumClass implements RaumInterface {
     }
 
     @Override
-    public void exportBelegung() {
-
-    }
-
-    @Override
     public int getMaxSitzplaetze() {
         return this.maxSitzplaetze;
     }
@@ -72,4 +67,31 @@ public class RaumClass implements RaumInterface {
 
     @Override
     public ArrayList<FachClass> getFaecher() { return this.faecher; }
+
+
+    @Override
+    public void exportBelegung(ArrayList<BelegungClass> belegung) {
+
+        for(int i=0; i<10; i++) {
+
+            for (int j = 0; j < 5; j++) {
+
+                for (BelegungClass belegung1 : belegung) {
+
+                    if (belegung1.getRaum().getRaumNummer().equals(this.raumNummer)){
+                        if(belegung1.getWochentag()==?? && belegung1.getStunde()==i){
+                            //Ausgabe der Daten für diese Stunde!!! Folgende 3 Informationen sind relevant
+                            //belegung1.getFach().getName();
+                            //belegung1.getLehrer().getKuerzel();
+                            //belegung1.getKlasse().getBezeichnung();
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+    }
+
 }

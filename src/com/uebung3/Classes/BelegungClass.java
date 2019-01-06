@@ -66,8 +66,9 @@ public class BelegungClass implements BelegungInterface {
         } catch (Exception e){
             e.printStackTrace();
         }
-            this.klasse = klasse;
-            this.unterrichtstag = unterrichtstag;
+
+        this.klasse = klasse;
+        this.unterrichtstag = unterrichtstag;
 
     }
 
