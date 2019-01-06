@@ -15,7 +15,7 @@ public interface KlasseInterface {
 
     public boolean setKlassensprecher(SchuelerClass schueler);
     public boolean addSchueler(SchuelerClass schueler);
-    public void exportStundenplan();
+    public void exportStundenplan(ArrayList<BelegungClass> belegung);
     public boolean setKlassenvorstand(LehrerClass klassenvorstand);
     public boolean setStammklasse(RaumClass stammklasse);
     public boolean addFach(FachClass fach);

@@ -44,6 +44,12 @@ public class KlasseClass implements KlasseInterface {
     }
 
     @Override
+    public AbteilungClass getAbteilung() { return this.abteilung; }
+
+    @Override
+    public ArrayList<SchuelerClass> getSchueler() { return this.schueler; }
+
+    @Override
     public boolean setKlassensprecher(SchuelerClass schueler) {
         try {
             this.klassensprecher = schueler;
@@ -66,11 +72,6 @@ public class KlasseClass implements KlasseInterface {
             e.printStackTrace();
             return false;
         }
-    }
-
-    @Override
-    public void exportStundenplan() {
-
     }
 
     @Override
@@ -145,9 +146,10 @@ public class KlasseClass implements KlasseInterface {
         }
     }
 
-    @Override
-    public AbteilungClass getAbteilung() { return this.abteilung; }
 
     @Override
-    public ArrayList<SchuelerClass> getSchueler() { return this.schueler; }
+    public void exportStundenplan(ArrayList<BelegungClass> belegung) {
+
+    }
+
 }

@@ -59,9 +59,19 @@ public class BelegungClass implements BelegungInterface {
         }catch (Exception e) {
             e.printStackTrace();
         }
-        this.klasse=klasse;
-        this.unterrichtstag=unterrichtstag;
-        this.stunde=stunde;
+
+        try {
+
+            if (stunde <= 10) {
+                this.stunde = stunde;
+            } else {
+                throw new Exception("Es gibt maximal 10Stunden");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+            this.klasse = klasse;
+            this.unterrichtstag = unterrichtstag;
 
     }
 
