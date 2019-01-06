@@ -148,4 +148,17 @@ public class SchuleClass implements SchuleInterface {
         return ergebnis;
     }
 
+    @Override
+    public ArrayList<SchuelerClass> getSchueler() {
+        ArrayList<SchuelerClass> schueler = new ArrayList<SchuelerClass>();
+        for (AbteilungClass abteilung: this.abteilungen)
+            for (SchuelerClass schueler1: abteilung.getSchueler())
+                schueler.add(schueler1);
+
+        return schueler;
+    }
+
+    @Override
+    public SchuelerClass getSchulsprecher() { return this.schulsprecher; }
+
 }
