@@ -1,5 +1,6 @@
 package com.uebung3.Classes;
 
+import com.uebung3.Enumerations.Unterrichtstag;
 import com.uebung3.Interfaces.LehrerInterface;
 
 import java.time.LocalDate;
@@ -47,7 +48,7 @@ public class LehrerClass extends MitarbeiterClass implements LehrerInterface {
                 for (BelegungClass belegung1 : belegung) {
 
                     if (belegung1.getLehrer().getKuerzel().equals(this.kuerzel)){
-                        if(belegung1.getWochentag()==?? && belegung1.getStunde()==i){
+                        if(belegung1.getWochentag()== Unterrichtstag.values()[j] && belegung1.getStunde()==i){
                             //Ausgabe der Daten für diese Stunde!!! Folgende 3 Informationen sind relevant
                             //belegung1.getFach().getName();
                             //belegung1.getKlasse().getBezeichnung();

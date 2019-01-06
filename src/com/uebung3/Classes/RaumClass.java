@@ -1,6 +1,7 @@
 package com.uebung3.Classes;
 
 import com.uebung3.Enumerations.Raumtyp;
+import com.uebung3.Enumerations.Unterrichtstag;
 import com.uebung3.Interfaces.RaumInterface;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class RaumClass implements RaumInterface {
                 for (BelegungClass belegung1 : belegung) {
 
                     if (belegung1.getRaum().getRaumNummer().equals(this.raumNummer)){
-                        if(belegung1.getWochentag()==?? && belegung1.getStunde()==i){
+                        if(belegung1.getWochentag()== Unterrichtstag.values()[j] && belegung1.getStunde()==i){
                             //Ausgabe der Daten für diese Stunde!!! Folgende 3 Informationen sind relevant
                             //belegung1.getFach().getName();
                             //belegung1.getLehrer().getKuerzel();

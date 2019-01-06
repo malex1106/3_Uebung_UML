@@ -158,7 +158,7 @@ public class KlasseClass implements KlasseInterface {
                 for (BelegungClass belegung1 : belegung) {
 
                     if (belegung1.getKlasse().bezeichnung.equals(this.bezeichnung)){
-                        if(belegung1.getWochentag()==?? && belegung1.getStunde()==i){
+                        if(belegung1.getWochentag()==Unterrichtstag.values()[j] && belegung1.getStunde()==i){
                             //Ausgabe der Daten für diese Stunde!!! Folgende 3 Informationen sind relevant
                             //belegung1.getFach().getName();
                             //belegung1.getLehrer().getKuerzel();
