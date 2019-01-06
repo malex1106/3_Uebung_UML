@@ -14,7 +14,7 @@ public class BelegungClass implements BelegungInterface {
     private KlasseClass klasse;
     private LehrerClass lehrer;
     private FachClass fach;
-    private Raumtyp raum;
+    private RaumClass raum;
 
     private static int belegungNr = 0;
 
@@ -25,10 +25,7 @@ public class BelegungClass implements BelegungInterface {
 
     }
 
-    public BelegungClass(KlasseClass klasse, FachClass fach, LehrerClass lehrer, Unterrichtstag unterrichtstag, int stunde, Raumtyp raum) {
-        this.klasse=klasse;
-        this.unterrichtstag=unterrichtstag;
-        this.stunde=stunde;
+    public BelegungClass(KlasseClass klasse, FachClass fach, LehrerClass lehrer, Unterrichtstag unterrichtstag, int stunde, RaumClass raum) {
 
         ArrayList<LehrerClass> unterrichtende_lehrer = fach.getLehrer();
         try {
@@ -47,8 +44,13 @@ public class BelegungClass implements BelegungInterface {
         Raumtyp raumanforderung = fach.getRaumanforderungen();
         try {
 
-            if(raum==raumanforderung){
-                this.raum=raum;
+            if(raum.getRaumtyp()==raumanforderung){
+                if(klasse.getSchuelerAnzahl()>raum.getMaxSitzplaetze()){
+                    throw new Exception("Der Raum hat nicht genügend Sitzplätze");
+                }
+                else{
+                    this.raum=raum;
+                }
             }
             else {
                 throw new Exception("Der gewählte Raum entspricht nicht den Raumanforderungen");
@@ -57,6 +59,9 @@ public class BelegungClass implements BelegungInterface {
         }catch (Exception e) {
             e.printStackTrace();
         }
+        this.klasse=klasse;
+        this.unterrichtstag=unterrichtstag;
+        this.stunde=stunde;
 
     }
 
@@ -76,6 +81,6 @@ public class BelegungClass implements BelegungInterface {
     public int getStunde() { return this.stunde; }
 
     @Override
-    public Raumtyp getRaum() { return this.raum; }
+    public RaumClass getRaum() { return this.raum; }
 
 }
