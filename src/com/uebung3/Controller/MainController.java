@@ -2,6 +2,7 @@ package com.uebung3.Controller;
 
 import com.uebung3.Classes.*;
 import com.uebung3.Enumerations.Raumtyp;
+import com.uebung3.Enumerations.Unterrichtstag;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -53,16 +54,22 @@ public class MainController implements Initializable {
     @FXML
     private ListView<String> abtInfoLehrerListView;
 
+    @FXML
+    private ListView<String> abtInfoBelegungListView;
+
     private ObservableList<String> klassenlist;
     private ObservableList<String> lehrerlist;
     private ObservableList<String> abteilungsvorstandslist;
     private ObservableList<String> abteilungssprecherlist;
+    private ObservableList<String> belegungenlist;
 
     @FXML
     private ChoiceBox<String> abtInfoAbteilungsvorstandChoiceBox;
 
     @FXML
     private ChoiceBox<String> abtInfoAbteilungssprecherChoiceBox;
+
+    private ArrayList<BelegungClass> belegungarraylist;
 
     ////////////////////////////////////////////
     // Person - Panel - Attribute
@@ -153,6 +160,8 @@ public class MainController implements Initializable {
 
     private ObservableList<String> schuelerlist;
 
+    private boolean isBelegung = false;
+
     ////////////////////////////////////////////
     // Ort Hinzufügen - Panel - Attribute
     ////////////////////////////////////////////
@@ -207,6 +216,47 @@ public class MainController implements Initializable {
     private ObservableList<String> abteilungslist;
 
     ////////////////////////////////////////////
+    // Belegung Hinzufügen - Panel - Attribute
+    ////////////////////////////////////////////
+
+    @FXML
+    private AnchorPane belegungsPanel;
+
+    @FXML
+    private ChoiceBox<String> belKlasseChoiceBox;
+
+    @FXML
+    private ChoiceBox<String> belFachChoiceBox;
+
+    @FXML
+    private ChoiceBox<String> belLehrerChoiceBox;
+
+    @FXML
+    private ChoiceBox<Unterrichtstag> belUnterrichtstagChoiceBox;
+
+    @FXML
+    private ChoiceBox<Integer> belStundeChoiceBox;
+
+    @FXML
+    private ChoiceBox<String> belRaumChoiceBox;
+
+    ////////////////////////////////////////////
+    // Fach Hinzufügen - Panel - Attribute
+    ////////////////////////////////////////////
+
+    @FXML
+    private AnchorPane fachPanel;
+
+    @FXML
+    private TextField facNameTextfield;
+
+    @FXML
+    private ChoiceBox<Raumtyp> facRaumanforderungChoiceBox;
+
+    private ObservableList<String> faecherlist;
+    private ArrayList<FachClass> faecherarraylist;
+
+    ////////////////////////////////////////////
     // Schul - Panel - Attribute
     ////////////////////////////////////////////
 
@@ -250,18 +300,22 @@ public class MainController implements Initializable {
         try {
             schule = SchuleController.getSchule();
 
-            klassenlist = FXCollections.observableArrayList();
-            lehrerlist = FXCollections.observableArrayList();
-            abteilungsvorstandslist = FXCollections.observableArrayList();
-            abteilungssprecherlist = FXCollections.observableArrayList();
-            schuelerlist = FXCollections.observableArrayList();
-            raumlist = FXCollections.observableArrayList();
-            abteilungslist = FXCollections.observableArrayList();
-            direktorlist = FXCollections.observableArrayList();
-            schulsprecherlist = FXCollections.observableArrayList();
+            this.klassenlist = FXCollections.observableArrayList();
+            this.lehrerlist = FXCollections.observableArrayList();
+            this.abteilungsvorstandslist = FXCollections.observableArrayList();
+            this.abteilungssprecherlist = FXCollections.observableArrayList();
+            this.schuelerlist = FXCollections.observableArrayList();
+            this.raumlist = FXCollections.observableArrayList();
+            this.abteilungslist = FXCollections.observableArrayList();
+            this.direktorlist = FXCollections.observableArrayList();
+            this.schulsprecherlist = FXCollections.observableArrayList();
+            this.belegungenlist = FXCollections.observableArrayList();
+            this.faecherlist = FXCollections.observableArrayList();
 
             this.adressarraylist = new ArrayList<AdresseClass>();
             this.raumarraylist = new ArrayList<RaumClass>();
+            this.belegungarraylist = new ArrayList<BelegungClass>();
+            this.faecherarraylist = new ArrayList<FachClass>();
 
             schoolName.setText("Schule - " + schule.getName());
 
@@ -316,18 +370,35 @@ public class MainController implements Initializable {
                         }
                     });
 
+            /* Abteilungen */
             this.listViewAbteilungen.setItems(this.abteilungslist);
+            /* Infopanel */
             this.abtInfoKlassenListView.setItems(this.klassenlist);
             this.abtInfoLehrerListView.setItems(this.lehrerlist);
             this.abtInfoAbteilungsvorstandChoiceBox.setItems(this.abteilungsvorstandslist);
             this.abtInfoAbteilungssprecherChoiceBox.setItems(this.abteilungssprecherlist);
+            this.abtInfoBelegungListView.setItems(this.belegungenlist);
+            /* Schulpanel */
             this.schSchulsprecherChoiceBox.setItems(this.schulsprecherlist);
             this.schDirektorChoiceBox.setItems(this.direktorlist);
+            /* Klassenpanel */
             this.klaKlassensprecherChoiceBox.setItems(this.schuelerlist);
             this.klaStammklasseChoiceBox.setItems(this.raumlist);
             this.klaSchuelerListView.setItems(this.schuelerlist);
             this.klaKlassenvorstandChoiceBox.setItems(this.abteilungsvorstandslist);
+            /* Raumpanel */
             this.rauRaumtypChoiceBox.setItems(FXCollections.observableArrayList(Raumtyp.values()));
+            /* Belegungspanel */
+            this.belKlasseChoiceBox.setItems(this.klassenlist);
+            this.belLehrerChoiceBox.setItems(this.lehrerlist);
+            this.belRaumChoiceBox.setItems(this.raumlist);
+            this.belFachChoiceBox.setItems(this.faecherlist);
+            for (int i=1; i<=10; i++)
+                this.belStundeChoiceBox.getItems().add(i);
+            this.belUnterrichtstagChoiceBox.setItems(FXCollections.observableArrayList(Unterrichtstag.values()));
+            /* Fachpanel */
+            this.facRaumanforderungChoiceBox.setItems(FXCollections.observableArrayList(Raumtyp.values()));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -596,6 +667,8 @@ public class MainController implements Initializable {
         this.klaPanel1.setVisible(true);
         this.klaPanel2.setVisible(false);
         this.klaPanel3.setVisible(false);
+
+        this.isBelegung = false;
     }
 
     /**
@@ -612,6 +685,7 @@ public class MainController implements Initializable {
 
         this.schuelerLehrer = true;             //Lehrer
         this.speichernHinzufuegen = true;       //neuen Lehrer hinzufügen
+        this.isBelegung = false;
     }
 
     /**
@@ -650,6 +724,8 @@ public class MainController implements Initializable {
     @FXML
     void abtInfoLehrerInfo(ActionEvent event) {
         try {
+            this.isBelegung = false;
+
             /* Lehrer herausfiltern. */
 
             LehrerClass lehrer = selectedAbteilung.getLehrer().get(this.abtInfoLehrerListView.getSelectionModel().getSelectedIndex());
@@ -693,6 +769,8 @@ public class MainController implements Initializable {
     @FXML
     void abtInfoKlassenInfo(ActionEvent event) {
         try {
+            this.isBelegung = false;
+
             /* Layout des KlassenPanels anpassen. */
 
             this.klassePanel.setMinHeight(633);
@@ -785,6 +863,34 @@ public class MainController implements Initializable {
         this.selectedAbteilung.getKlassen().remove(klassenindex);
     }
 
+    /**
+     * Belegung hinzufügen. (Panel)
+     * @param event
+     */
+    @FXML
+    void abtInfoBelegungHinzufuegen(ActionEvent event) {
+        this.schoolPanel.setDisable(true);
+        this.belegungsPanel.setVisible(true);
+    }
+
+    /**
+     * Belegungsinformationen anzeigen.
+     * @param event
+     */
+    @FXML
+    void abtInfoBelegungInfo(ActionEvent event) {
+
+    }
+
+    /**
+     * Belegung löschen.
+     * @param event
+     */
+    @FXML
+    void abtInfoBelegungLoeschen(ActionEvent event) {
+
+    }
+
     //////////////////////////////////////////////////////////////////////////
     // Abteilung Hinzufügen - Panel
     //////////////////////////////////////////////////////////////////////////
@@ -830,8 +936,13 @@ public class MainController implements Initializable {
 
             this.klassenlist.add(this.klaBezeichnungTextfield.getText());
 
-            this.klassePanel.setVisible(false);
-            this.schoolPanel.setDisable(false);
+            if (!isBelegung) {
+                this.klassePanel.setVisible(false);
+                this.schoolPanel.setDisable(false);
+            } else {
+                this.klassePanel.setVisible(false);
+                this.belegungsPanel.setDisable(false);
+            }
 
             System.out.println("Klasse hinzugefügt!");
         } catch (Exception e) {
@@ -920,8 +1031,13 @@ public class MainController implements Initializable {
      */
     @FXML
     void klaExit(ActionEvent event) {
-        this.schoolPanel.setDisable(false);
-        this.klassePanel.setVisible(false);
+        if (!isBelegung) {
+            this.schoolPanel.setDisable(false);
+            this.klassePanel.setVisible(false);
+        } else {
+            this.klassePanel.setVisible(false);
+            this.belegungsPanel.setDisable(false);
+        }
     }
 
     /**
@@ -937,6 +1053,8 @@ public class MainController implements Initializable {
         this.perLehrerPanel.setVisible(false);
 
         this.perHinzuefuegenButton.setText("Hinzufügen");
+
+        this.isBelegung = false;
 
         this.klassePanel.setDisable(true);
         this.personenPanel.setVisible(true);
@@ -992,6 +1110,8 @@ public class MainController implements Initializable {
 
             this.perHinzuefuegenButton.setText("Speichern");
 
+            this.isBelegung = false;
+
             this.klassePanel.setDisable(true);
             this.personenPanel.setVisible(true);
         } catch (Exception e) {
@@ -1007,6 +1127,8 @@ public class MainController implements Initializable {
     void klaStammklasseNeu(ActionEvent event) {
         this.klassePanel.setDisable(true);
         this.raumPanel.setVisible(true);
+
+        this.isBelegung = false;
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -1047,8 +1169,13 @@ public class MainController implements Initializable {
                 this.lehrerlist.add(this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
                 this.abteilungsvorstandslist.add(this.perNachnameTextfield.getText() + " " + this.perVornameTextfield.getText());
 
-                this.personenPanel.setVisible(false);
-                this.schoolPanel.setDisable(false);
+                if (!isBelegung) {
+                    this.personenPanel.setVisible(false);
+                    this.schoolPanel.setDisable(false);
+                } else {
+                    this.personenPanel.setVisible(false);
+                    this.belegungsPanel.setDisable(false);
+                }
 
                 this.schoolMitarbeiterAnzahl.setText("Mitarbeiter: " + Integer.toString(schule.getPersonal().size() + schule.getLehrer().size()));
 
@@ -1240,11 +1367,128 @@ public class MainController implements Initializable {
 
             this.raumlist.add(this.rauRaumnummerTextfield.getText() + " - " + this.rauSitzplaetzeTextfield.getText() + " - " + this.rauRaumtypChoiceBox.getSelectionModel().getSelectedItem().toString());
 
-            this.raumPanel.setVisible(false);
-            this.klassePanel.setDisable(false);
+            if (!isBelegung) {
+                this.raumPanel.setVisible(false);
+                this.klassePanel.setDisable(false);
+            } else {
+                this.raumPanel.setVisible(false);
+                this.belegungsPanel.setDisable(false);
+            }
+
+            System.out.println("Raum hinzugefügt.");
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("Es ist ein Fehler aufgetreten!");
         }
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    // Fach Hinzufügen - Panel
+    //////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Fachpanel ausblenden.
+     * @param event
+     */
+    @FXML
+    void facExit(ActionEvent event) {
+        this.fachPanel.setVisible(true);
+        this.belegungsPanel.setDisable(false);
+    }
+
+    /**
+     * Fach hinzufügen.
+     * @param event
+     */
+    @FXML
+    void facHinzufuegen(ActionEvent event) {
+        FachClass fach = new FachClass(this.facNameTextfield.getText(), 0, this.facRaumanforderungChoiceBox.getSelectionModel().getSelectedItem());
+        this.faecherarraylist.add(fach);
+        this.faecherlist.add(this.facNameTextfield.getText());
+
+        this.fachPanel.setVisible(false);
+        this.belegungsPanel.setDisable(false);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    // Belegung Hinzufügen - Panel
+    /////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Belegungspanel ausblenden.
+     * @param event
+     */
+    @FXML
+    void belExit(ActionEvent event) {
+        this.belegungsPanel.setVisible(false);
+        this.schoolPanel.setDisable(false);
+    }
+
+    /**
+     * Belegung hinzufügen.
+     * @param event
+     */
+    @FXML
+    void belHinzufuegen(ActionEvent event) {
+
+    }
+
+    /**
+     * Klasse hinzufügen.
+     * @param event
+     */
+    @FXML
+    void belKlasseNeu(ActionEvent event) {
+        this.klassePanel.setMaxHeight(210);
+        this.klassePanel.setMinHeight(210);
+        this.klassePanel.setLayoutY(210);
+
+        this.belegungsPanel.setDisable(true);
+        this.klassePanel.setVisible(true);
+
+        this.klaPanel1.setVisible(true);
+        this.klaPanel2.setVisible(false);
+        this.klaPanel3.setVisible(false);
+
+        this.isBelegung = true;
+    }
+
+    /**
+     * Lehrer hinzufügen.
+     * @param event
+     */
+    @FXML
+    void belLehrerNeu(ActionEvent event) {
+        this.belegungsPanel.setDisable(true);
+        this.personenPanel.setVisible(true);
+        this.perLehrerPanel.setVisible(true);
+        this.perSchuelerPanel.setVisible(false);
+        this.perHinzuefuegenButton.setText("Hinzufügen");
+
+        this.schuelerLehrer = true;             //Lehrer
+        this.speichernHinzufuegen = true;       //neuen Lehrer hinzufügen
+        this.isBelegung = true;
+    }
+
+    /**
+     * Raum hinzufügen.
+     * @param event
+     */
+    @FXML
+    void belRaumNeu(ActionEvent event) {
+        this.belegungsPanel.setDisable(true);
+        this.raumPanel.setVisible(true);
+
+        this.isBelegung = true;
+    }
+
+    /**
+     * Fach hinzufügen.
+     * @param event
+     */
+    @FXML
+    void belFachNeu(ActionEvent event) {
+        this.belegungsPanel.setDisable(true);
+        this.fachPanel.setVisible(true);
     }
 }
