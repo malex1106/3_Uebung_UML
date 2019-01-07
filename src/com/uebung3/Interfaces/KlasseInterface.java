@@ -3,6 +3,7 @@ package com.uebung3.Interfaces;
 import com.uebung3.Classes.*;
 
 import java.util.ArrayList;
+import java.util.concurrent.ScheduledExecutorService;
 
 public interface KlasseInterface {
     public String getBezeichnung();
@@ -12,6 +13,8 @@ public interface KlasseInterface {
     public AbteilungClass getAbteilung();
     public int getSchuelerAnzahl();
     public ArrayList<SchuelerClass> getSchueler();
+    public SchuelerClass getKlassensprecher();
+    public LehrerClass getKlassenvorstand();
 
     public boolean setKlassensprecher(SchuelerClass schueler);
     public boolean addSchueler(SchuelerClass schueler);

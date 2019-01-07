@@ -101,6 +101,12 @@ public class KlasseClass implements KlasseInterface {
     public RaumClass getStammklasse() { return this.stammklasse; }
 
     @Override
+    public SchuelerClass getKlassensprecher() { return this.klassensprecher; }
+
+    @Override
+    public LehrerClass getKlassenvorstand() { return this.klassenvorstand; }
+
+    @Override
     public boolean addFach(FachClass fach) {
         try {
             if(!this.faecher.contains(fach)) {
