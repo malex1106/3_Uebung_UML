@@ -5,6 +5,17 @@ import com.uebung3.Interfaces.KlasseInterface;
 
 import java.util.ArrayList;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+
 public class KlasseClass implements KlasseInterface {
 
     private String bezeichnung;
