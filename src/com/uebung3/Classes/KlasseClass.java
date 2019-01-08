@@ -168,9 +168,55 @@ public class KlasseClass implements KlasseInterface {
     @Override
     public void exportStundenplan(ArrayList<BelegungClass> belegung) {
 
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Stundenplan für " + this.bezeichnung);
+
+        int rowCount = 0;
+        int columnCount = 0;
+        Integer initalColumn = 5;
+
+        // Vorbereitung des Excel-Sheets
+
+        CellStyle cs = workbook.createCellStyle();
+        cs.setWrapText(true);
+        // 1. Zeile
+
+        Row row = sheet.createRow(rowCount++);
+
+        Cell cell = row.createCell(columnCount = 2);
+        cell.setCellStyle(cs);
+
+        cell = row.createCell(columnCount++);
+        cell.setCellValue("Stundenplan für " + this.bezeichnung);
+
+        // 2. Zeile
+        row = sheet.createRow(rowCount++);
+        cell = row.createCell(columnCount = 1);
+        cell.setCellStyle(cs);
+
+        for(int i = 0; i < 5; i++) {
+
+            cell = row.createCell(columnCount++);
+            cell.setCellStyle(cs);
+            cell.setCellValue(Unterrichtstag.values()[i].toString());
+
+        }
+
         for(int i=1; i<11; i++) {
 
+            row = sheet.createRow(rowCount++);
+            row.setHeightInPoints((3*sheet.getDefaultRowHeightInPoints()));
+            cell = row.createCell(columnCount = 0);
+            cell.setCellStyle(cs);
+
+            cell = row.createCell(columnCount++);
+            cell.setCellStyle(cs);
+            cell.setCellValue("test");
+
             for (int j = 0; j < 5; j++) {
+
+                cell = row.createCell(columnCount++);
+                cell.setCellStyle(cs);
 
                 for (BelegungClass belegung1 : belegung) {
 
@@ -180,6 +226,7 @@ public class KlasseClass implements KlasseInterface {
                             //belegung1.getFach().getName();
                             //belegung1.getLehrer().getKuerzel();
                             //belegung1.getRaum().getRaumNummer();
+                            cell.setCellValue(belegung1.getFach().getName() + "\n" + belegung1.getLehrer().getKuerzel() + "\n" + belegung1.getRaum().getRaumNummer());
                         }
                     }
 
@@ -188,6 +235,21 @@ public class KlasseClass implements KlasseInterface {
 
             }
         }
+
+        try(FileOutputStream outputStream = new FileOutputStream("./data/Klasse/" + this.bezeichnung + ".xlsx")) {
+
+            workbook.write(outputStream);
+
+        } catch(FileNotFoundException e) {
+
+            e.printStackTrace();
+
+        } catch(IOException e1) {
+
+            e1.printStackTrace();
+
+        }
+
 
     }
 
