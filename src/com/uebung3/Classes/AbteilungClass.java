@@ -153,4 +153,9 @@ public class AbteilungClass implements AbteilungInterface {
 
     @Override
     public ArrayList<LehrerClass> getLehrer() { return this.unterrichtendeLehrer; }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

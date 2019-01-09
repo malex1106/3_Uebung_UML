@@ -62,4 +62,9 @@ public class LehrerClass extends MitarbeiterClass implements LehrerInterface {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return this.getNachname() + " " + getVorname();
+    }
 }

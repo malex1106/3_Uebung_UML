@@ -90,4 +90,9 @@ public class BelegungClass implements BelegungInterface {
     @Override
     public RaumClass getRaum() { return this.raum; }
 
+    @Override
+    public String toString() {
+        return this.fach.getName() + " - " + this.lehrer.getNachname() + " - " + this.klasse.getBezeichnung();
+    }
+
 }

@@ -70,4 +70,9 @@ public class FachClass implements FachInterface {
 
     @Override
     public ArrayList<KlasseClass> getKlassen() { return this.klassen; }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

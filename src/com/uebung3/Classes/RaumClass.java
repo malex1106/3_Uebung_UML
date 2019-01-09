@@ -95,4 +95,8 @@ public class RaumClass implements RaumInterface {
         }
     }
 
+    @Override
+    public String toString() {
+        return this.raumNummer + " - " + this.maxSitzplaetze + " - " + this.raumtyp;
+    }
 }

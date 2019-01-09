@@ -40,4 +40,10 @@ public class AdresseClass implements AdresseInterface {
     public void printAdresse() {
         System.out.println("Ort: " + this.getOrt() + " | Strasse: " + this.getStrasse() + " | " + this.getHausnummer() + " | " + this.getPlz());
     }
+
+    @Override
+    public String toString() {
+        return this.getStrasse() + " " + this.getHausnummer() +  ", "
+                + this.getPlz() + " " + this.ort;
+    }
 }

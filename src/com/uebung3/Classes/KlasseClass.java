@@ -231,8 +231,6 @@ public class KlasseClass implements KlasseInterface {
                     }
 
                 }
-
-
             }
         }
 
@@ -251,6 +249,11 @@ public class KlasseClass implements KlasseInterface {
         }
 
 
+    }
+
+    @Override
+    public String toString() {
+        return this.bezeichnung;
     }
 
 }

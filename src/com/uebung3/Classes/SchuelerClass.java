@@ -72,5 +72,10 @@ public class SchuelerClass extends PersonClass implements SchuelerInterface {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return this.getNachname() + " " + this.getVorname();
+    }
 }
 
