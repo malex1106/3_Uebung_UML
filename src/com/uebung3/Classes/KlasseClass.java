@@ -168,8 +168,11 @@ public class KlasseClass implements KlasseInterface {
     @Override
     public void exportStundenplan(ArrayList<BelegungClass> belegung) {
 
+        String[] zeiten = {"7:50", "8:40", "9:40", "10:30", "11:20", "12.20", "13:10", "14:00", "15:00" , "15:50"};
+
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Stundenplan für " + this.bezeichnung);
+
 
         int rowCount = 0;
         int columnCount = 0;
@@ -199,7 +202,6 @@ public class KlasseClass implements KlasseInterface {
             cell = row.createCell(columnCount++);
             cell.setCellStyle(cs);
             cell.setCellValue(Unterrichtstag.values()[i].toString());
-
         }
 
         for(int i=1; i<11; i++) {
@@ -211,7 +213,7 @@ public class KlasseClass implements KlasseInterface {
 
             cell = row.createCell(columnCount++);
             cell.setCellStyle(cs);
-            cell.setCellValue("test");
+            cell.setCellValue(zeiten[i-1]);
 
             for (int j = 0; j < 5; j++) {
 
@@ -222,17 +224,14 @@ public class KlasseClass implements KlasseInterface {
 
                     if (belegung1.getKlasse().bezeichnung.equals(this.bezeichnung)){
                         if(belegung1.getWochentag()==Unterrichtstag.values()[j] && belegung1.getStunde()==i){
-                            //Ausgabe der Daten für diese Stunde!!! Folgende 3 Informationen sind relevant
-                            //belegung1.getFach().getName();
-                            //belegung1.getLehrer().getKuerzel();
-                            //belegung1.getRaum().getRaumNummer();
                             cell.setCellValue(belegung1.getFach().getName() + "\n" + belegung1.getLehrer().getKuerzel() + "\n" + belegung1.getRaum().getRaumNummer());
                         }
                     }
-
                 }
             }
         }
+
+        sheet.autoSizeColumn(4);
 
         try(FileOutputStream outputStream = new FileOutputStream("./data/Klasse/" + this.bezeichnung + ".xlsx")) {
 

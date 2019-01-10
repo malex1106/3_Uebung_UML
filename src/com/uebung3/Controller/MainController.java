@@ -1526,6 +1526,7 @@ public class MainController implements Initializable {
         fach.addLehrer(lehrer);
 
         belegungen.add(new BelegungClass(klasse, fach, lehrer, Unterrichtstag.Montag, 1, raum));
+        belegungen.add(new BelegungClass(klasse, fach, lehrer, Unterrichtstag.Donnerstag, 4, raum));
 
         klasse.exportStundenplan(belegungen);
     }
