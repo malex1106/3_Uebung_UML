@@ -134,6 +134,26 @@ public class MainController implements Initializable {
     private Button perExportStundenplanButton;
 
     ////////////////////////////////////////////
+    // Auswahl treffen - Panel - Attribute
+    ////////////////////////////////////////////
+
+    @FXML
+    private AnchorPane ausPanel;
+
+    @FXML
+    private AnchorPane ausLehrerPanel;
+
+    ////////////////////////////////////////////////
+    // Nicht zugeordnete Lehrer - Panel - Attribute
+    ///////////////////////////////////////////////
+
+    @FXML
+    private ChoiceBox<LehrerClass> nzlChoiceBox;
+
+    @FXML
+    private AnchorPane nzlPanel;
+
+    ////////////////////////////////////////////
     // Klasse Hinzufügen - Panel - Attribute
     ////////////////////////////////////////////
 
@@ -788,7 +808,10 @@ public class MainController implements Initializable {
     @FXML
     void abtInfoLehrerHinzufuegen(ActionEvent event) {
         this.schoolPanel.setDisable(true);
-        this.personenPanel.setVisible(true);
+        //this.personenPanel.setVisible(true);
+        this.ausPanel.setVisible(true);
+        this.ausLehrerPanel.setVisible(true);
+
         this.perLehrerPanel.setVisible(true);
         this.perSchuelerPanel.setVisible(false);
         this.perHinzuefuegenButton.setText("Hinzufügen");
@@ -1739,4 +1762,39 @@ public class MainController implements Initializable {
         this.belegungsPanel.setDisable(true);
         this.fachPanel.setVisible(true);
     }
+
+    ////////////////////////////////////////////////////
+    // Auswahl treffen - Panel
+    ////////////////////////////////////////////////////
+
+    @FXML
+    void ausLehrerAbteilung(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ausLehrerHinzufuegen(ActionEvent event) {
+        this.ausPanel.setVisible(false);
+        this.personenPanel.setVisible(true);
+    }
+
+    @FXML
+    void ausLehrerNichtZugeordnet(ActionEvent event) {
+        this.nzlChoiceBox.setItems(FXCollections.observableArrayList(this.n_lehrerlist));
+
+        this.ausPanel.setVisible(false);
+        this.nzlPanel.setVisible(true);
+    }
+
+    @FXML
+    void ausExit(ActionEvent event) {
+        this.ausPanel.setVisible(false);
+        this.schoolPanel.setDisable(false);
+    }
+
+    ////////////////////////////////////////////////////
+    // Nicht zugeordnete Lehrer - Panel
+    ////////////////////////////////////////////////////
+
+
 }
