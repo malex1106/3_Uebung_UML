@@ -168,14 +168,12 @@ public class KlasseClass implements KlasseInterface {
     @Override
     public void exportStundenplan(ArrayList<BelegungClass> belegung) {
 
-        String[] zeiten = {"7:50", "8:40", "9:40", "10:30", "11:20", "12.20", "13:10", "14:00", "15:00" , "15:50"};
-        String[] pausen_zeiten = {"9:30", "12:10", "14:50"};
-        int pausen_count=0;
-
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Stundenplan für " + this.bezeichnung);
 
-
+        String[] zeiten = {"7:50", "8:40", "9:40", "10:30", "11:20", "12.20", "13:10", "14:00", "15:00" , "15:50"};
+        String[] pausen_zeiten = {"9:30", "12:10", "14:50"};
+        int pausen_count=0;
         int rowCount = 0;
         int columnCount = 0;
 
