@@ -82,6 +82,8 @@ public class RaumClass implements RaumInterface {
     public void exportBelegung(ArrayList<BelegungClass> belegung) {
 
         String[] zeiten = {"7:50", "8:40", "9:40", "10:30", "11:20", "12.20", "13:10", "14:00", "15:00" , "15:50"};
+        String[] pausen_zeiten = {"9:30", "12:10", "14:50"};
+        int pausen_count=0;
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Stundenplan für " + this.raumNummer);
@@ -117,7 +119,19 @@ public class RaumClass implements RaumInterface {
             cell.setCellValue(Unterrichtstag.values()[i].toString());
         }
 
-        for(int i=0; i<10; i++) {
+        for(int i=1; i<11; i++) {
+
+            if(i==3 || i==6 || i==9){
+                row = sheet.createRow(rowCount++);
+                cell = row.createCell(columnCount = 0);
+                cell.setCellStyle(cs);
+                cell.setCellValue(pausen_zeiten[pausen_count++]);
+                for (int k=0; k<5; k++){
+                    cell = row.createCell(++columnCount);
+                    cell.setCellStyle(cs);
+                    cell.setCellValue("Pause");
+                }
+            }
 
             row = sheet.createRow(rowCount++);
             row.setHeightInPoints((3*sheet.getDefaultRowHeightInPoints()));

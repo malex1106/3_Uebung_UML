@@ -170,6 +170,7 @@ public class KlasseClass implements KlasseInterface {
 
         String[] zeiten = {"7:50", "8:40", "9:40", "10:30", "11:20", "12.20", "13:10", "14:00", "15:00" , "15:50"};
         String[] pausen_zeiten = {"9:30", "12:10", "14:50"};
+        int pausen_count=0;
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Stundenplan für " + this.bezeichnung);
@@ -177,7 +178,6 @@ public class KlasseClass implements KlasseInterface {
 
         int rowCount = 0;
         int columnCount = 0;
-        Integer initalColumn = 5;
 
         // Vorbereitung des Excel-Sheets
 
@@ -207,6 +207,18 @@ public class KlasseClass implements KlasseInterface {
 
         for(int i=1; i<11; i++) {
 
+            if(i==3 || i==6 || i==9){
+                row = sheet.createRow(rowCount++);
+                cell = row.createCell(columnCount = 0);
+                cell.setCellStyle(cs);
+                cell.setCellValue(pausen_zeiten[pausen_count++]);
+                for (int k=0; k<5; k++){
+                    cell = row.createCell(++columnCount);
+                    cell.setCellStyle(cs);
+                    cell.setCellValue("Pause");
+                }
+            }
+
             row = sheet.createRow(rowCount++);
             row.setHeightInPoints((3*sheet.getDefaultRowHeightInPoints()));
             cell = row.createCell(columnCount = 0);
@@ -216,19 +228,12 @@ public class KlasseClass implements KlasseInterface {
             cell.setCellStyle(cs);
             cell.setCellValue(zeiten[i-1]);
 
-            if(i==2 || i==5 || i==8){
-                cell = row.createCell(columnCount++);
-                cell.setCellStyle(cs);
-                cell.setCellValue(pausen_zeiten[i-1]);
-            }
-
             for (int j = 0; j < 5; j++) {
 
                 cell = row.createCell(columnCount++);
                 cell.setCellStyle(cs);
 
                 for (BelegungClass belegung1 : belegung) {
-
                     if (belegung1.getKlasse().bezeichnung.equals(this.bezeichnung)){
                         if(belegung1.getWochentag()==Unterrichtstag.values()[j] && belegung1.getStunde()==i){
                             cell.setCellValue(belegung1.getFach().getName() + "\n" + belegung1.getLehrer().getKuerzel() + "\n" + belegung1.getRaum().getRaumNummer());
@@ -238,7 +243,13 @@ public class KlasseClass implements KlasseInterface {
             }
         }
 
-        sheet.autoSizeColumn(4);
+        for (int i=0; i<6; i++){
+            if(i==2){
+
+            }else {
+                sheet.autoSizeColumn(i);
+            }
+        }
 
         try(FileOutputStream outputStream = new FileOutputStream("./data/Klasse/" + this.bezeichnung + ".xlsx")) {
 
@@ -253,7 +264,6 @@ public class KlasseClass implements KlasseInterface {
             e1.printStackTrace();
 
         }
-
 
     }
 
