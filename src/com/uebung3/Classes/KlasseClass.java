@@ -169,6 +169,7 @@ public class KlasseClass implements KlasseInterface {
     public void exportStundenplan(ArrayList<BelegungClass> belegung) {
 
         String[] zeiten = {"7:50", "8:40", "9:40", "10:30", "11:20", "12.20", "13:10", "14:00", "15:00" , "15:50"};
+        String[] pausen_zeiten = {"9:30", "12:10", "14:50"};
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Stundenplan für " + this.bezeichnung);
@@ -214,6 +215,12 @@ public class KlasseClass implements KlasseInterface {
             cell = row.createCell(columnCount++);
             cell.setCellStyle(cs);
             cell.setCellValue(zeiten[i-1]);
+
+            if(i==2 || i==5 || i==8){
+                cell = row.createCell(columnCount++);
+                cell.setCellStyle(cs);
+                cell.setCellValue(pausen_zeiten[i-1]);
+            }
 
             for (int j = 0; j < 5; j++) {
 
