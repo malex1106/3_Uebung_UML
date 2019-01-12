@@ -54,7 +54,7 @@ public class SchuleClass implements SchuleInterface {
             boolean a=false;
             for (AbteilungClass abteilungen1: abteilungen){
                 abteilungsvorstand=abteilungen1.getAbteilungsvorstand();
-                    if(direktor==abteilungsvorstand){
+                    if ((direktor==abteilungsvorstand) && (direktor != null)){
                         a=true;
                     }
             }
@@ -131,7 +131,8 @@ public class SchuleClass implements SchuleInterface {
         ArrayList<LehrerClass> lehrer = new ArrayList<LehrerClass>();
         for (AbteilungClass abteilung: abteilungen){
             for (LehrerClass lehr: abteilung.getLehrer()) {
-                lehrer.add(lehr);
+                if (!lehrer.contains(lehr))
+                    lehrer.add(lehr);
             }
         }
 

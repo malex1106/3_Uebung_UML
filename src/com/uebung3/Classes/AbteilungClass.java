@@ -77,7 +77,7 @@ public class AbteilungClass implements AbteilungInterface {
         try {
             LehrerClass lehrer=schule.getDirektor();
 
-            if(lehrer==abteilungsvorstand) {
+            if ((lehrer==abteilungsvorstand) && (abteilungsvorstand != null)) {
                 throw new Exception("Dieser Lehrer ist schon Direktor!");
             }
             else{
