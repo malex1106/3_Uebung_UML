@@ -685,6 +685,80 @@ public class MainController implements Initializable {
         BelegungClass belegung4 = new BelegungClass(klasse2, fach4, lehrer3, Unterrichtstag.Dienstag, 2, raum3);
         this.belegungenlist.add(belegung4);
         this.belegungsarraylist.add(belegung4);
+
+        ////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////
+
+        /////////////////////////////////////////
+        // NichtLehrpersonal hinzufügen
+        NichtLehrpersonal personal2 = new NichtLehrpersonal(0000000000L, "Lukas", "Frank", date, "lukas.frank@htlstp.at");
+        personal2.setWohnort(adresse);
+
+        schule.addPersonal(personal2);
+        this.nichtpersonallist.add(personal2);
+
+        this.schoolMitarbeiterAnzahl.setText("Mitarbeiter: " + Integer.toString(schule.getPersonal().size() + schule.getLehrer().size()));
+        this.schMitarbeiteranzahlTextfield.setText(Integer.toString(schule.getPersonal().size() + schule.getLehrer().size()));
+
+        /////////////////////////////////////////
+        // Abteilung hinzufügen
+        AbteilungClass abteilung2 = schule.addAbteilung("Maschinenbau", "MB");
+        abteilung2.setSchule(schule);
+        this.abteilungslist.add(abteilung2);
+
+        /////////////////////////////////////////
+        // Lehrer hinzufügen
+        LehrerClass lehrer5 = new LehrerClass(1234567890, "Bernhard", "Würfel", date, "b.wuerfel@outlook.com", "WÜBE");
+        lehrer5.setWohnort(adresse);
+
+        lehrer5.addFach(fach);
+        fach.addLehrer(lehrer5);
+
+        abteilung2.addLehrer(lehrer5);
+
+        //
+
+        this.schoolMitarbeiterAnzahl.setText("Mitarbeiter: " + Integer.toString(schule.getPersonal().size() + schule.getLehrer().size()));
+
+        abteilung2.setAbteilungsvorstand(lehrer5);
+
+        ////////////////////////////////////////////
+        // Räume hinzufügen
+        RaumClass raum4 = new RaumClass("W146", 18, Raumtyp.Klassenzimmer);
+        this.raumlist.add(raum);
+
+        ////////////////////////////////////////////
+        // Klassen hinzufügen
+
+        KlasseClass klasse3 = new KlasseClass("1FMB", 1, abteilung2);
+        klasse3.setStammklasse(raum4);
+        abteilung2.addKlasse(klasse3);
+
+        /////////////////////////////////////////////
+        // Schüler hinzufügen
+        AdresseClass adresse3 = new AdresseClass("Testort", "Teststrasse", 1, 3100);
+        LocalDate date3 = LocalDate.of(2004, 4, 12);
+        LocalDate inputdate2 = LocalDate.of(2018, 8, 1);
+
+        this.adresslist.add(adresse2);
+
+        SchuelerClass schueler5 = new SchuelerClass(2345678901L, "Testschüler", "Testschüler2", date3, "test@htlstp.at");
+        schueler5.setWohnort(adresse2);
+        schueler5.setKatalognummer(1);
+        schueler5.setEintrittsdatum(inputdate2);
+
+        klasse3.addSchueler(schueler5);
+        schueler5.setKlasse(klasse3);
+
+        //
+
+        klasse2.setKlassensprecher(schueler);
+        klasse2.setKlassenvorstand(lehrer5);
+
+        this.schuelerlist.add(schueler5);
+
+        abteilung.setAbteilungssprecher(schueler2);
+        schule.setSchulsprecher(schueler3);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -1612,6 +1686,9 @@ public class MainController implements Initializable {
             /* Lehrer / Hinzufügen. */
             if (this.schuelerLehrer && this.speichernHinzufuegen) {
                 try {
+                    if (this.perSVNRTextfield.getText().length() != 10)
+                        throw new Exception("SVNR Länge nicht gültig!");
+
                     LehrerClass lehrer = new LehrerClass(Long.parseLong(this.perSVNRTextfield.getText()), this.perVornameTextfield.getText(), this.perNachnameTextfield.getText(),
                             this.perGeburtsdatumDatePicker.getValue(), this.perEmailTextfield.getText(), this.perKuerzelTextfield.getText());
                     lehrer.setWohnort(this.perAdresseChoiceBox.getSelectionModel().getSelectedItem());
@@ -1647,6 +1724,9 @@ public class MainController implements Initializable {
 
             else if (this.schuelerLehrer && !this.speichernHinzufuegen) {
                 try {
+                    if (this.perSVNRTextfield.getText().length() != 10)
+                        throw new Exception("SVNR Länge nicht gültig!");
+
                     LehrerClass lehrer = this.abtInfoLehrerListView.getSelectionModel().getSelectedItem();
 
                     if (lehrer == this.selectedAbteilung.getAbteilungsvorstand())
@@ -1689,6 +1769,9 @@ public class MainController implements Initializable {
 
             else if (!this.schuelerLehrer && this.speichernHinzufuegen) {
                 try {
+                    if (this.perSVNRTextfield.getText().length() != 10)
+                        throw new Exception("SVNR Länge nicht gültig!");
+
                     SchuelerClass schueler = new SchuelerClass(Long.parseLong(this.perSVNRTextfield.getText()), this.perVornameTextfield.getText(), this.perNachnameTextfield.getText(),
                             this.perGeburtsdatumDatePicker.getValue(), this.perEmailTextfield.getText());
                     schueler.setWohnort(this.perAdresseChoiceBox.getSelectionModel().getSelectedItem());
@@ -1728,6 +1811,9 @@ public class MainController implements Initializable {
 
             else if (!this.schuelerLehrer && !this.speichernHinzufuegen) {
                 try {
+                    if (this.perSVNRTextfield.getText().length() != 10)
+                        throw new Exception("SVNR Länge nicht gültig!");
+
                     ArrayList<SchuelerClass> schuelerlist = this.selectedAbteilung.getKlassen().get(this.abtInfoKlassenListView.getSelectionModel().getSelectedIndex()).getSchueler();
                     int schuelerindex = this.klaSchuelerListView.getSelectionModel().getSelectedIndex();
 
@@ -1761,6 +1847,9 @@ public class MainController implements Initializable {
             /* Hinzufügen */
             if (this.speichernHinzufuegen) {
                 try {
+                    if (this.perSVNRTextfield.getText().length() != 10)
+                        throw new Exception("SVNR Länge nicht gültig!");
+
                     NichtLehrpersonal personal = new NichtLehrpersonal(Long.parseLong(this.perSVNRTextfield.getText()), this.perVornameTextfield.getText(), this.perNachnameTextfield.getText(),
                             this.perGeburtsdatumDatePicker.getValue(), this.perEmailTextfield.getText());
                     personal.setWohnort(this.perAdresseChoiceBox.getSelectionModel().getSelectedItem());
@@ -1783,6 +1872,9 @@ public class MainController implements Initializable {
             /* Speichern */
             else {
                 try {
+                    if (this.perSVNRTextfield.getText().length() != 10)
+                        throw new Exception("SVNR Länge nicht gültig!");
+
                     NichtLehrpersonal personal = this.schNichtLehrpersonalListView.getSelectionModel().getSelectedItem();
 
                     personal.setSvnr(Long.parseLong(this.perSVNRTextfield.getText()));
@@ -2062,6 +2154,16 @@ public class MainController implements Initializable {
     void belFachNeu(ActionEvent event) {
         this.belegungsPanel.setDisable(true);
         this.fachPanel.setVisible(true);
+    }
+
+    @FXML
+    void belRaumExport(ActionEvent event) {
+        try {
+            RaumClass raum = this.belRaumChoiceBox.getSelectionModel().getSelectedItem();
+            raum.exportBelegung(this.belegungsarraylist);
+        } catch (Exception e) {
+            System.out.println("Es ist ein Fehler aufgetreten: " + e.getMessage());
+        }
     }
 
     ////////////////////////////////////////////////////
