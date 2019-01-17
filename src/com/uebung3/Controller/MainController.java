@@ -7,7 +7,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -483,12 +483,208 @@ public class MainController implements Initializable {
 
             ///////////////////////////////////////////////////
 
-            this.schoolPanel.setDisable(true);
-            this.abtAddPanel.setVisible(true);
+            //this.schoolPanel.setDisable(true);
+            //this.abtAddPanel.setVisible(true);
+
+            testData();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void testData() {
+        /////////////////////////////////////////
+        // NichtLehrpersonal hinzufügen
+        AdresseClass adresse = new AdresseClass("St. Pölten", "Waldstrasse", 3, 3100);
+        LocalDate date = LocalDate.of(1989, 4, 11);
+        this.adresslist.add(adresse);
+
+        NichtLehrpersonal personal = new NichtLehrpersonal(0000000000L, "Kiril", "Vereshchagin", date, "kiril@unserHeld.at");
+        personal.setWohnort(adresse);
+
+        schule.addPersonal(personal);
+        this.nichtpersonallist.add(personal);
+
+        this.schoolMitarbeiterAnzahl.setText("Mitarbeiter: " + Integer.toString(schule.getPersonal().size() + schule.getLehrer().size()));
+        this.schMitarbeiteranzahlTextfield.setText(Integer.toString(schule.getPersonal().size() + schule.getLehrer().size()));
+
+        /////////////////////////////////////////
+        // Abteilung hinzufügen
+        AbteilungClass abteilung = schule.addAbteilung("Elektronik und Technische Informatik", "EL");
+        abteilung.setSchule(schule);
+        this.abteilungslist.add(abteilung);
+        this.listViewAbteilungen.getSelectionModel().select(abteilung);
+
+        /////////////////////////////////////////
+        // Fächer hinzufügen
+        FachClass fach = new FachClass("Mathematik", 2, Raumtyp.Klassenzimmer);
+        FachClass fach2 = new FachClass("Englisch", 1, Raumtyp.Klassenzimmer);
+        FachClass fach3 = new FachClass("Softwareentwicklung", 4, Raumtyp.Klassenzimmer);
+        FachClass fach4 = new FachClass("Hardwareentwicklung", 4, Raumtyp.Laborraum);
+
+        this.faecherlist.add(fach);
+        this.faecherlist.add(fach2);
+        this.faecherlist.add(fach3);
+        this.faecherlist.add(fach4);
+
+        /////////////////////////////////////////
+        // Lehrer hinzufügen
+        LehrerClass lehrer = new LehrerClass(1234567890, "Bernhard", "Würfel", date, "b.wuerfel@outlook.com", "WÜBE");
+        lehrer.setWohnort(adresse);
+
+        lehrer.addFach(fach);
+        fach.addLehrer(lehrer);
+
+        lehrer.addFach(fach3);
+        fach3.addLehrer(lehrer);
+
+        abteilung.addLehrer(lehrer);
+        this.lehrerlist.add(lehrer);
+        this.abteilungsvorstandslist.add(lehrer);
+
+        schule.setDirektor(lehrer);
+
+        //
+
+        LehrerClass lehrer2 = new LehrerClass(1234567890L, "Klemens", "Rameder", date, "b.wuerfel@outlook.com", "RAKL");
+        lehrer2.setWohnort(adresse);
+
+        lehrer2.addFach(fach2);
+        fach2.addLehrer(lehrer2);
+
+        abteilung.addLehrer(lehrer2);
+        this.lehrerlist.add(lehrer2);
+        this.abteilungsvorstandslist.add(lehrer2);
+
+        //
+
+        LehrerClass lehrer3 = new LehrerClass(1234567890L, "Reinhard", "Gehrer", date, "reinhard.gehrer@htlstp.at", "GERE");
+        lehrer3.setWohnort(adresse);
+
+        lehrer3.addFach(fach4);
+        fach4.addLehrer(lehrer3);
+
+        abteilung.addLehrer(lehrer3);
+        this.lehrerlist.add(lehrer3);
+        this.abteilungsvorstandslist.add(lehrer3);
+
+        this.schoolMitarbeiterAnzahl.setText("Mitarbeiter: " + Integer.toString(schule.getPersonal().size() + schule.getLehrer().size()));
+
+        abteilung.setAbteilungsvorstand(lehrer3);
+        this.abtInfoAbteilungsvorstandChoiceBox.getSelectionModel().select(lehrer3);
+
+        ////////////////////////////////////////////
+        // Räume hinzufügen
+        RaumClass raum = new RaumClass("W118", 18, Raumtyp.Klassenzimmer);
+        this.raumlist.add(raum);
+
+        RaumClass raum2 = new RaumClass("W113", 18, Raumtyp.Klassenzimmer);
+        this.raumlist.add(raum2);
+
+        RaumClass raum3 = new RaumClass("W11x", 32, Raumtyp.Laborraum);
+        this.raumlist.add(raum3);
+
+        ////////////////////////////////////////////
+        // Klassen hinzufügen
+
+        KlasseClass klasse = new KlasseClass("2AHELS", 2, abteilung);
+        klasse.setStammklasse(raum2);
+        abteilung.addKlasse(klasse);
+        this.klassenlist.add(klasse);
+
+        KlasseClass klasse2 = new KlasseClass("5BHELS", 5, abteilung);
+        klasse.setStammklasse(raum3);
+        abteilung.addKlasse(klasse2);
+        this.klassenlist.add(klasse2);
+
+        /////////////////////////////////////////////
+        // Schüler hinzufügen
+        AdresseClass adresse2 = new AdresseClass("St. Georgen am Steinfelde", "Ing. Ritzingergasse", 6, 3151);
+        LocalDate date2 = LocalDate.of(2000, 6, 11);
+        LocalDate inputdate = LocalDate.of(2013, 8, 1);
+
+        this.adresslist.add(adresse2);
+
+        SchuelerClass schueler = new SchuelerClass(2345678901L, "Alexander", "Fichtinger", date2, "alexanderfichtinger@icloud.com");
+        schueler.setWohnort(adresse2);
+        schueler.setKatalognummer(1);
+        schueler.setEintrittsdatum(inputdate);
+
+        klasse2.addSchueler(schueler);
+        schueler.setKlasse(klasse2);
+
+        //
+
+        SchuelerClass schueler2 = new SchuelerClass(3456789012L, "Adrian", "Blanda", date2, "adrian.blanda@htlstp.at");
+        schueler2.setWohnort(adresse2);
+        schueler2.setKatalognummer(2);
+        schueler2.setEintrittsdatum(inputdate);
+
+        klasse2.addSchueler(schueler2);
+        schueler2.setKlasse(klasse2);
+
+        //
+
+        SchuelerClass schueler3 = new SchuelerClass(4567890123L, "Nina", "Nenning", date2, "nina.nenning@htlstp.at");
+        schueler3.setWohnort(adresse2);
+        schueler3.setKatalognummer(3);
+        schueler3.setEintrittsdatum(inputdate);
+
+        klasse2.addSchueler(schueler3);
+        schueler3.setKlasse(klasse2);
+
+        //
+
+        SchuelerClass schueler4 = new SchuelerClass(9823982312L, "Marcus", "Fichtinger", date2, "marcus.fichtinger@htlstp.at");
+        schueler4.setWohnort(adresse2);
+        schueler4.setKatalognummer(1);
+        schueler4.setEintrittsdatum(inputdate);
+
+        klasse.addSchueler(schueler4);
+        schueler4.setKlasse(klasse);
+
+        //
+
+        klasse2.setKlassensprecher(schueler);
+        klasse2.setKlassenvorstand(lehrer2);
+
+        this.schuelerlist.add(schueler);
+        this.schuelerlist.add(schueler2);
+        this.schuelerlist.add(schueler3);
+
+        this.abteilungssprecherlist.clear();
+        for (SchuelerClass schueler1 : abteilung.getSchueler())
+            this.abteilungssprecherlist.add(schueler1);
+
+        abteilung.setAbteilungssprecher(schueler2);
+        schule.setSchulsprecher(schueler3);
+
+        SchuelerClass abteilungssprecher = abteilung.getAbteilungssprecher();
+
+        try {
+            this.abtInfoAbteilungssprecherChoiceBox.getSelectionModel().select(abteilungssprecher);
+        } catch (Exception e) {
+            System.out.println("Keinen Abteilungssprecher gefunden: " + e.getMessage());
+        }
+
+        ///////////////////////////////////////////
+        // Belegungen Hinzufügen
+        BelegungClass belegung = new BelegungClass(klasse2, fach, lehrer, Unterrichtstag.Mittwoch, 4, raum);
+        this.belegungenlist.add(belegung);
+        this.belegungsarraylist.add(belegung);
+
+        BelegungClass belegung2 = new BelegungClass(klasse2, fach2, lehrer2, Unterrichtstag.Donnerstag, 2, raum);
+        this.belegungenlist.add(belegung2);
+        this.belegungsarraylist.add(belegung2);
+
+        BelegungClass belegung3 = new BelegungClass(klasse, fach3, lehrer, Unterrichtstag.Montag, 1, raum2);
+        this.belegungenlist.add(belegung3);
+        this.belegungsarraylist.add(belegung3);
+
+        BelegungClass belegung4 = new BelegungClass(klasse2, fach4, lehrer3, Unterrichtstag.Dienstag, 2, raum3);
+        this.belegungenlist.add(belegung4);
+        this.belegungsarraylist.add(belegung4);
     }
 
     //////////////////////////////////////////////////////////////////////////
@@ -520,6 +716,10 @@ public class MainController implements Initializable {
             for (LehrerClass lehrer: abteilung.getLehrer())
                 if ((abteil != abteilung) && (!abteil.getLehrer().contains(lehrer)))
                     this.n_lehrerlist.add(lehrer);
+
+        for (KlasseClass klasse: abteilung.getKlassen())
+            for (SchuelerClass schueler: klasse.getSchueler())
+                this.n_schuelerlist.add(schueler);
 
         schule.getAbteilungen().remove(abteilung);
         this.abteilungslist.remove(abteilung);
@@ -1088,7 +1288,7 @@ public class MainController implements Initializable {
             this.belFachChoiceBox.getSelectionModel().select(belegung.getFach());
             this.belLehrerChoiceBox.getSelectionModel().select(belegung.getLehrer());
             this.belUnterrichtstagChoiceBox.getSelectionModel().select(belegung.getWochentag());
-            this.belStundeChoiceBox.getSelectionModel().select(belegung.getStunde());
+            this.belStundeChoiceBox.getSelectionModel().select(belegung.getStunde()-1);
             this.belRaumChoiceBox.getSelectionModel().select(belegung.getRaum());
 
             this.belHinzufuegenButton.setDisable(true);
