@@ -4,12 +4,16 @@ import com.uebung3.Classes.SchuleClass;
 import com.uebung3.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class SchuleController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class SchuleController implements Initializable {
 
     @FXML
     private TextField schulSchulname;
@@ -30,6 +34,13 @@ public class SchuleController {
     private Label schuleError;
 
     private static SchuleClass schule;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.schulSchulname.setText("HTL");
+        this.schulSchulkennzahl.setText("1234");
+        this.schulSchultyp.setText("BS");
+    }
 
     @FXML
     private void schuleErzeugen(ActionEvent event) {
@@ -56,4 +67,5 @@ public class SchuleController {
     public static SchuleClass getSchule() {
         return schule;
     }
+
 }
