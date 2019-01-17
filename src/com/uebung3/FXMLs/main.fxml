@@ -220,6 +220,7 @@
                         <Button id="grayButton" layoutX="284.0" layoutY="74.0" mnemonicParsing="false" onAction="#belKlasseNeu" text="Neu" />
                         <Button id="grayButton" layoutX="284.0" layoutY="163.0" mnemonicParsing="false" onAction="#belLehrerNeu" text="Neu" />
                         <Button id="grayButton" layoutX="284.0" layoutY="299.0" mnemonicParsing="false" onAction="#belRaumNeu" text="Neu" />
+                        <Button id="orangeButton" layoutX="25.0" layoutY="347.0" mnemonicParsing="false" onAction="#belRaumExport" text="Raumbelegung Exportieren" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="klassePanel" layoutX="193.0" layoutY="40.0" prefHeight="614.0" prefWidth="522.0" styleClass="backgroundPopup" visible="false">
