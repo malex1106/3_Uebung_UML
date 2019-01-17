@@ -20,7 +20,11 @@ public abstract class PersonClass implements PersonInterface {
         this.vorname = vorname;
         this.nachname = nachname;
         this.geburtsdatum = geburtsdatum;
-        this.email = email;
+        if(email.matches("[\\\\w!#$%&’*+/=?`{|}~^-]+(?:\\\\.[\\\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,6}$^")){
+            this.email = email;
+        } else{
+            System.out.println("Email Addresse ist nicht Ok!");
+        }
     }
 
     @Override
