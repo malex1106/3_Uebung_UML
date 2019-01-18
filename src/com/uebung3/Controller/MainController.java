@@ -2124,6 +2124,10 @@ public class MainController implements Initializable {
         this.fachPanel.setVisible(true);
     }
 
+    /**
+     * Raumbelegung exportieren.
+     * @param event
+     */
     @FXML
     void belRaumExport(ActionEvent event) {
         try {
@@ -2138,6 +2142,10 @@ public class MainController implements Initializable {
     // Auswahl treffen - Panel
     ////////////////////////////////////////////////////
 
+    /**
+     * Lehrer aus anderer Abteilung.
+     * @param event
+     */
     @FXML
     void ausLehrerAbteilung(ActionEvent event) {
         try {
@@ -2157,12 +2165,20 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Neuen Lehrer.
+     * @param event
+     */
     @FXML
     void ausLehrerHinzufuegen(ActionEvent event) {
         this.ausPanel.setVisible(false);
         this.personenPanel.setVisible(true);
     }
 
+    /**
+     * Aus nicht-zugeordnet.
+     * @param event
+     */
     @FXML
     void ausLehrerNichtZugeordnet(ActionEvent event) {
         if (schuelerLehrer) {
@@ -2178,6 +2194,10 @@ public class MainController implements Initializable {
 
     }
 
+    /**
+     * Schließen.
+     * @param event
+     */
     @FXML
     void ausExit(ActionEvent event) {
         if (schuelerLehrer) {
@@ -2193,12 +2213,20 @@ public class MainController implements Initializable {
     // Nicht zugeordnete Lehrer - Panel
     ////////////////////////////////////////////////////
 
+    /**
+     * Panel schließen.
+     * @param event
+     */
     @FXML
     void nzlExit(ActionEvent event) {
         this.nzlPanel.setVisible(false);
         this.schoolPanel.setDisable(false);
     }
 
+    /**
+     * NZL hinzufügen.
+     * @param event
+     */
     @FXML
     void nzlHinzufuegen(ActionEvent event) {
         try {
@@ -2222,12 +2250,20 @@ public class MainController implements Initializable {
     // Nicht zugeordnete Schüler - Panel
     ////////////////////////////////////////////////////
 
+    /**
+     * NZS Panel schließen.
+     * @param event
+     */
     @FXML
     void nzsExit(ActionEvent event) {
         this.nzsPanel.setVisible(false);
         this.klassePanel.setDisable(false);
     }
 
+    /**
+     * NSZ hinzufügen.
+     * @param event
+     */
     @FXML
     void nzsHinzufuegen(ActionEvent event) {
         try {
@@ -2265,12 +2301,20 @@ public class MainController implements Initializable {
     // Aus anderen Abteilungen - Panel
     ////////////////////////////////////////////////////
 
+    /**
+     * AAAPanel schließen.
+     * @param event
+     */
     @FXML
     void aaaExit(ActionEvent event) {
         this.aaaPanel.setVisible(false);
         this.schoolPanel.setDisable(false);
     }
 
+    /**
+     * AAA hinzufügen.
+     * @param event
+     */
     @FXML
     void aaaHinzufuegen(ActionEvent event) {
         try {
@@ -2292,12 +2336,20 @@ public class MainController implements Initializable {
     // Unterrichtende Fächer - Panel
     ////////////////////////////////////////////////////
 
+    /**
+     * FAL Panel schließen.
+     * @param event
+     */
     @FXML
     void falExit(ActionEvent event) {
         this.falPanel.setVisible(false);
         this.personenPanel.setDisable(false);
     }
 
+    /**
+     * FAL Speichern.
+     * @param event
+     */
     @FXML
     void falSpeichern(ActionEvent event) {
         try {
@@ -2312,12 +2364,20 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Fach hinzufügen.
+     * @param event
+     */
     @FXML
     void falNeu(ActionEvent event) {
         this.falPanel.setDisable(false);
         this.fachPanel.setVisible(true);
     }
 
+    /**
+     * Von Rechts nach Links verschieben (Unterr. Fächer).
+     * @param event
+     */
     @FXML
     void falToLeft(ActionEvent event) {
         try {
@@ -2332,6 +2392,10 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Von Rechts nach Links verschieben (Alle Fächer).
+     * @param event
+     */
     @FXML
     void falToRight(ActionEvent event) {
         try {
